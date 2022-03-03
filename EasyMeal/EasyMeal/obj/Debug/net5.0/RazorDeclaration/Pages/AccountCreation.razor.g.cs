@@ -91,7 +91,7 @@ using EasyMeal.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 60 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
     public string idNameCustomer
     {

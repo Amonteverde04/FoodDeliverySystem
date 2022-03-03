@@ -1,7 +1,7 @@
 ﻿@page "/Account-Creation"
 <div class="MainContainer">
     <div class="LogoContainer">
-        <a href=""><img src="/Assets/Logo.svg" alt="EasyMeal" /></a>
+        <a href=""><img class="logo" src="/Assets/Logo.svg" alt="EasyMeal" /></a>
     </div>
 
     <div class="UserTypeSelectorContainer">
@@ -23,16 +23,31 @@
                 <label id="lastName">Last Name</label> <br />
                 <input type="text" class="LastNameInput" />
             </div>
-            <div class="EmailPhonePassContainer">
-                <label id="emailAddress">Email Address</label> <br />
-                <input type="email" class="EmailInput" /> <br />
+            @if (@idNameCustomer == "buttonActive" || idNameDriver == "buttonActive") {
+                <div class="EmailPhonePassContainer">
+                    <label id="emailAddress">Email Address</label> <br />
+                    <input type="email" class="EmailInput" /> <br />
 
-                <label id="phoneNumber">Phone Number</label> <br />
-                <input type="tel" class="PhoneNumberInput" /> <br />
+                    <label id="phoneNumber">Phone Number</label> <br />
+                    <input type="tel" class="PhoneNumberInput" /> <br />
 
-                <label id="password">Password</label> <br />
-                <input type="password" class="PassWordInput" />
-            </div>
+                    <label id="password">Password</label> <br />
+                    <input type="password" class="PassWordInput" />
+                </div>
+            }
+            @if (@idNameRestaurant == "buttonActive") {
+                <div class="EmailPhonePassContainer">
+                    <label id="restaurantName">Restaurant Name</label> <br />
+                    <input type="text" class="RestaurantNameInput" /> <br />
+
+                    <label id="emailAddress">Email Address</label> <br />
+                    <input type="email" class="EmailInput" /> <br />
+
+                    <label id="password">Password</label> <br />
+                    <input type="password" class="PassWordInput" />
+                </div>
+            }
+
             <div class="FormSubmitButtonContainer">
                 <button type="submit" class="FormSubmitButton">Create Account</button>
             </div>

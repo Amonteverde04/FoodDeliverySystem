@@ -173,7 +173,7 @@ input:focus {
     margin-top: 1%;
 } /* Container holding email, phone, and password input boxs*/
 
-.EmailInput, .PhoneNumberInput, .PassWordInput {
+.EmailInput, .PhoneNumberInput, .PassWordInput, .RestaurantNameInput {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
     width: 90%;
