@@ -82,6 +82,13 @@ using EasyMeal.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Account-Creation")]
     public partial class AccountCreation : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -91,22 +98,87 @@ using EasyMeal.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 60 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 61 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
     public string idNameCustomer
     {
         get;
         set;
     }
+
     public string idNameDriver
     {
         get;
         set;
     }
+
     public string idNameRestaurant
     {
         get;
         set;
+    }
+
+    private string firstName
+    {
+        get;
+        set;
+    }
+
+    private string lastName
+    {
+        get;
+        set;
+    }
+
+
+    private string email
+    {
+        get;
+        set;
+    }
+
+
+    private string phone
+    {
+        get;
+        set;
+    }
+
+
+    private string password
+    {
+        get;
+        set;
+    }
+
+
+    private string restaurantName
+    {
+        get;
+        set;
+    }
+
+
+    // prints fields submitted in from
+    private void getFields()
+    {
+        if (idNameCustomer == "buttonActive" || idNameDriver == "buttonActive")
+        {
+            Console.WriteLine(firstName);
+            Console.WriteLine(lastName);
+            Console.WriteLine(email);
+            Console.WriteLine(phone);
+            Console.WriteLine(password);
+        }
+
+        else if (idNameRestaurant == "buttonActive")
+        {
+            Console.WriteLine(firstName);
+            Console.WriteLine(lastName);
+            Console.WriteLine(restaurantName);
+            Console.WriteLine(email);
+            Console.WriteLine(password);
+        }
     }
 
     private void initMethod()
@@ -135,11 +207,13 @@ using EasyMeal.Shared;
         idNameRestaurant = "buttonActive";
     }
 
+
     protected override async Task OnInitializedAsync()
     {
         // When page loads up, make sure customer is the primary selected button
         initMethod();
     }
+
 
 #line default
 #line hidden
