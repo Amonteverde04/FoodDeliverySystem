@@ -84,7 +84,14 @@ using EasyMeal.Shared;
 #nullable disable
 #nullable restore
 #line 11 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
-using System.ComponentModel.DataAnnotations;
+using Microsoft.Data.SqlClient;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using Microsoft.Extensions.Configuration;
 
 #line default
 #line hidden
@@ -98,7 +105,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 63 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
     public string idNameCustomer
     {
@@ -158,17 +165,31 @@ using System.ComponentModel.DataAnnotations;
         set;
     }
 
+    private string mySetting = "";
 
     // prints fields submitted in from
-    private void getFields()
+    private void submitFields()
     {
+        SqlConnection con = new SqlConnection(mySetting);
+
+
         if (idNameCustomer == "buttonActive" || idNameDriver == "buttonActive")
         {
-            Console.WriteLine(firstName);
-            Console.WriteLine(lastName);
-            Console.WriteLine(email);
-            Console.WriteLine(phone);
-            Console.WriteLine(password);
+            SqlCommand cmd = new SqlCommand("INSERT INTO Customertest(FirstName, LastName, CustomerEail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@firstName", firstName);
+            cmd.Parameters.AddWithValue("@lastName", lastName);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@phone", phone);
+            cmd.Parameters.AddWithValue("@password", password);
+            int check = cmd.ExecuteNonQuery();
+            if (check != 0)
+            {
+                Console.WriteLine("Account created!");
+            } else
+            {
+                Console.WriteLine("Error, account not created!");
+            }
         }
 
         else if (idNameRestaurant == "buttonActive")
@@ -184,6 +205,7 @@ using System.ComponentModel.DataAnnotations;
     private void initMethod()
     {
         idNameCustomer = "buttonActive";
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
     }
 
     protected void onMouseClickCustomer(MouseEventArgs mouseEventArgs)
@@ -214,10 +236,10 @@ using System.ComponentModel.DataAnnotations;
         initMethod();
     }
 
-
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }
 }
 #pragma warning restore 1591

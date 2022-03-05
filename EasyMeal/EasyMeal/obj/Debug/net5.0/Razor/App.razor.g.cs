@@ -81,7 +81,14 @@ using EasyMeal.Shared;
 #nullable disable
 #nullable restore
 #line 11 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
-using System.ComponentModel.DataAnnotations;
+using Microsoft.Data.SqlClient;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using Microsoft.Extensions.Configuration;
 
 #line default
 #line hidden
