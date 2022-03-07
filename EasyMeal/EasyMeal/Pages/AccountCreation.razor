@@ -1,6 +1,6 @@
 ﻿@page "/Account-Creation"
 @inject IConfiguration _config
- 
+
 <div class="MainContainer">
     <div class="LogoContainer">
         <a href=""><img class="logo" src="/Assets/Logo.svg" alt="EasyMeal" /></a>
@@ -32,7 +32,7 @@
                     <input type="email" @bind-value="email" class="EmailInput" required /> <br />
 
                     <label id="phoneNumber">Phone Number</label> <br />
-                    <input type="tel" @bind-value="phone" class="PhoneNumberInput" required /> <br />
+                    <input type="number" @bind-value="phone" class="PhoneNumberInput" required /> <br />
 
                     <label id="password">Password</label> <br />
                     <input type="password" @bind-value="password" class="PassWordInput" minlength="8" maxlength="16" required />
@@ -61,11 +61,12 @@
 </div>
 
 @code {
+
     public string idNameCustomer { get; set; }
 
     public string idNameDriver { get; set; }
 
-    public string idNameRestaurant{ get; set; }
+    public string idNameRestaurant { get; set; }
 
     private string firstName { get; set; }
 
@@ -88,7 +89,7 @@
         SqlConnection con = new SqlConnection(mySetting);
 
 
-        if (idNameCustomer == "buttonActive" || idNameDriver == "buttonActive")
+        if (idNameCustomer == "buttonActive")
         {
             SqlCommand cmd = new SqlCommand("INSERT INTO Customertest(FirstName, LastName, CustomerEail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
             con.Open();
@@ -106,11 +107,48 @@
             {
                 Console.WriteLine("Error, account not created!");
             }
+            con.Dispose();
         }
+        else if (idNameDriver == "buttonActive")
+        {
+            SqlCommand cmd = new SqlCommand("INSERT INTO DriverTable(FirstName, LastName, DriverEmail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@firstName", firstName);
+            cmd.Parameters.AddWithValue("@lastName", lastName);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@phone", phone);
+            cmd.Parameters.AddWithValue("@password", password);
+            int check = cmd.ExecuteNonQuery();
+            if (check != 0)
+            {
+                Console.WriteLine("Account created!");
+            }
+            else
+            {
+                Console.WriteLine("Error, account not created!");
+            }
+            con.Dispose();
 
+        }
         else if (idNameRestaurant == "buttonActive")
         {
-            Console.WriteLine("Im sorry there is no restaurant table made yet");
+            SqlCommand cmd = new SqlCommand("INSERT INTO RestaurantTable(FirstName, LastName, RestaurantName, RestaurantEmail, Password) VALUES (@firstName, @lastName, @restaurantName, @restaurantEmail, @password)", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@firstName", firstName);
+            cmd.Parameters.AddWithValue("@lastName", lastName);
+            cmd.Parameters.AddWithValue("@restaurantName", restaurantName);
+            cmd.Parameters.AddWithValue("@restaurantEmail", email);
+            cmd.Parameters.AddWithValue("@password", password);
+            int check = cmd.ExecuteNonQuery();
+            if (check != 0)
+            {
+                Console.WriteLine("Account created!");
+            }
+            else
+            {
+                Console.WriteLine("Error, account not created!");
+            }
+            con.Dispose();
         }
     }
 

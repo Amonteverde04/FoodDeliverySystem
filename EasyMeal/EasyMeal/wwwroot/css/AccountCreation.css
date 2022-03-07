@@ -213,9 +213,9 @@ input:focus {
 }
 
 .FormSubmitButton:focus {
-        background-color: black;
-        color: white;
-        border-color: rgba(255, 214, 0, 1);
+    background-color: black;
+    color: white;
+    border-color: rgba(255, 214, 0, 1);
 }
 
 #HaveAccountText {
@@ -225,4 +225,15 @@ input:focus {
     margin-top: 82%;
 
     left: 26%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /*display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
 }

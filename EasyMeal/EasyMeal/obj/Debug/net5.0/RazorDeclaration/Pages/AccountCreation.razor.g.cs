@@ -107,73 +107,35 @@ using Microsoft.Extensions.Configuration;
 #nullable restore
 #line 63 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
-    public string idNameCustomer
-    {
-        get;
-        set;
-    }
 
-    public string idNameDriver
-    {
-        get;
-        set;
-    }
+    public string idNameCustomer { get; set; }
 
-    public string idNameRestaurant
-    {
-        get;
-        set;
-    }
+    public string idNameDriver { get; set; }
 
-    private string firstName
-    {
-        get;
-        set;
-    }
+    public string idNameRestaurant { get; set; }
 
-    private string lastName
-    {
-        get;
-        set;
-    }
+    private string firstName { get; set; }
 
+    private string lastName { get; set; }
 
-    private string email
-    {
-        get;
-        set;
-    }
+    private string email { get; set; }
 
+    private string phone { get; set; }
 
-    private string phone
-    {
-        get;
-        set;
-    }
+    private string password { get; set; }
 
+    private string restaurantName { get; set; }
 
-    private string password
-    {
-        get;
-        set;
-    }
-
-
-    private string restaurantName
-    {
-        get;
-        set;
-    }
-
+    // will hold connection string
     private string mySetting = "";
 
-    // prints fields submitted in from
+    // form input logic
     private void submitFields()
     {
         SqlConnection con = new SqlConnection(mySetting);
 
 
-        if (idNameCustomer == "buttonActive" || idNameDriver == "buttonActive")
+        if (idNameCustomer == "buttonActive")
         {
             SqlCommand cmd = new SqlCommand("INSERT INTO Customertest(FirstName, LastName, CustomerEail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
             con.Open();
@@ -186,28 +148,65 @@ using Microsoft.Extensions.Configuration;
             if (check != 0)
             {
                 Console.WriteLine("Account created!");
-            } else
+            }
+            else
             {
                 Console.WriteLine("Error, account not created!");
             }
+            con.Dispose();
         }
+        else if (idNameDriver == "buttonActive")
+        {
+            SqlCommand cmd = new SqlCommand("INSERT INTO DriverTable(FirstName, LastName, DriverEmail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@firstName", firstName);
+            cmd.Parameters.AddWithValue("@lastName", lastName);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@phone", phone);
+            cmd.Parameters.AddWithValue("@password", password);
+            int check = cmd.ExecuteNonQuery();
+            if (check != 0)
+            {
+                Console.WriteLine("Account created!");
+            }
+            else
+            {
+                Console.WriteLine("Error, account not created!");
+            }
+            con.Dispose();
 
+        }
         else if (idNameRestaurant == "buttonActive")
         {
-            Console.WriteLine(firstName);
-            Console.WriteLine(lastName);
-            Console.WriteLine(restaurantName);
-            Console.WriteLine(email);
-            Console.WriteLine(password);
+            SqlCommand cmd = new SqlCommand("INSERT INTO RestaurantTable(FirstName, LastName, RestaurantName, RestaurantEmail, Password) VALUES (@firstName, @lastName, @restaurantName, @restaurantEmail, @password)", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@firstName", firstName);
+            cmd.Parameters.AddWithValue("@lastName", lastName);
+            cmd.Parameters.AddWithValue("@restaurantName", restaurantName);
+            cmd.Parameters.AddWithValue("@restaurantEmail", email);
+            cmd.Parameters.AddWithValue("@password", password);
+            int check = cmd.ExecuteNonQuery();
+            if (check != 0)
+            {
+                Console.WriteLine("Account created!");
+            }
+            else
+            {
+                Console.WriteLine("Error, account not created!");
+            }
+            con.Dispose();
         }
     }
 
+    // on load -> call this func
     private void initMethod()
     {
         idNameCustomer = "buttonActive";
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
     }
 
+
+    // user type button logic
     protected void onMouseClickCustomer(MouseEventArgs mouseEventArgs)
     {
         idNameDriver = string.Empty;
@@ -229,7 +228,7 @@ using Microsoft.Extensions.Configuration;
         idNameRestaurant = "buttonActive";
     }
 
-
+    // on load
     protected override async Task OnInitializedAsync()
     {
         // When page loads up, make sure customer is the primary selected button
