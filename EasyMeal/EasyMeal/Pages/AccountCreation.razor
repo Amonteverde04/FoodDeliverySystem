@@ -25,8 +25,6 @@
                 <label id="lastName">Last Name</label> <br />
                 <input type="text" @bind-value="lastName" class="LastNameInput" required />
             </div>
-            @if (@idNameCustomer == "buttonActive" || idNameDriver == "buttonActive")
-            {
                 <div class="EmailPhonePassContainer">
                     <label id="emailAddress">Email Address</label> <br />
                     <input type="email" @bind-value="email" class="EmailInput" required /> <br />
@@ -37,20 +35,6 @@
                     <label id="password">Password</label> <br />
                     <input type="password" @bind-value="password" class="PassWordInput" minlength="8" maxlength="16" required />
                 </div>
-            }
-            @if (@idNameRestaurant == "buttonActive")
-            {
-                <div class="EmailPhonePassContainer">
-                    <label id="restaurantName">Restaurant Name</label> <br />
-                    <input type="text" @bind-value="restaurantName" class="RestaurantNameInput" required /> <br />
-
-                    <label id="emailAddress">Email Address</label> <br />
-                    <input type="email" @bind-value="email" class="EmailInput" required /> <br />
-
-                    <label id="password">Password</label> <br />
-                    <input type="password" @bind-value="password" class="PassWordInput" minlength="8" maxlength="16" required />
-                </div>
-            }
             <div class="FormSubmitButtonContainer">
                 <button type="submit" class="FormSubmitButton" @onclick="submitFields">Create Account</button>
             </div>
@@ -68,88 +52,23 @@
 
     public string idNameRestaurant { get; set; }
 
-    private string firstName { get; set; }
-
-    private string lastName { get; set; }
-
-    private string email { get; set; }
-
-    private string phone { get; set; }
-
-    private string password { get; set; }
+    private string firstName;
+    private string lastName;
+    private string email;
+    private string phone;
+    private string password;
+    private int type = 1;
+    string mySetting = "";
 
     private string restaurantName { get; set; }
-
-    // will hold connection string
-    private string mySetting = "";
 
     // form input logic
     private void submitFields()
     {
-        SqlConnection con = new SqlConnection(mySetting);
+        User newUser = new User(firstName, lastName, email, phone, password, type);
+        newUser.connect = mySetting;
         //when decrypting use Encrypt.hashString(password)
-
-        if (idNameCustomer == "buttonActive")
-        {
-            SqlCommand cmd = new SqlCommand("INSERT INTO Customertest(FirstName, LastName, CustomerEail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
-            con.Open();
-            cmd.Parameters.AddWithValue("@firstName", firstName);
-            cmd.Parameters.AddWithValue("@lastName", lastName);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@phone", phone);
-            cmd.Parameters.AddWithValue("@password", Encrypt.hashString(password));
-            int check = cmd.ExecuteNonQuery();
-            if (check != 0)
-            {
-                Console.WriteLine("Account created!");
-            }
-            else
-            {
-                Console.WriteLine("Error, account not created!");
-            }
-            con.Dispose();
-        }
-        else if (idNameDriver == "buttonActive")
-        {
-            SqlCommand cmd = new SqlCommand("INSERT INTO DriverTable(FirstName, LastName, DriverEmail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
-            con.Open();
-            cmd.Parameters.AddWithValue("@firstName", firstName);
-            cmd.Parameters.AddWithValue("@lastName", lastName);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@phone", phone);
-            cmd.Parameters.AddWithValue("@password", Encrypt.hashString(password));
-            int check = cmd.ExecuteNonQuery();
-            if (check != 0)
-            {
-                Console.WriteLine("Account created!");
-            }
-            else
-            {
-                Console.WriteLine("Error, account not created!");
-            }
-            con.Dispose();
-
-        }
-        else if (idNameRestaurant == "buttonActive")
-        {
-            SqlCommand cmd = new SqlCommand("INSERT INTO RestaurantTable(FirstName, LastName, RestaurantName, RestaurantEmail, Password) VALUES (@firstName, @lastName, @restaurantName, @restaurantEmail, @password)", con);
-            con.Open();
-            cmd.Parameters.AddWithValue("@firstName", firstName);
-            cmd.Parameters.AddWithValue("@lastName", lastName);
-            cmd.Parameters.AddWithValue("@restaurantName", restaurantName);
-            cmd.Parameters.AddWithValue("@restaurantEmail", email);
-            cmd.Parameters.AddWithValue("@password", Encrypt.hashString(password));
-            int check = cmd.ExecuteNonQuery();
-            if (check != 0)
-            {
-                Console.WriteLine("Account created!");
-            }
-            else
-            {
-                Console.WriteLine("Error, account not created!");
-            }
-            con.Dispose();
-        }
+        newUser.createAccount();
     }
 
     // on load -> call this func
@@ -159,13 +78,13 @@
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
     }
 
-
     // user type button logic
     protected void onMouseClickCustomer(MouseEventArgs mouseEventArgs)
     {
         idNameDriver = string.Empty;
         idNameRestaurant = string.Empty;
         idNameCustomer = "buttonActive";
+        type = 1;
     }
 
     protected void onMouseClickDriver(MouseEventArgs mouseEventArgs)
@@ -173,6 +92,7 @@
         idNameCustomer = string.Empty;
         idNameRestaurant = string.Empty;
         idNameDriver = "buttonActive";
+        type = 2;
     }
 
     protected void onMouseClickRestaurant(MouseEventArgs mouseEventArgs)
@@ -180,6 +100,7 @@
         idNameDriver = string.Empty;
         idNameCustomer = string.Empty;
         idNameRestaurant = "buttonActive";
+        type = 3;
     }
 
     // on load

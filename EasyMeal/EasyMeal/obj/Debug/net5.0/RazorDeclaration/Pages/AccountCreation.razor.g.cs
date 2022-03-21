@@ -119,7 +119,7 @@ using System.Text;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 63 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 47 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
 
     public string idNameCustomer { get; set; }
@@ -128,88 +128,23 @@ using System.Text;
 
     public string idNameRestaurant { get; set; }
 
-    private string firstName { get; set; }
-
-    private string lastName { get; set; }
-
-    private string email { get; set; }
-
-    private string phone { get; set; }
-
-    private string password { get; set; }
+    private string firstName;
+    private string lastName;
+    private string email;
+    private string phone;
+    private string password;
+    private int type = 1;
+    string mySetting = "";
 
     private string restaurantName { get; set; }
-
-    // will hold connection string
-    private string mySetting = "";
 
     // form input logic
     private void submitFields()
     {
-        SqlConnection con = new SqlConnection(mySetting);
+        User newUser = new User(firstName, lastName, email, phone, password, type);
+        newUser.connect = mySetting;
         //when decrypting use Encrypt.hashString(password)
-
-        if (idNameCustomer == "buttonActive")
-        {
-            SqlCommand cmd = new SqlCommand("INSERT INTO Customertest(FirstName, LastName, CustomerEail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
-            con.Open();
-            cmd.Parameters.AddWithValue("@firstName", firstName);
-            cmd.Parameters.AddWithValue("@lastName", lastName);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@phone", phone);
-            cmd.Parameters.AddWithValue("@password", Encrypt.hashString(password));
-            int check = cmd.ExecuteNonQuery();
-            if (check != 0)
-            {
-                Console.WriteLine("Account created!");
-            }
-            else
-            {
-                Console.WriteLine("Error, account not created!");
-            }
-            con.Dispose();
-        }
-        else if (idNameDriver == "buttonActive")
-        {
-            SqlCommand cmd = new SqlCommand("INSERT INTO DriverTable(FirstName, LastName, DriverEmail, PhoneNumber, Password) VALUES (@firstName, @lastName, @email, @phone, @password)", con);
-            con.Open();
-            cmd.Parameters.AddWithValue("@firstName", firstName);
-            cmd.Parameters.AddWithValue("@lastName", lastName);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@phone", phone);
-            cmd.Parameters.AddWithValue("@password", Encrypt.hashString(password));
-            int check = cmd.ExecuteNonQuery();
-            if (check != 0)
-            {
-                Console.WriteLine("Account created!");
-            }
-            else
-            {
-                Console.WriteLine("Error, account not created!");
-            }
-            con.Dispose();
-
-        }
-        else if (idNameRestaurant == "buttonActive")
-        {
-            SqlCommand cmd = new SqlCommand("INSERT INTO RestaurantTable(FirstName, LastName, RestaurantName, RestaurantEmail, Password) VALUES (@firstName, @lastName, @restaurantName, @restaurantEmail, @password)", con);
-            con.Open();
-            cmd.Parameters.AddWithValue("@firstName", firstName);
-            cmd.Parameters.AddWithValue("@lastName", lastName);
-            cmd.Parameters.AddWithValue("@restaurantName", restaurantName);
-            cmd.Parameters.AddWithValue("@restaurantEmail", email);
-            cmd.Parameters.AddWithValue("@password", Encrypt.hashString(password));
-            int check = cmd.ExecuteNonQuery();
-            if (check != 0)
-            {
-                Console.WriteLine("Account created!");
-            }
-            else
-            {
-                Console.WriteLine("Error, account not created!");
-            }
-            con.Dispose();
-        }
+        newUser.createAccount();
     }
 
     // on load -> call this func
@@ -219,13 +154,13 @@ using System.Text;
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
     }
 
-
     // user type button logic
     protected void onMouseClickCustomer(MouseEventArgs mouseEventArgs)
     {
         idNameDriver = string.Empty;
         idNameRestaurant = string.Empty;
         idNameCustomer = "buttonActive";
+        type = 1;
     }
 
     protected void onMouseClickDriver(MouseEventArgs mouseEventArgs)
@@ -233,6 +168,7 @@ using System.Text;
         idNameCustomer = string.Empty;
         idNameRestaurant = string.Empty;
         idNameDriver = "buttonActive";
+        type = 2;
     }
 
     protected void onMouseClickRestaurant(MouseEventArgs mouseEventArgs)
@@ -240,6 +176,7 @@ using System.Text;
         idNameDriver = string.Empty;
         idNameCustomer = string.Empty;
         idNameRestaurant = "buttonActive";
+        type = 3;
     }
 
     // on load
