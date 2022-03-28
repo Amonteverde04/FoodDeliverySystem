@@ -1,0 +1,70 @@
+﻿@page "/Account-Login"
+@inject IConfiguration _config
+@inject NavigationManager NavigationManager
+
+<link href="css/AccountLogin.css" rel="stylesheet" />
+
+<div class="MainContainer">
+    <div class="LogoContainer">
+        <a href=""><img class="logo" src="/Assets/Logo.svg" alt="EasyMeal" /></a>
+    </div>
+
+    <div class="AccountFieldsContainer">
+        <h1 id="logIn">Log In</h1>
+        <form class="AccountFieldsForm" @onsubmit="submitFields">
+            <div class="EmailPhonePassContainer">
+                <label id="emailAddress">Email Address</label> <br />
+                <input type="email" @bind-value="email" class="EmailInput" required /> <br />
+
+                <label id="password">Password</label> <br />
+                <input type="password" @bind-value="password" class="PassWordInput" required />
+            </div>
+            <div class="FormSubmitButtonContainer">
+                <button type="submit" class="FormSubmitButton">Log In</button>
+            </div>
+            <p id="NeedAccountText">Don't have an account? &nbsp&nbsp<a href="/Account-Creation">Create Account</a></p>
+        </form>
+    </div>
+
+</div>
+
+@code {
+    private string email;
+    private string password;
+    private bool check = false;
+    private string mySetting = "";
+
+    // form input logic
+    private void submitFields()
+    {
+        User person = new User();
+        person.connect = mySetting;
+        person.email = email;
+        person.password = password;
+        //when decrypting use Encrypt.hashString(password)
+        person.logIn();
+        check = person.check;
+        if (check == true)
+        {
+
+            NavigationManager.NavigateTo("/");
+
+        }
+        else
+        {
+
+        }
+    }
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
+}
