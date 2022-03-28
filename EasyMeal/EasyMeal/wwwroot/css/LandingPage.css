@@ -1,0 +1,46 @@
+﻿body {
+    background-color:black;
+}
+
+.page {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.Hero {
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background-image: url(/Assets/LandingPage/Hero.png);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.InfoSection1 {
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background-color: white;
+}
+
+.InfoSection2 {
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: black;
+}
+
+.Footer {
+    left: 0;
+    width: 100%;
+    height: 4%;
+    background-color: #FFD600;
+}
