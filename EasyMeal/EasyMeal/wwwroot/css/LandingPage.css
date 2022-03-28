@@ -1,4 +1,6 @@
-﻿body {
+﻿/* Main Layout */
+
+body {
     background-color:black;
 }
 
@@ -15,9 +17,10 @@
 }
 
 .Hero {
+    position: relative;
     left: 0;
     width: 100%;
-    height: 70%;
+    height: 80%;
     background-image: url(/Assets/LandingPage/Hero.png);
     background-position: center center;
     background-size: cover;
@@ -25,22 +28,42 @@
 }
 
 .InfoSection1 {
+    position: relative;
     left: 0;
     width: 100%;
-    height: 60%;
+    height: 70%;
     background-color: white;
 }
 
 .InfoSection2 {
+    position: relative;
     left: 0;
     width: 100%;
-    height: 50%;
+    height: 70%;
     background-color: black;
 }
 
 .Footer {
+    position: relative;
     left: 0;
     width: 100%;
     height: 4%;
     background-color: #FFD600;
+}
+
+/* InfoSection1 */
+.MapPicture {
+    position: absolute;
+    height: 550px;
+    width: 800px;
+    right: 90px;
+    bottom: 50px;
+}
+
+.TextHolderSection1 {
+    position: absolute;
+    background-color: green;
+    width: 30%;
+    left: 12%;
+    bottom: 50%;
 }
