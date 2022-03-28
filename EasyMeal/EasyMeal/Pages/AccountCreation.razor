@@ -1,6 +1,8 @@
 ﻿@page "/Account-Creation"
 @inject IConfiguration _config
+@inject NavigationManager NavigationManager
 
+<link href="css/AccountCreation.css" rel="stylesheet" />
 <div class="MainContainer">
     <div class="LogoContainer">
         <a href=""><img class="logo" src="/Assets/Logo.svg" alt="EasyMeal" /></a>
@@ -25,20 +27,20 @@
                 <label id="lastName">Last Name</label> <br />
                 <input type="text" @bind-value="lastName" class="LastNameInput" required />
             </div>
-                <div class="EmailPhonePassContainer">
-                    <label id="emailAddress">Email Address</label> <br />
-                    <input type="email" @bind-value="email" class="EmailInput" required /> <br />
+            <div class="EmailPhonePassContainer">
+                <label id="emailAddress">Email Address</label> <br />
+                <input type="email" @bind-value="email" class="EmailInput" required /> <br />
 
-                    <label id="phoneNumber">Phone Number</label> <br />
-                    <input type="number" @bind-value="phone" class="PhoneNumberInput" required /> <br />
+                <label id="phoneNumber">Phone Number</label> <br />
+                <input type="number" @bind-value="phone" class="PhoneNumberInput" required /> <br />
 
-                    <label id="password">Password</label> <br />
-                    <input type="password" @bind-value="password" class="PassWordInput" minlength="8" maxlength="16" required />
-                </div>
+                <label id="password">Password</label> <br />
+                <input type="password" @bind-value="password" class="PassWordInput" minlength="8" maxlength="16" required />
+            </div>
             <div class="FormSubmitButtonContainer">
                 <button type="submit" class="FormSubmitButton" @onclick="submitFields">Create Account</button>
             </div>
-            <p id="HaveAccountText">Already a member? &nbsp&nbsp<a href="">Sign In</a></p>
+            <p id="HaveAccountText">Already a member? &nbsp&nbsp<a href="/Account-Login">Sign In</a></p>
         </form>
     </div>
 
@@ -58,7 +60,7 @@
     private string phone;
     private string password;
     private int type = 1;
-    string mySetting = "";
+    private string mySetting = "";
 
     private string restaurantName { get; set; }
 
@@ -69,6 +71,7 @@
         newUser.connect = mySetting;
         //when decrypting use Encrypt.hashString(password)
         newUser.createAccount();
+        NavigationManager.NavigateTo("/");
     }
 
     // on load -> call this func

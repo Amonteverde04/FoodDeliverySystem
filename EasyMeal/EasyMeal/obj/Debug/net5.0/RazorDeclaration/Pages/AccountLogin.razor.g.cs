@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace EasyMeal
+namespace EasyMeal.Pages
 {
     #line hidden
     using System;
@@ -117,13 +117,61 @@ using System.Web;
 #line default
 #line hidden
 #nullable disable
-    public partial class _Imports : System.Object
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Account-Login")]
+    public partial class AccountLogin : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
-        protected void Execute()
+        protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 31 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
+       
+    private string email;
+    private string password;
+    private bool check = false;
+    private string mySetting = "";
+
+    // form input logic
+    private void submitFields()
+    {
+        User person = new User();
+        person.connect = mySetting;
+        person.email = email;
+        person.password = password;
+        //when decrypting use Encrypt.hashString(password)
+        person.logIn();
+        check = person.check;
+        if (check == true)
+        {
+
+            NavigationManager.NavigateTo("/");
+
+        }
+        else
+        {
+
+        }
+    }
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -110,6 +110,13 @@ using System.Text;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 15 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using System.Web;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998

@@ -110,6 +110,13 @@ using System.Text;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 15 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using System.Web;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Account-Creation")]
     public partial class AccountCreation : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -119,7 +126,7 @@ using System.Text;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 49 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
 
     public string idNameCustomer { get; set; }
@@ -134,7 +141,7 @@ using System.Text;
     private string phone;
     private string password;
     private int type = 1;
-    string mySetting = "";
+    private string mySetting = "";
 
     private string restaurantName { get; set; }
 
@@ -145,6 +152,7 @@ using System.Text;
         newUser.connect = mySetting;
         //when decrypting use Encrypt.hashString(password)
         newUser.createAccount();
+        NavigationManager.NavigateTo("/");
     }
 
     // on load -> call this func
@@ -189,6 +197,7 @@ using System.Text;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }
 }
