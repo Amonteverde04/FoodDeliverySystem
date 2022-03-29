@@ -1,10 +1,13 @@
 ﻿/* Main Layout */
+* {
+    font-family: 'Roboto', sans-serif;
+}
 
 body {
-    background-color:black;
 }
 
 .page {
+    background-color: black;
     overflow-y: scroll;
     overflow-x: hidden;
     position: fixed;
@@ -22,9 +25,8 @@ body {
     width: 100%;
     height: 80%;
     background-image: url(/Assets/LandingPage/Hero.png);
-    background-position: center center;
-    background-size: cover;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .InfoSection1 {
@@ -51,6 +53,32 @@ body {
     background-color: #FFD600;
 }
 
+/* text */
+h3 {
+    border-bottom: 7px solid #FFD600;
+    width: 98%;
+}
+
+p {
+    font-weight: 500;
+    font-size: medium;
+}
+
+/* Hero */
+.LogoContainer {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.Logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* InfoSection1 */
 .MapPicture {
     position: absolute;
@@ -62,8 +90,16 @@ body {
 
 .TextHolderSection1 {
     position: absolute;
-    background-color: green;
-    width: 30%;
+    width: 31%;
     left: 12%;
-    bottom: 50%;
+    bottom: 40%;
+}
+
+.Section1TitleHolder {
+    font-size: 150px;
+}
+
+.Section1Paragraph2Holder,
+.Section1Paragraph1Holder {
+    width: 98%;
 }
