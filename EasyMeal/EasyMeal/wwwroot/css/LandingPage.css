@@ -1,0 +1,242 @@
+﻿/* Main Layout */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+}
+
+.page {
+    background-color: black;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.Hero {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background-image: url(/Assets/LandingPage/Hero.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.InfoSection1 {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background-color: white;
+}
+
+.InfoSection2 {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background-color: black;
+}
+
+.Footer {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 4%;
+    background-color: #FFD600;
+}
+
+/* text */
+h3 {
+    border-bottom: 7px solid #FFD600;
+    width: 98%;
+}
+
+p {
+    font-weight: 500;
+    font-size: medium;
+}
+
+/* Hero */
+.LogoContainer {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+}
+
+.Logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.FlexContainer {
+    position: absolute;
+    display: flex;
+    width: 15%;
+    top: 80px;
+    right: 9%;
+}
+
+.flexChild {
+    flex: 1;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    padding: 9px;
+}
+
+.flexChild:first-child {
+    margin-right: 5px;
+}
+
+.flexChild:last-child {
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+}
+
+#accountSignIn {
+    color: #FFD600;
+}
+
+#accountSignUp {
+    color: black;
+}
+
+.HeroSearchContainer {
+    position: relative;
+    width: 50%;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+
+.SearchForm, .SearchBar {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.Pin {
+    position: absolute;
+    background: none;
+    border: none;
+    top: 10px;
+    left: 10px;
+}
+
+.Pin:active .PinSvg {
+    filter: invert(78%) sepia(38%) saturate(1503%) hue-rotate(0deg) brightness(104%) contrast(104%);
+}
+
+.Pin:focus {
+    outline: none;
+}
+
+.PinSvg {
+    height: 30px;
+}
+
+input {
+    background-color: white;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border: 1px solid black;
+}
+
+input:focus {
+    outline-color: #FFD600;
+}
+
+/* Info Section 2 */
+.MapPicture {
+    position: absolute;
+    height: 550px;
+    width: 800px;
+    right: 90px;
+    bottom: 50px;
+}
+
+.TextHolderSection1 {
+    position: absolute;
+    width: 31%;
+    left: 12%;
+    bottom: 40%;
+}
+
+.Section1TitleHolder {
+    font-size: 150px;
+}
+
+.Section1Paragraph2Holder,
+.Section1Paragraph1Holder {
+    width: 98%;
+}
+
+/* Info Section 2 */
+.GuyPicture {
+    position: absolute;
+    height: 550px;
+    width: 500px;
+    left: 12%;
+    bottom: 50px;
+}
+
+.TextHolderSection2 {
+    position: absolute;
+    width: 34%;
+    right: 300px;
+    bottom: 35%;
+}
+
+.Section2TitleHolder {
+    font-size: 150px;
+    color: white;
+}
+
+.Section2Paragraph2Holder,
+.Section2Paragraph1Holder {
+    width: 98%;
+    color: white;
+}
+
+/* Footer */
+.FlexContainerFoot {
+    position: relative;
+    display: flex;
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flexChildFoot {
+    flex: 1;
+    height: 40px;
+    text-align: center;
+    padding: 9px;
+}
+
+.flexChildFoot:first-child {
+    margin-right: 5px;
+}
+
+#footerAbout, #footerContact {
+    text-decoration: underline;
+    color: black;
+}
+
+#footerAbout:hover, #footerContact:hover {
+    color: blue;
+}

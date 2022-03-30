@@ -47,8 +47,6 @@ C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\n
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\AccountCreation.razor.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\AccountCreation.razor.g.cs
-C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
-C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Azure.Core.dll
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Azure.Identity.dll
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -80,3 +78,7 @@ C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\n
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\AccountLogin.razor.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\AccountLogin.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\OLDIndex.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\OLDIndex.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
