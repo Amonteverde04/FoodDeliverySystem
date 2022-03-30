@@ -196,7 +196,7 @@ input:focus {
 
 .TextHolderSection2 {
     position: absolute;
-    width: 31%;
+    width: 34%;
     right: 300px;
     bottom: 35%;
 }
@@ -225,10 +225,18 @@ input:focus {
     flex: 1;
     height: 40px;
     text-align: center;
-    text-decoration: none;
     padding: 9px;
 }
 
 .flexChildFoot:first-child {
     margin-right: 5px;
+}
+
+#footerAbout, #footerContact {
+    text-decoration: underline;
+    color: black;
+}
+
+#footerAbout:hover, #footerContact:hover {
+    color: blue;
 }
