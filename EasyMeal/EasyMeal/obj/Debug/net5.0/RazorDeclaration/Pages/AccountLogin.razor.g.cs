@@ -126,12 +126,12 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
+#line 40 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
        
     private string email;
     private string password;
-    private bool check = false;
     private string mySetting = "";
+    private string hidden = "hidden";
 
     // form input logic
     private void submitFields()
@@ -142,16 +142,14 @@ using System.Web;
         person.password = password;
         //when decrypting use Encrypt.hashString(password)
         person.logIn();
-        check = person.check;
-        if (check == true)
+        // make sure the person valid
+        if (person.check == true)
         {
 
             NavigationManager.NavigateTo("/");
-
-        }
-        else
+        } else
         {
-
+            hidden = "";
         }
     }
 

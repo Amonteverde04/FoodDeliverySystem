@@ -44,7 +44,7 @@ namespace EasyMeal
         public void createAccount()
         {
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TblUser(UserFirstName, UserLastName, UserEmail, UserPhoneNumber, UserPassword, UserTypeID) VALUES (@firstName, @lastName, @email, @phone, @password, @type)", con);
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TblUsers(UserFirstName, UserLastName, UserEmail, UserPhoneNumber, UserPassword, UserType) VALUES (@firstName, @lastName, @email, @phone, @password, @type)", con);
             con.Open();
             cmd.Parameters.AddWithValue("@firstName", this.firstName);
             cmd.Parameters.AddWithValue("@lastName", this.lastName);
@@ -53,14 +53,16 @@ namespace EasyMeal
             //cmd.Parameters.AddWithValue("@password", Encrypt.hashString(this._password));
             cmd.Parameters.AddWithValue("@password", this._password);
             cmd.Parameters.AddWithValue("@type", this.type);
-            int check = cmd.ExecuteNonQuery();
-            if (check != 0)
+            int checker = cmd.ExecuteNonQuery();
+            if (checker != 0)
             {
                 Console.WriteLine("Account created!");
+                check = true;
             }
             else
             {
                 Console.WriteLine("Error, account not created!");
+                check = false;
             }
             con.Dispose();
         }
@@ -69,7 +71,7 @@ namespace EasyMeal
         public void logIn ()
         {
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"SELECT * FROM TblUser WHERE UserEmail = @email AND UserPassword = @password", con);
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM TblUsers WHERE UserEmail = @email AND UserPassword = @password", con);
             con.Open();
             cmd.Parameters.AddWithValue("@email", this.email);
             cmd.Parameters.AddWithValue("@password", this.password);
