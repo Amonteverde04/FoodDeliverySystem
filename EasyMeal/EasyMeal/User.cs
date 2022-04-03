@@ -40,7 +40,6 @@ namespace EasyMeal
             this.type = type;
         }
 
-        // need to fix ER DIAGRAM to put customer address and customer card info in the Customer table.
         public void createAccount()
         {
             SqlConnection con = new SqlConnection(connect);
@@ -66,8 +65,6 @@ namespace EasyMeal
             }
             con.Dispose();
         }
-
-        // doesnt work rn. Something with the SQL Statement
         public void logIn ()
         {
             SqlConnection con = new SqlConnection(connect);
