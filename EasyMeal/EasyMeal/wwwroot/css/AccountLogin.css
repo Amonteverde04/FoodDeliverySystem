@@ -1,4 +1,8 @@
-﻿body {
+﻿* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
 }
 
 .MainContainer {
@@ -73,7 +77,7 @@ input:focus {
 /* form tag */
 
 .EmailPhonePassContainer {
-    position: absolute;
+    position: relative;
     /*Uncomment to see container*/
     /*background-color: turquoise;*/
     width: 100%;
@@ -86,6 +90,11 @@ input:focus {
 /* Container holding email, phone, and password input boxs*/
 
 .EmailInput,.PassWordInput {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0px;
+    right: 0px;
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
     width: 90%;
@@ -101,13 +110,13 @@ input:focus {
     position: absolute;
     /*Uncomment to see container*/
     /*background-color: orange;*/
-    width: 62%;
+    width: 60%;
     height: 60px;
     top: 100%;
     margin-left:auto;
     margin-right:auto;
     left: 0px;
-    right: 40px;
+    right: 52px;
 
     padding-top: 10px;
 }
@@ -120,23 +129,23 @@ input:focus {
     border-radius: 10px;
     border-color: rgba(0, 0, 0, 1);
 }
-    /* Submit button */
+/* Submit button */
 
-    .FormSubmitButton:hover {
-        transform: scale(1.03);
-    }
+.FormSubmitButton:hover {
+    transform: scale(1.03);
+}
 
-    .FormSubmitButton:focus {
-        background-color: black;
-        color: white;
-        border-color: rgba(255, 214, 0, 1);
-    }
+.FormSubmitButton:active {
+    background-color: black;
+    color: white;
+    border-color: rgba(255, 214, 0, 1);
+}
 
 #NeedAccountText {
     position: absolute;
     color: white;
-    margin-top: 62%;
-    left: 20%;
+    margin-top: 25%;
+    left: 18%;
 }
 
 input::-webkit-outer-spin-button,
@@ -148,4 +157,52 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield; /* Firefox */
+}
+
+.ErrorMessageContainer {
+    position: absolute;
+    background-color: rgba(255,0,0, .5);
+    margin-left: auto;
+    margin-right: auto;
+    left: 0px;
+    right: 0px;
+    top: 50px;
+    width: 25%;
+    height: 17%;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 10px;
+}
+
+.ErrorIcon {
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.ErrorMessage {
+    padding: 12px;
+    color: white;
+}
+
+#errorHeading {
+    padding-left: 40px;
+}
+
+#errorText {
+    position: relative;
+    text-align: center;
+}
+
+#errorLink {
+    color: white;
+    text-decoration: underline;
+}
+
+#errorLink:hover {
+    color: blue;
+}
+
+#hidden {
+    opacity: 0;
 }

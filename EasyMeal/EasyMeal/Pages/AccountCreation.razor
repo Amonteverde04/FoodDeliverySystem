@@ -18,7 +18,7 @@
 
     <div class="AccountFieldsContainer">
         <h1 id="createAcc">Create an account.</h1>
-        <form class="AccountFieldsForm">
+        <form class="AccountFieldsForm"  @onsubmit="submitFields">
             <div class="FirstNameContainer">
                 <label id="firstName">First Name</label> <br />
                 <input type="text" @bind-value="firstName" class="FirstNameInput" required />
@@ -38,7 +38,7 @@
                 <input type="password" @bind-value="password" class="PassWordInput" minlength="8" maxlength="16" required />
             </div>
             <div class="FormSubmitButtonContainer">
-                <button type="submit" class="FormSubmitButton" @onclick="submitFields">Create Account</button>
+                <button type="submit" class="FormSubmitButton">Create Account</button>
             </div>
             <p id="HaveAccountText">Already a member? &nbsp&nbsp<a href="/Account-Login">Sign In</a></p>
         </form>
@@ -71,7 +71,13 @@
         newUser.connect = mySetting;
         //when decrypting use Encrypt.hashString(password)
         newUser.createAccount();
-        NavigationManager.NavigateTo("/");
+        // make sure the person is added to the table
+        if (newUser.check == true)
+        {
+
+            NavigationManager.NavigateTo("/");
+
+        }
     }
 
     // on load -> call this func

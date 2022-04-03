@@ -152,7 +152,13 @@ using System.Web;
         newUser.connect = mySetting;
         //when decrypting use Encrypt.hashString(password)
         newUser.createAccount();
-        NavigationManager.NavigateTo("/");
+        // make sure the person is added to the table
+        if (newUser.check == true)
+        {
+
+            NavigationManager.NavigateTo("/");
+
+        }
     }
 
     // on load -> call this func
