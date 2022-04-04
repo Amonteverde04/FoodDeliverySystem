@@ -82,3 +82,5 @@ C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\n
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\OLDIndex.razor.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\AccountPreferences.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\AccountPreferences.razor.g.cs

@@ -1,0 +1,37 @@
+﻿@page "/Account-Preferences"
+
+<link href="css/AccountPreferences.css" rel="stylesheet" />
+
+
+<div class="page">
+    <div class="Preferences">
+        <div class="Header">
+            <div class="LogoContainer">
+                <a href=""><img class="logo" src="/Assets/Logo.svg" alt="EasyMeal" /></a>
+            </div>
+            <h2 class="HeaderTitle">Account Preferences</h2>
+        </div>
+        <div class="PreferencesContainer">
+            <div class="InfoContainer">
+                <h2 class="Section">Personal Information</h2>
+                <div class="PFPContainer">
+                    <div class="PFPBorder">
+                        <div class="PFPCircle">
+                            <img class="PFP" src="/Assets/AccountPreferences/DefaultPFP.svg" alt="PFP" />
+                        </div>
+                    </div>
+                    <form class="PFPForm">
+                        <label for="pictureUpload">Select a picture:</label>
+                        <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*" />
+                        <br /><br />
+                        <input type="submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}
