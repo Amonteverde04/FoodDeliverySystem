@@ -13,105 +13,105 @@ namespace EasyMeal.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 1 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 2 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 3 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 4 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 5 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 6 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 7 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 8 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 9 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using EasyMeal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 10 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using EasyMeal.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 11 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.Data.SqlClient;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 12 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.Extensions.Configuration;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 13 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Security.Cryptography;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 14 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Text;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 15 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Web;
 
 #line default
@@ -126,7 +126,7 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "C:\Users\jaket\OneDrive\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 49 "C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
 
     public string idNameCustomer { get; set; }
