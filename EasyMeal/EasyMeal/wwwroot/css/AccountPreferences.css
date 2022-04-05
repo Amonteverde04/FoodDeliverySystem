@@ -23,7 +23,7 @@ body {
     position: relative;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 200%;
     background-color: white;
     background-repeat: no-repeat;
     background-size: cover;
@@ -61,9 +61,9 @@ body {
 
 .PreferencesContainer {
     position: relative;
-    /*background-color: yellow;*/
+    background-color: yellow;
     width: 70%;
-    height: 80%;
+    min-height: 80%;
     margin-left: auto;
     margin-right: auto;
     top: 30px;
@@ -81,11 +81,22 @@ body {
     top: 35px;
     border-bottom: solid black;
 }
+
+.Section2 {
+    color: black;
+    margin-top: 35px;
+    border-bottom: solid black;
+}
+
+.Section3 {
+    color: black;
+    border-bottom: solid black;
+}
 /* Section is h2 */
 
 .PFPContainer {
     position: relative;
-    /*background-color: purple;*/
+    /* background-color: purple; */
     height: 125px;
     width: 355px;
     margin-top: 35px;
@@ -123,4 +134,91 @@ body {
     height: 100%;
     left: 150px;
     bottom: 0px;
+}
+
+/* User Info */
+.AccountFieldsForm {
+    position: relative;
+    background-color: olive;
+    min-height: 250px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+#inputLabel {
+    position: absolute;
+    color: black;
+    font-size: 10px;
+    padding-left: 15px;
+    margin-top: 25px;
+}
+/* First Name, Last Name, etc...*/
+
+.FirstNameContainer {
+    position: absolute;
+    width: 50%;
+}
+
+.LastNameContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.EmailPhoneContainer {
+    padding-top: 80px;
+}
+
+.EmailInput, .PhoneNumberInput {
+    width: 90%;
+    height: 45px;
+
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, .7);
+    text-indent: 12px;
+}
+/* email, phone, pass input boxes*/
+
+.AddressContainer {
+    position: relative;
+    min-height: 200px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.StateZipContainer {
+    padding-top: 45px;
+}
+
+.StreetNameContainer {
+    position: absolute;
+    width: 50%;
+}
+
+.CityNameContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.StateNameContainer {
+    position: absolute;
+    width: 50%;
+    margin-top: 35px;
+}
+
+.ZipContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    margin-top: 35px;
+}
+
+.FirstNameInput, .LastNameInput, .StreetNameInput, .CityNameInput, .StateNameInput, .ZipInput {
+    width: 80%;
+    height: 45px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, .7);
+    text-indent: 12px;
 }

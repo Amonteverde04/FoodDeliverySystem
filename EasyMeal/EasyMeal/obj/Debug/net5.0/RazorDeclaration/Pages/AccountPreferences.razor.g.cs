@@ -125,6 +125,26 @@ using System.Web;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 81 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
+       
+    private string firstName;
+    private string lastName;
+    private string email;
+    private string phone;
+    private string street;
+    private string city;
+    private string state;
+    private string zip;
+
+    public void submitFields()
+    {
+
+    }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

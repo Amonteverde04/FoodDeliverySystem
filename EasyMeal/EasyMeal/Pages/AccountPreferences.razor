@@ -27,11 +27,69 @@
                         <input type="submit" />
                     </form>
                 </div>
+                <div class="UserInfoContainer">
+                    <form class="AccountFieldsForm" @onsubmit="submitFields">
+                        <div class="FirstNameContainer">
+                            <label id="inputLabel">First Name</label> <br />
+                            <input type="text" @bind-value="firstName" class="FirstNameInput" required />
+                        </div>
+                        <div class="LastNameContainer">
+                            <label id="inputLabel">Last Name</label> <br />
+                            <input type="text" @bind-value="lastName" class="LastNameInput" required />
+                        </div>
+                        <div class="EmailPhoneContainer">
+                            <label id="inputLabel">Email Address</label> <br />
+                            <input type="email" @bind-value="email" class="EmailInput" required /> <br />
+
+                            <label id="inputLabel">Phone Number</label> <br />
+                            <input type="number" @bind-value="phone" class="PhoneNumberInput" required /> <br />
+                        </div>
+                        <h2 class="Section2">Address Information</h2>
+                        <div class="AddressContainer">
+                            <div class="StreetCityContainer">
+                                <div class="StreetNameContainer">
+                                    <label id="inputLabel">Street</label> <br />
+                                    <input type="text" @bind-value="street" class="StreetNameInput" required />
+                                </div>
+                                <div class="CityNameContainer">
+                                    <label id="inputLabel">City</label> <br />
+                                    <input type="text" @bind-value="city" class="CityNameInput" required />
+                                </div>
+                            </div>
+                            <div class="StateZipContainer">
+                                <div class="StateNameContainer">
+                                    <label id="inputLabel">State</label> <br />
+                                    <input type="text" @bind-value="state" class="StateNameInput" required />
+                                </div>
+                                <div class="ZipContainer">
+                                    <label id="inputLabel">Zip Code</label> <br />
+                                    <input type="text" @bind-value="zip" class="ZipInput" required />
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="Section3">Billing Information</h2>
+                        <div class="FormSubmitButtonContainer">
+                            <button type="submit" class="FormSubmitButton">Create Account</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @code {
+    private string firstName;
+    private string lastName;
+    private string email;
+    private string phone;
+    private string street;
+    private string city;
+    private string state;
+    private string zip;
 
+    public void submitFields()
+    {
+
+    }
 }
