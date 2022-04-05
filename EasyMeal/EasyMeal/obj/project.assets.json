@@ -2512,23 +2512,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\awsom\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\tomca\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\awsom\\Documents\\GitHub\\FoodDeliverySystem\\EasyMeal\\EasyMeal\\EasyMeal.csproj",
+      "projectUniqueName": "C:\\Users\\tomca\\Documents\\GitHub\\FoodDeliverySystem\\EasyMeal\\EasyMeal\\EasyMeal.csproj",
       "projectName": "EasyMeal",
-      "projectPath": "C:\\Users\\awsom\\Documents\\GitHub\\FoodDeliverySystem\\EasyMeal\\EasyMeal\\EasyMeal.csproj",
-      "packagesPath": "C:\\Users\\awsom\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\awsom\\Documents\\GitHub\\FoodDeliverySystem\\EasyMeal\\EasyMeal\\obj\\",
+      "projectPath": "C:\\Users\\tomca\\Documents\\GitHub\\FoodDeliverySystem\\EasyMeal\\EasyMeal\\EasyMeal.csproj",
+      "packagesPath": "C:\\Users\\tomca\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tomca\\Documents\\GitHub\\FoodDeliverySystem\\EasyMeal\\EasyMeal\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\awsom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tomca\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2581,7 +2577,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
