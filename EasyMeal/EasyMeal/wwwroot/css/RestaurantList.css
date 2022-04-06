@@ -139,23 +139,20 @@
 /*Section1*/
 
 .SectionGridContainer {
-    opacity: 0;
-    display: grid;
-    grid-gap: 50px 100px;
     position: relative;
-    background-color: blue;
-    width: 90%;
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-gap: 100px 150px;
+    width: 100%;
     min-height: 50%;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 100px;
 }
 
-GridItem {
-    height: 50px;
-    width: 50px;
+.GridItem {
 }
 
 RestThumbNail {
-    height: 50px;
-    width: 50px;
 }
