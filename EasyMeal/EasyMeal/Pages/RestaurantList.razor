@@ -7,7 +7,9 @@
 		<div class="Header">
             <div class="Search">
                 <form class="SearchForm" action="/">
-                    <button class="Pin" type="button"><img class="SearchPinSvg" src="/Assets/RestaurantList/SearchPin.svg"/></button>
+                    <button class="Glass" type="button">
+                        <img class="SearchGlassSvg" src="/Assets/RestaurantList/SearchGlass.svg" />
+                    </button>
                     <input class="SearchBar" type="text" placeholder="Search" name="search">
                 </form>
             </div>
@@ -20,45 +22,33 @@
             </div>
         </div>
     
-      <div class="Section1">
-         <div class="row">
-                <div class="column">
-                    <a href=""><img class="McDonaldsLogo" src="/Assets/RestaurantList/McDonald's.png" alt="McDonalds" style="width:75%" /></a>
-                    <p class ="RestTXT"><b>McDonald’s:</b> 1.9 mi - 16 mins - $0 Delivery Fee </p> 
+        <div class="SectionGridContainer">
+                <div class="GridItem">
+                    <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/McDonald's.png" alt="McDonalds"/></a>
+                    <p class="RestTXT"><b>McDonald’s:</b> 1.9 mi - 16 mins - $0 Delivery Fee </p>
                 </div>
-                <div class="column">
-                    <a href=""><img class="TacoBell" src="/Assets/RestaurantList/Taco Bell.png" alt="Taco" style=width:75%/></a>
-                    <p class ="RestTXT"><b>TacoBell:</b> 0.6 mi - 10 mins - $0 Delivery Fee </p> 
-              </div>
-              <div class="column">
-                    <a href=""><img class="Wendy's" src="/Assets/RestaurantList/Wendy's.png" alt="Wendy" style=width:75%/></a>
-                    <p class ="RestTXT"><b>Wendy's':</b> 2.2 mi - 14 mins - $0 Delivery Fee </p> 
-              </div>
-         </div>
-        
-        
-      </div>
-
-      <div class="Section2">
-         <div class="row">
-                <div class="column">
-                    <a href=""><img class="CarvelLogo" src="/Assets/RestaurantList/Carvel.png" alt="Carvel" style="width:75%" /></a>
-                    <p class ="RestTXT"><b>Carvel:</b> 3.0 mi - 10 mins - $0 Delivery Fee </p> 
+                <div class="GridItem">
+                    <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/Taco Bell.png" alt="Taco"/></a>
+                    <p class="RestTXT"><b>TacoBell:</b> 0.6 mi - 10 mins - $0 Delivery Fee </p>
                 </div>
-                <div class="column">
-                    <a href=""><img class="ChickFil" src="/Assets/RestaurantList/Chick fil a.png" alt="Chick" style=width:75%/></a>
-                    <p class ="RestTXT"><b>Chick Fil a:</b> a 1.5 mi - 17 mins - $0 Delivery Fee </p> 
-              </div>
-              <div class="column">
-                    <a href=""><img class="Burger King" src="/Assets/RestaurantList/Burger King.png" alt="Wendy" style=width:75%/></a>
-                    <p class ="RestTXT"><b>Burger King:</b> 2.5 mi - 13 mins - $0 Delivery Fee </p> 
-              </div>
-         </div>
-        
-        
-      </div>
-
-</div>	
+                <div class="GridItem">
+                    <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/Wendy's.png" alt="Wendy"/></a>
+                    <p class="RestTXT"><b>Wendy's':</b> 2.2 mi - 14 mins - $0 Delivery Fee </p>
+                </div>
+                <div class="GridItem">
+                    <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/Carvel.png" alt="Carvel"/></a>
+                    <p class="RestTXT"><b>Carvel:</b> 3.0 mi - 10 mins - $0 Delivery Fee </p>
+                </div>
+                <div class="GridItem">
+                    <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/Chick fil a.png" alt="Chick"/></a>
+                    <p class="RestTXT"><b>Chick Fil a:</b> a 1.5 mi - 17 mins - $0 Delivery Fee </p>
+                </div>
+                <div class="GridItem">
+                    <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/Burger King.png" alt="Wendy"/></a>
+                    <p class="RestTXT"><b>Burger King:</b> 2.5 mi - 13 mins - $0 Delivery Fee </p>
+                </div>
+        </div>
+    </div>	
 </div>
 
 @code {

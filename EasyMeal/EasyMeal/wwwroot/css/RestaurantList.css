@@ -40,34 +40,46 @@
 
 .Search {
     position: absolute;
-    width: 50%;
-    height: 100px;
+    width: 20%;
+    height: 40px;
     margin-left: 30px;
     margin-right: auto;
     margin-top: 20px;
 }
 
-.SearchForm, .SearchBar {
-    width: 45%;
-    height: 45%;
-    border-radius: 30px;
-    text-align: left;
-}
-
-.SearchPin {
+.Glass {
     position: absolute;
     background: none;
     border: none;
-    top: 10px;
-    left: 10px;
+    height: 25px;
+    width: 30px;
+    top: 7px;
+    left: 13px;
+}
+
+.Glass:active .SearchGlassSvg {
+    filter: invert(78%) sepia(38%) saturate(1503%) hue-rotate(0deg) brightness(104%) contrast(104%);
+}
+
+.Glass:focus {
+    outline: none;
+}
+
+.SearchGlassSvg {
+    display: block;
+    height: 20px;
+    width: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
-/*#search {
-    color: black;
-
-}*/
-
+.SearchForm, .SearchBar {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center;
+}
 
 .LogoContainer {
     padding-top: 15px;
@@ -117,34 +129,33 @@
 }
 
 
+/* Thumbnails */
+.RestThumbNail {
+    width: 100%;
+    height: 100%;
+}
+
+
 /*Section1*/
 
-.Section1 {
+.SectionGridContainer {
+    opacity: 0;
+    display: grid;
+    grid-gap: 50px 100px;
     position: relative;
-    left: 0;
-    width: 100%;
-    height: 70%;
-    background-color:White;
-   
-}
-.Section2 {
-    position: relative;
-    left: 0;
-    width: 100%;
-    height: 70%;
-    background-color: White;
+    background-color: blue;
+    width: 90%;
+    min-height: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.column {
-
-float: left;
-width: 33%;
-padding: 80px;
-right:300px;
+GridItem {
+    height: 50px;
+    width: 50px;
 }
-.row::after {
-content:"";
-clear: both;
-display table;
 
+RestThumbNail {
+    height: 50px;
+    width: 50px;
 }
