@@ -117,6 +117,13 @@ using System.Web;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Account-Login")]
     public partial class AccountLogin : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
+#line 43 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
        
     private string email;
     private string password;
@@ -136,18 +143,17 @@ using System.Web;
     // form input logic
     private void submitFields()
     {
-        User person = new User();
-        person.connect = mySetting;
-        person.email = email;
-        person.password = password;
+        Usr.connect = mySetting;
+        Usr.email = email;
+        Usr.password = password;
         //when decrypting use Encrypt.hashString(password)
-        person.logIn();
+        Usr.logIn();
         // make sure the person valid
-        if (person.check == true)
+        if (Usr.check == true)
         {
-
             NavigationManager.NavigateTo("/");
-        } else
+        }
+        else
         {
             hidden = "";
         }
@@ -168,8 +174,10 @@ using System.Web;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private User Usr { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProtectedSessionStorage ProtectedSessionStore { get; set; }
     }
 }
 #pragma warning restore 1591

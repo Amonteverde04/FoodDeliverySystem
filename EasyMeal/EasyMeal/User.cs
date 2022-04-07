@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using System.Security.Cryptography;
-using System.Text;
-using Microsoft.AspNetCore.Components;
 
 namespace EasyMeal
 {
@@ -19,6 +12,8 @@ namespace EasyMeal
         private readonly string phone;
         private readonly string _password;
         private readonly int type;
+
+        public int userID { get; set; }
 
         public string email { get; set; } // property for checking log in email
         public string password { get; set; } // property for checking log in password
@@ -65,17 +60,20 @@ namespace EasyMeal
             }
             con.Dispose();
         }
+
         public void logIn ()
         {
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"SELECT * FROM TblUsers WHERE UserEmail = @email AND UserPassword = @password", con);
+            SqlCommand cmd = new SqlCommand($"SELECT UserID FROM TblUsers WHERE UserEmail = @email AND UserPassword = @password", con);
             con.Open();
             cmd.Parameters.AddWithValue("@email", this.email);
             cmd.Parameters.AddWithValue("@password", this.password);
+            userID = (int)cmd.ExecuteScalar();
             SqlDataReader rd = cmd.ExecuteReader();
             if (rd.Read())
             {
                 Console.WriteLine("You are logged in!");
+                Console.WriteLine(userID);
                 check = true;
             }
             else

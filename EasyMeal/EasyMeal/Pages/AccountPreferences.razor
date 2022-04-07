@@ -1,4 +1,6 @@
 ﻿@page "/Account-Preferences"
+@inject IConfiguration _config
+@inject NavigationManager NavigationManager
 
 <link href="css/AccountPreferences.css" rel="stylesheet" />
 
@@ -68,6 +70,31 @@
                             </div>
                         </div>
                         <h2 class="Section3">Billing Information</h2>
+                        <div class="BillingContainer">
+                            <div class="CardNumberContainer">
+                                <label id="inputLabel">Card Number</label> <br />
+                                <input type="text" @bind-value="cardNumber" class="CardNumberInput" required />
+                            </div>
+                            <div class="ExpCVVContainer">
+                                <div class="MonthContainer">
+                                    <label id="inputLabel">Month</label> <br />
+                                    <input type="text" @bind-value="month" placeholder="MM" class="MonthInput" required />
+                                </div>
+                                <h1 class="Slash">/</h1>
+                                <div class="YearContainer">
+                                    <label id="inputLabel">Year</label> <br />
+                                    <input type="text" @bind-value="year" placeholder="YY" class="YearInput" required />
+                                </div>
+                                <div class="CVVContainer">
+                                    <label id="inputLabel">CVV</label> <br />
+                                    <input type="text" @bind-value="cVV" placeholder="123" class="CVVInput" required />
+                                </div>
+                            </div>
+                            <div class="FullNameContainer">
+                                <label id="inputLabel">Full Name</label> <br />
+                                <input type="text" @bind-value="fullName" class="FullNameInput" required />
+                            </div>
+                        </div>
                         <div class="FormSubmitButtonContainer">
                             <button type="submit" class="FormSubmitButton">Create Account</button>
                         </div>
@@ -87,9 +114,37 @@
     private string city;
     private string state;
     private string zip;
+    private string cardNumber;
+    private string fullName;
+    private string month;
+    private string year;
+    private string cVV;
+    private string mySetting = "";
 
-    public void submitFields()
+    // form input logic
+    private void submitFields()
     {
+        User newUser = new User();
+        newUser.connect = mySetting;
+        //when decrypting use Encrypt.hashString(password)
+        // make sure the person is added to the table
+        if (newUser.check == true)
+        {
 
+            NavigationManager.NavigateTo("/");
+
+        }
+    }
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
     }
 }

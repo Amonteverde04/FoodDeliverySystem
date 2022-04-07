@@ -84,3 +84,11 @@ C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\n
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\AccountPreferences.razor.g.cs
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\AccountPreferences.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Humanizer.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll

@@ -126,7 +126,7 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
+#line 108 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
        
     private string firstName;
     private string lastName;
@@ -136,15 +136,45 @@ using System.Web;
     private string city;
     private string state;
     private string zip;
+    private string cardNumber;
+    private string fullName;
+    private string month;
+    private string year;
+    private string cVV;
+    private string mySetting = "";
 
-    public void submitFields()
+    // form input logic
+    private void submitFields()
     {
+        User newUser = new User();
+        newUser.connect = mySetting;
+        //when decrypting use Encrypt.hashString(password)
+        // make sure the person is added to the table
+        if (newUser.check == true)
+        {
 
+            NavigationManager.NavigateTo("/");
+
+        }
+    }
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }
 }
 #pragma warning restore 1591
