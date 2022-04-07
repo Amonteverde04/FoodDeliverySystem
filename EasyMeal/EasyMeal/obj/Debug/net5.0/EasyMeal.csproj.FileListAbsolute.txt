@@ -168,3 +168,5 @@ C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\n
 C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\EasyMeal.pdb
 C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\EasyMeal.genruntimeconfig.cache
 C:\Users\tomca\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\ref\EasyMeal.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\RestaurantList.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\RestaurantList.razor.g.cs
