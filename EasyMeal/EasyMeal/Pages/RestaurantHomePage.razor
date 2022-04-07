@@ -1,0 +1,62 @@
+﻿@page "/Restaurant-Home-page"
+
+<link href="css/RestaurantHomePage.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="RestuarantList">
+        <div class="Header">
+            <div class="Search">
+                <form class="SearchForm" action="/">
+                    <button class="Glass" type="button">
+                        <img class="SearchGlassSvg" src="/Assets/RestaurantList/SearchGlass.svg" />
+                    </button>
+                    <input class="SearchBar" type="text" placeholder="Search" name="search">
+                </form>
+            </div>
+            <div class="LogoContainer">
+                <a href=""><img class="logo" src="/Assets/RestaurantList/RestaurantLogo.svg" alt="EasyMeal" /></a>
+            </div>
+            <div class="Cart">
+                <a href=""><img class="Cart" src="/Assets/RestaurantHomePage/cart.png" alt="Cart" /></a>
+            </div>
+            <div class="FlexContainer SignUpLogIn">
+                <div class="flexChild SignIn"><a id="accountSignIn" href="/Account-Login">Log In</a></div>
+                <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
+            </div>
+        </div>
+
+        <h1 class="RestHeader">Restaurant</h1>
+        <table class="Container">
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Add to Cart</th>
+            </tr>
+            <tr>
+                <td>Burger</td>
+                <td>Burger with pickles</td>
+                <td>$9.89</td>
+                <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
+            </tr>
+            <tr>
+                <td>Grilled Cheese</td>
+                <td>Cheese with bread</td>
+                <td>$7.99</td>
+                <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
+            </tr>
+            <tr>
+                <td>Chicken Sandwich</td>
+                <td>Chicken with bread</td>
+                <td>$8.79</td>
+                <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
+            </tr>
+
+        </table>
+
+    </div>
+    </div>
+
+    @code {
+
+    }
