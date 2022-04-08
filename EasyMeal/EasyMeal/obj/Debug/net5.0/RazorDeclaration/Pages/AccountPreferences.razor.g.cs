@@ -126,42 +126,50 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 108 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
+#line 200 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
        
     private string firstName;
     private string lastName;
     private string email;
     private string phone;
+
     private string street;
     private string city;
     private string state;
     private string zip;
+
     private string cardNumber;
     private string fullName;
     private string month;
     private string year;
     private string cVV;
+
+    private string driverMake;
+    private string driverModel;
+    private string driverYear;
+    private string driverColor;
+    private string driverLicensePlate;
+
+    private string restName;
+    private string foodType;
+    private string phoneNum;
+    private string[] time = new string[13];
+    private string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
     private string mySetting = "";
 
     // form input logic
     private void submitFields()
     {
-        User newUser = new User();
-        newUser.connect = mySetting;
-        //when decrypting use Encrypt.hashString(password)
-        // make sure the person is added to the table
-        if (newUser.check == true)
-        {
-
-            NavigationManager.NavigateTo("/");
-
-        }
+        DataUploadModel theUpload;
+        Usr.connect = mySetting;
     }
 
     // on load -> call this func
     private void initMethod()
     {
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        Usr.grabUserType();
     }
 
     // on load
@@ -173,6 +181,7 @@ using System.Web;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private User Usr { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }

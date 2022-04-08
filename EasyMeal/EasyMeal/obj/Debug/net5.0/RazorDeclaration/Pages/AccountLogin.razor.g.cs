@@ -146,7 +146,6 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
         Usr.connect = mySetting;
         Usr.email = email;
         Usr.password = password;
-        //when decrypting use Encrypt.hashString(password)
         Usr.logIn();
         // make sure the person valid
         if (Usr.check == true)

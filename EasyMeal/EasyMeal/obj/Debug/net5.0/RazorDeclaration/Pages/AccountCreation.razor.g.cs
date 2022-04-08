@@ -126,7 +126,7 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 50 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
 
     public string idNameCustomer { get; set; }
@@ -148,16 +148,19 @@ using System.Web;
     // form input logic
     private void submitFields()
     {
-        User newUser = new User(firstName, lastName, email, phone, password, type);
-        newUser.connect = mySetting;
-        //when decrypting use Encrypt.hashString(password)
-        newUser.createAccount();
+        User person = new User(firstName, lastName, email, phone, password, type);
+        person.connect = mySetting;
+        person.createAccount();
         // make sure the person is added to the table
-        if (newUser.check == true)
+        if (person.check == true)
         {
-
-            NavigationManager.NavigateTo("/");
-
+            Usr.connect = mySetting;
+            // set the email and pass for user singleton
+            Usr.email = email;
+            Usr.password = password;
+            // get the ID associated to save state
+            Usr.grabUserID();
+            NavigationManager.NavigateTo("/Account-Preferences");
         }
     }
 
@@ -203,6 +206,7 @@ using System.Web;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private User Usr { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }

@@ -68,7 +68,7 @@ body {
     min-height: 80%;
     margin-left: auto;
     margin-right: auto;
-    top: 130px;
+    top: 35px;
 }
 
 .InfoContainer {
@@ -220,7 +220,12 @@ body {
 }
 
 /* Standard format for full length input boxes*/
-.FirstNameInput, .LastNameInput, .StreetNameInput, .CityNameInput, .StateNameInput, .ZipInput, .CardNumberInput, .FullNameInput {
+.FirstNameInput, .LastNameInput, .StreetNameInput,
+.CityNameInput, .StateNameInput, .ZipInput,
+.CardNumberInput, .FullNameInput, .DriverMakeInput,
+.DriverModelInput, .DriverYearInput, .DriverColorInput,
+.DriverLicensePlateInput, .RestTypeInput, .RestPhoneInput,
+.HoursInput {
     width: 80%;
     height: 45px;
     border-radius: 5px;
@@ -233,7 +238,7 @@ body {
 .BillingContainer {
     position: relative;
     width: 50%;
-    min-height: 200px;
+    height: 250px;
     margin-top: 35px;
     padding-bottom: 200px;
 }
@@ -246,6 +251,7 @@ body {
     position: relative;
     height: 68px;
     width: 100%;
+    margin-top: 10px;
 }
 
 .MonthContainer {
@@ -281,12 +287,141 @@ body {
     text-align: center;
 }
 
-.FormSubmitButtonContainer {
+.FullNameContainer {
+    margin-top: 10px;
+}
+
+/* Driver Info */
+
+.DriverContainer {
+    position: relative;
+    min-height: 250px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.MakeModelContainer {
+    height: 45px;
+}
+
+.MakeContainer {
     position: absolute;
+    width: 50%;
+}
+
+.ModelContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.CarYearContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    margin-top: 35px;
+}
+
+.ColorContainer {
+    position: absolute;
+    width: 50%;
+    margin-top: 35px;
+}
+
+.LicensePlateContainer {
+    position: absolute;
+    width: 50%;
+    margin-top: 115px;
+}
+
+/* Restaurant Info */
+
+.RestaurantContainer {
+    position: relative;
+    min-height: 150px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.RestaurantMainContainer {
+    width: 100%;
+}
+
+.RestNameContainer {
+    width: 100%;
+}
+
+.RestNameInput {
+    width: 90%;
+    height: 45px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, .7);
+    text-indent: 12px;
+}
+
+.RestTypeContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+}
+
+.RestPhoneContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+/* Hours Info */
+#hoursSec {
+    margin-bottom: 25px;
+}
+
+.HoursContainer {
+    position: relative;
+    min-height: 100px;
+    width: 100%;
+}
+
+.HourSetContainer {
+    width: 100%;
+}
+
+.OpenContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+}
+
+.Dash {
+    position: absolute;
+    width: 45px;
+    border-bottom: solid black;
+    top: 80px;
+    left: 43%;
+}
+
+.CloseContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.Day {
+    position: absolute;
+    height: 20px;
+    top: 35px;
+}
+
+/* Form Submit Button */
+.FormSubmitButtonContainer {
+    position: relative;
     bottom: 0px;
     padding-bottom: 100px;
     right: 0;
     width: 200px;
+    padding-top: 20px;
 }
 
 .FormSubmitButton {
@@ -296,4 +431,12 @@ body {
     border-radius: 20px;
     height: 45px;
     width: 100%;
+}
+
+.ErrorContainer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 20%;
 }

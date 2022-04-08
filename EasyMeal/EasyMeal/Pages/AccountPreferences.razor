@@ -1,6 +1,7 @@
 ﻿@page "/Account-Preferences"
 @inject IConfiguration _config
 @inject NavigationManager NavigationManager
+@inject User Usr
 
 <link href="css/AccountPreferences.css" rel="stylesheet" />
 
@@ -13,95 +14,186 @@
             </div>
             <h2 class="HeaderTitle">Account Preferences</h2>
         </div>
-        <div class="PreferencesContainer">
-            <div class="InfoContainer">
-                <h2 class="Section">Personal Information</h2>
-                <div class="PFPContainer">
-                    <div class="PFPBorder">
-                        <div class="PFPCircle">
-                            <img class="PFP" src="/Assets/AccountPreferences/DefaultPFP.svg" alt="PFP" />
+        @if (Usr.userID != 0)
+        {
+            <div class="PreferencesContainer">
+                <div class="InfoContainer">
+                    <h2 class="Section">Personal Information</h2>
+                    <div class="PFPContainer">
+                        <div class="PFPBorder">
+                            <div class="PFPCircle">
+                                <img class="PFP" src="/Assets/AccountPreferences/DefaultPFP.svg" alt="PFP" />
+                            </div>
                         </div>
+                        <form class="PFPForm">
+                            <label for="pictureUpload">Select a picture:</label>
+                            <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*" />
+                            <br /><br />
+                            <input type="submit" />
+                        </form>
                     </div>
-                    <form class="PFPForm">
-                        <label for="pictureUpload">Select a picture:</label>
-                        <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*" />
-                        <br /><br />
-                        <input type="submit" />
-                    </form>
-                </div>
-                <div class="UserInfoContainer">
-                    <form class="AccountFieldsForm" @onsubmit="submitFields">
-                        <div class="FirstNameContainer">
-                            <label id="inputLabel">First Name</label> <br />
-                            <input type="text" @bind-value="firstName" class="FirstNameInput" required />
-                        </div>
-                        <div class="LastNameContainer">
-                            <label id="inputLabel">Last Name</label> <br />
-                            <input type="text" @bind-value="lastName" class="LastNameInput" required />
-                        </div>
-                        <div class="EmailPhoneContainer">
-                            <label id="inputLabel">Email Address</label> <br />
-                            <input type="email" @bind-value="email" class="EmailInput" required /> <br />
+                    <div class="UserInfoContainer">
+                        <form class="AccountFieldsForm" @onsubmit="submitFields">
+                            @if (Usr.userType == 36)
+                            {
+                                <div class="FirstNameContainer">
+                                    <label id="inputLabel">First Name</label> <br />
+                                    <input type="text" @bind-value="firstName" class="FirstNameInput" required />
+                                </div>
+                                <div class="LastNameContainer">
+                                    <label id="inputLabel">Last Name</label> <br />
+                                    <input type="text" @bind-value="lastName" class="LastNameInput" required />
+                                </div>
+                                <div class="EmailPhoneContainer">
+                                    <label id="inputLabel">Email Address</label> <br />
+                                    <input type="email" @bind-value="email" class="EmailInput" required /> <br />
 
-                            <label id="inputLabel">Phone Number</label> <br />
-                            <input type="number" @bind-value="phone" class="PhoneNumberInput" required /> <br />
-                        </div>
-                        <h2 class="Section2">Address Information</h2>
-                        <div class="AddressContainer">
-                            <div class="StreetCityContainer">
-                                <div class="StreetNameContainer">
-                                    <label id="inputLabel">Street</label> <br />
-                                    <input type="text" @bind-value="street" class="StreetNameInput" required />
+                                    <label id="inputLabel">Phone Number</label> <br />
+                                    <input type="number" @bind-value="phone" class="PhoneNumberInput" required /> <br />
                                 </div>
-                                <div class="CityNameContainer">
-                                    <label id="inputLabel">City</label> <br />
-                                    <input type="text" @bind-value="city" class="CityNameInput" required />
+                            }
+                            @if (Usr.userType == 1 || Usr.userType == 3)
+                            {
+                                <h2 class="Section2">Address Information</h2>
+                                <div class="AddressContainer">
+                                    <div class="StreetCityContainer">
+                                        <div class="StreetNameContainer">
+                                            <label id="inputLabel">Street</label> <br />
+                                            <input type="text" @bind-value="street" class="StreetNameInput" required />
+                                        </div>
+                                        <div class="CityNameContainer">
+                                            <label id="inputLabel">City</label> <br />
+                                            <input type="text" @bind-value="city" class="CityNameInput" required />
+                                        </div>
+                                    </div>
+                                    <div class="StateZipContainer">
+                                        <div class="StateNameContainer">
+                                            <label id="inputLabel">State</label> <br />
+                                            <input type="text" @bind-value="state" class="StateNameInput" required />
+                                        </div>
+                                        <div class="ZipContainer">
+                                            <label id="inputLabel">Zip Code</label> <br />
+                                            <input type="text" @bind-value="zip" class="ZipInput" required />
+                                        </div>
+                                    </div>
                                 </div>
+                            }
+                            @if (Usr.userType == 2)
+                            {
+                                <h2 class="Section2">Driver Information</h2>
+                                <div class="DriverContainer">
+                                    <div class="MakeModelContainer">
+                                        <div class="MakeContainer">
+                                            <label id="inputLabel">Make</label> <br />
+                                            <input type="text" @bind-value="driverMake" class="DriverMakeInput" required />
+                                        </div>
+                                        <div class="ModelContainer">
+                                            <label id="inputLabel">Model</label> <br />
+                                            <input type="text" @bind-value="driverModel" class="DriverModelInput" required />
+                                        </div>
+                                    </div>
+                                    <div class="YearColorContainer">
+                                        <div class="CarYearContainer">
+                                            <label id="inputLabel">Year</label> <br />
+                                            <input type="text" @bind-value="driverYear" class="DriverYearInput" required />
+                                        </div>
+                                        <div class="ColorContainer">
+                                            <label id="inputLabel">Color</label> <br />
+                                            <input type="text" @bind-value="driverColor" class="DriverColorInput" required />
+                                        </div>
+                                    </div>
+                                    <div class="LicensePlateContainer">
+                                        <div class="LicenseContainer">
+                                            <label id="inputLabel">License Plate</label> <br />
+                                            <input type="text" @bind-value="driverLicensePlate" class="DriverLicensePlateInput" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Usr.userType == 1)
+                            {
+                                <h2 class="Section3">Billing Information</h2>
+                                <div class="BillingContainer">
+                                    <div class="CardNumberContainer">
+                                        <label id="inputLabel">Card Number</label> <br />
+                                        <input type="text" @bind-value="cardNumber" class="CardNumberInput" required />
+                                    </div>
+                                    <div class="ExpCVVContainer">
+                                        <div class="MonthContainer">
+                                            <label id="inputLabel">Month</label> <br />
+                                            <input type="text" @bind-value="month" placeholder="MM" class="MonthInput" required />
+                                        </div>
+                                        <h1 class="Slash">/</h1>
+                                        <div class="YearContainer">
+                                            <label id="inputLabel">Year</label> <br />
+                                            <input type="text" @bind-value="year" placeholder="YY" class="YearInput" required />
+                                        </div>
+                                        <div class="CVVContainer">
+                                            <label id="inputLabel">CVV</label> <br />
+                                            <input type="text" @bind-value="cVV" placeholder="123" class="CVVInput" required />
+                                        </div>
+                                    </div>
+                                    <div class="FullNameContainer">
+                                        <label id="inputLabel">Full Name</label> <br />
+                                        <input type="text" @bind-value="fullName" class="FullNameInput" required />
+                                    </div>
+                                </div>
+                            }
+                            @if (Usr.userType == 3)
+                            {
+                                <h2 class="Section2">Restaurant Information</h2>
+                                <div class="RestaurantContainer">
+                                    <div class="RestaurantMain">
+                                        <div class="RestNameContainer">
+                                            <label id="inputLabel">Restaurant Name</label> <br />
+                                            <input type="text" @bind-value="restName" class="RestNameInput" required />
+                                        </div>
+                                    </div>
+                                    <div class="RestaurantSecondary">
+                                        <div class="RestTypeContainer">
+                                            <label id="inputLabel">Type of Food</label> <br />
+                                            <input type="text" @bind-value="foodType" class="RestTypeInput" required />
+                                        </div>
+                                        <div class="RestPhoneContainer">
+                                            <label id="inputLabel">Restaurant Phone Number</label> <br />
+                                            <input type="text" @bind-value="phoneNum" class="RestPhoneInput" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="Section2" id="hoursSec">Hours</h2>
+                                @for (int i = 0; i < 7; i++)
+                                {
+                                    <div class="HoursContainer">
+                                        <div class="HourSetContainer">
+                                            <div class="OpenContainer">
+                                                <label class="Day">@days[i]</label> <br />
+                                                <label id="inputLabel">Open</label> <br />
+                                                <input type="text" @bind-value="time[i]" class="HoursInput" required />
+                                            </div>
+                                            <div class="Dash"></div>
+                                            <div class="CloseContainer">
+                                                <label class="Day"></label> <br />
+                                                <label id="inputLabel">Close</label> <br />
+                                                <input type="text" @bind-value="time[i + 1]" class="HoursInput" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <div class="FormSubmitButtonContainer">
+                                <button type="submit" class="FormSubmitButton">Add Details</button>
                             </div>
-                            <div class="StateZipContainer">
-                                <div class="StateNameContainer">
-                                    <label id="inputLabel">State</label> <br />
-                                    <input type="text" @bind-value="state" class="StateNameInput" required />
-                                </div>
-                                <div class="ZipContainer">
-                                    <label id="inputLabel">Zip Code</label> <br />
-                                    <input type="text" @bind-value="zip" class="ZipInput" required />
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="Section3">Billing Information</h2>
-                        <div class="BillingContainer">
-                            <div class="CardNumberContainer">
-                                <label id="inputLabel">Card Number</label> <br />
-                                <input type="text" @bind-value="cardNumber" class="CardNumberInput" required />
-                            </div>
-                            <div class="ExpCVVContainer">
-                                <div class="MonthContainer">
-                                    <label id="inputLabel">Month</label> <br />
-                                    <input type="text" @bind-value="month" placeholder="MM" class="MonthInput" required />
-                                </div>
-                                <h1 class="Slash">/</h1>
-                                <div class="YearContainer">
-                                    <label id="inputLabel">Year</label> <br />
-                                    <input type="text" @bind-value="year" placeholder="YY" class="YearInput" required />
-                                </div>
-                                <div class="CVVContainer">
-                                    <label id="inputLabel">CVV</label> <br />
-                                    <input type="text" @bind-value="cVV" placeholder="123" class="CVVInput" required />
-                                </div>
-                            </div>
-                            <div class="FullNameContainer">
-                                <label id="inputLabel">Full Name</label> <br />
-                                <input type="text" @bind-value="fullName" class="FullNameInput" required />
-                            </div>
-                        </div>
-                        <div class="FormSubmitButtonContainer">
-                            <button type="submit" class="FormSubmitButton">Create Account</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="ErrorContainer">
+                <h2>You do not have access to this page. Please log in or create an account then come back...</h2>
+            </div>
+        }
     </div>
 </div>
 
@@ -110,36 +202,44 @@
     private string lastName;
     private string email;
     private string phone;
+
     private string street;
     private string city;
     private string state;
     private string zip;
+
     private string cardNumber;
     private string fullName;
     private string month;
     private string year;
     private string cVV;
+
+    private string driverMake;
+    private string driverModel;
+    private string driverYear;
+    private string driverColor;
+    private string driverLicensePlate;
+
+    private string restName;
+    private string foodType;
+    private string phoneNum;
+    private string[] time = new string[13];
+    private string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
     private string mySetting = "";
 
     // form input logic
     private void submitFields()
     {
-        User newUser = new User();
-        newUser.connect = mySetting;
-        //when decrypting use Encrypt.hashString(password)
-        // make sure the person is added to the table
-        if (newUser.check == true)
-        {
-
-            NavigationManager.NavigateTo("/");
-
-        }
+        DataUploadModel theUpload;
+        Usr.connect = mySetting;
     }
 
     // on load -> call this func
     private void initMethod()
     {
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        Usr.grabUserType();
     }
 
     // on load

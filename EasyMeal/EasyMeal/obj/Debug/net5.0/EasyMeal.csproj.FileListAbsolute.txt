@@ -92,3 +92,8 @@ C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\n
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
