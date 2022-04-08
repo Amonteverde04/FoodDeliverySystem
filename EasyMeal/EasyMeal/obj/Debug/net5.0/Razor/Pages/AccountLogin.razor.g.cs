@@ -115,6 +115,13 @@ using System.Web;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using System.Numerics;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 

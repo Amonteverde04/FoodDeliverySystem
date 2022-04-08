@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 
 namespace EasyMeal
@@ -17,7 +18,7 @@ namespace EasyMeal
         public int userID { get; set; }
         public int userType { get { return _userType; } set { _userType = value; } } // property to get user type
 
-
+        
         public string email { get; set; } // property for checking log in email
         public string password { get; set; } // property for checking log in password
         public bool check { get; set; } // property for checking log in password
@@ -118,6 +119,91 @@ namespace EasyMeal
         public int getUserType()
         {
             return this._userType;
+        }
+
+        public void uploadCustomer(int userIdent,string street, string city, string state, string zip, string cardNumber, string fullName, string month, string year, string cVV) {
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TblCustomer(UserID, CustomerStreet, CustomerCity, CustomerState, CustomerZip, CustomerCardNumber, CustomerCardExpDate, CustomerCardCVV, CustomerCardName)" +
+                        $" VALUES (@UserID, @street, @city, @state, @zip, @cardNum, @expDate, @cardCVV, @cardName)", con);
+            try
+            {
+                con.Open();
+                cmd.Parameters.AddWithValue("@UserID", userIdent);
+                cmd.Parameters.AddWithValue("@street", street);
+                cmd.Parameters.AddWithValue("@city", city);
+                cmd.Parameters.AddWithValue("@state", state);
+                cmd.Parameters.AddWithValue("@zip", zip);
+                cmd.Parameters.AddWithValue("@cardNum", cardNumber);
+                cmd.Parameters.AddWithValue("@expDate", month + year);
+                cmd.Parameters.AddWithValue("@cardCVV", cVV);
+                cmd.Parameters.AddWithValue("@cardName", fullName);
+                int checker = cmd.ExecuteNonQuery();
+                if (checker != 0)
+                {
+                    Console.WriteLine("Details Added!");
+                }
+                else
+                {
+                    Console.WriteLine("Error, details not added!");
+                }
+                con.Dispose();
+            } catch { Console.WriteLine("Error, details not added!"); }
+        }
+
+        public void uploadDriver(int userIdent, string driverMake, string driverModel, string driverYear, string driverColor, string driverLicensePlate)
+        {
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TblDriver(UserID, DriverMake, DriverModel, DriverYear, DriverColor, DriverLicensePlate)" +
+                        $" VALUES (@UserID, @driverMake, @driverModel, @driverYear, @driverColor, @driverLicensePlate)", con);
+            try
+            {
+                con.Open();
+                cmd.Parameters.AddWithValue("@UserID", userIdent);
+                cmd.Parameters.AddWithValue("@driverMake", driverMake);
+                cmd.Parameters.AddWithValue("@driverModel", driverModel);
+                cmd.Parameters.AddWithValue("@driverYear", driverYear);
+                cmd.Parameters.AddWithValue("@driverColor", driverColor);
+                cmd.Parameters.AddWithValue("@driverLicensePlate", driverLicensePlate);
+                int checker = cmd.ExecuteNonQuery();
+                if (checker != 0)
+                {
+                    Console.WriteLine("Details Added!");
+                }
+                else
+                {
+                    Console.WriteLine("Error, details not added!");
+                }
+                con.Dispose();
+            } catch { Console.WriteLine("Error, details not added!"); }
+        }
+
+        public void uploadRestaurant(int userIdent, string street, string city, string state, string zip, string restName, string foodtype, string phoneNum)
+        {
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TblRestaurant(UserID, RestStreet, RestCity, RestState, RestZip, RestName, RestType, RestPhoneNumber)" +
+                        $" VALUES (@UserID, @street, @city, @state, @zip, @restName, @foodType, @phoneNum)", con);
+            try
+            {
+                con.Open();
+                cmd.Parameters.AddWithValue("@UserID", userIdent);
+                cmd.Parameters.AddWithValue("@street", street);
+                cmd.Parameters.AddWithValue("@city", city);
+                cmd.Parameters.AddWithValue("@state", state);
+                cmd.Parameters.AddWithValue("@zip", zip);
+                cmd.Parameters.AddWithValue("@restName", restName);
+                cmd.Parameters.AddWithValue("@foodType", foodtype);
+                cmd.Parameters.AddWithValue("@phoneNum", phoneNum);
+                int checker = cmd.ExecuteNonQuery();
+                if (checker != 0)
+                {
+                    Console.WriteLine("Details Added!");
+                }
+                else
+                {
+                    Console.WriteLine("Error, details not added!");
+                }
+                con.Dispose();
+            } catch { Console.WriteLine("Error, details not added!"); }
         }
     }
 }

@@ -117,6 +117,13 @@ using System.Web;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using System.Numerics;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Account-Preferences")]
     public partial class AccountPreferences : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +133,7 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 200 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
+#line 296 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
        
     private string firstName;
     private string lastName;
@@ -153,7 +160,9 @@ using System.Web;
     private string restName;
     private string foodType;
     private string phoneNum;
-    private string[] time = new string[13];
+
+    private string time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14;
+    private List<string> time = new List<string>();
     private string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
     private string mySetting = "";
@@ -161,8 +170,40 @@ using System.Web;
     // form input logic
     private void submitFields()
     {
-        DataUploadModel theUpload;
         Usr.connect = mySetting;
+
+        if (Usr.userType == 1)
+        {
+            Usr.uploadCustomer(Usr.userID, street, city, state, zip, cardNumber, fullName, month, year, cVV);
+        }
+        if (Usr.userType == 2)
+        {
+            Usr.uploadDriver(Usr.userID, driverMake, driverModel, driverYear, driverColor, driverLicensePlate);
+        }
+        if (Usr.userType == 3)
+        {
+            // please for the love of god refactor this and everything after its functional
+            time.Add(time1);
+            time.Add(time2);
+            time.Add(time3);
+            time.Add(time4);
+            time.Add(time5);
+            time.Add(time6);
+            time.Add(time7);
+            time.Add(time8);
+            time.Add(time9);
+            time.Add(time10);
+            time.Add(time11);
+            time.Add(time12);
+            time.Add(time13);
+            time.Add(time14);
+            Usr.uploadRestaurant(Usr.userID, street, city, state, zip, restName, foodType, phoneNum);
+            // upload method for hours
+        }
+        else
+        {
+            return;
+        }
     }
 
     // on load -> call this func
