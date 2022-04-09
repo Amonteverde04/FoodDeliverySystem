@@ -122,7 +122,7 @@ namespace EasyMeal
         }
 
         public int uploadCustomer(int userIdent,string street, string city, string state, string zip, string cardNumber, string fullName, string month, string year, string cVV) {
-            if (alreadyExists("TblCustomer") == 0)
+            if (alreadyExists("TblCustomer") == 1)
             {
                 return 0;
             }
@@ -163,7 +163,7 @@ namespace EasyMeal
 
         public int uploadDriver(int userIdent, string driverMake, string driverModel, string driverYear, string driverColor, string driverLicensePlate)
         {
-            if (alreadyExists("TblDriver") == 0)
+            if (alreadyExists("TblDriver") == 1)
             {
                 return 0;
             }
@@ -201,7 +201,7 @@ namespace EasyMeal
 
         public int uploadRestaurant(int userIdent, string street, string city, string state, string zip, string restName, string foodtype, string phoneNum)
         {
-            if(alreadyExists("TblRestaurant") == 0)
+            if(alreadyExists("TblRestaurant") == 1)
             {
                 return 0;
             } else { 
@@ -246,7 +246,7 @@ namespace EasyMeal
                 cmd.Parameters.AddWithValue("@ID", this.userID);
                 holder = (int)cmd.ExecuteScalar();
             }
-            catch { return 0; }
+            catch { return 1; }
             // if the user exists in the table then return 1
             if (holder != 0)
             {
