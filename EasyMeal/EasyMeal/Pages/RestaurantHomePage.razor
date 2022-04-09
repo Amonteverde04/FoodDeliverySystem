@@ -1,5 +1,7 @@
 ﻿@page "/Restaurant-Home-page"
-@inject User Usr 
+@inject User Usr
+@inject IConfiguration _config
+@inject NavigationManager NavigationManager
 
 <link href="css/RestaurantHomePage.css" rel="stylesheet" />
 
@@ -27,40 +29,72 @@
                     <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
                 </div>
             }
-            </div>
+        </div>
 
         <h1 class="RestHeader">Restaurant</h1>
-        <table class="Container">
-            <tr>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Add to Cart</th>
-            </tr>
-            <tr>
-                <td>Burger</td>
-                <td>Burger with pickles</td>
-                <td>$9.89</td>
-                <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
-            </tr>
-            <tr>
-                <td>Grilled Cheese</td>
-                <td>Cheese with bread</td>
-                <td>$7.99</td>
-                <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
-            </tr>
-            <tr>
-                <td>Chicken Sandwich</td>
-                <td>Chicken with bread</td>
-                <td>$8.79</td>
-                <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
-            </tr>
+        @if (Usr.userID == 333)
+        {
+            <table class="Container">
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Add to Cart</th>
+                </tr>
+                <tr>
+                    <td>Burger</td>
+                    <td>Burger with pickles</td>
+                    <td>$9.89</td>
+                    <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
+                </tr>
+                <tr>
+                    <td>Grilled Cheese</td>
+                    <td>Cheese with bread</td>
+                    <td>$7.99</td>
+                    <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
+                </tr>
+                <tr>
+                    <td>Chicken Sandwich</td>
+                    <td>Chicken with bread</td>
+                    <td>$8.79</td>
+                    <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
+                </tr>
 
-        </table>
+            </table>
+        }
+    <div class="OwnerView">
+        <div class="NumItemContainer">
+            <input class="NumItem" type="number" @bind-value="numOfItems" required />
+        </div>
+        @for (int i = 0; i < numOfItems; i++)
+        {
+            <div class="ItemContainer">
+                <label>Category</label>
+                <input class="itemInput" type="text" required />
+            </div>
+            <div class="ItemContainer">
+                <label>Item Name</label>
+                <input class="itemInput" type="text" required />
+            </div>
+            <div class="ItemContainer">
+                <label>Item Description</label>
+                <input class="itemInput" type="text" required />
+            </div>
+            <div class="ItemContainer">
+                <label>Price</label>
+                <input class="itemInput" type="text" required />
+            </div>
+            <div class="ItemContainer">
+                <label>Prep-Time</label>
+                <input class="itemInput" type="text" required />
+            </div>
+        }
+    </div>
+
 
     </div>
-    </div>
+</div>
 
-    @code {
-
-    }
+@code {
+    private int numOfItems = 0;
+}
