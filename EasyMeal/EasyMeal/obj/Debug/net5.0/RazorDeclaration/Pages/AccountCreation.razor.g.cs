@@ -13,106 +13,113 @@ namespace EasyMeal.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 1 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 2 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 3 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 4 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 5 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 6 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 7 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 8 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 9 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using EasyMeal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 10 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using EasyMeal.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 11 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.Data.SqlClient;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 12 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using Microsoft.Extensions.Configuration;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 13 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Security.Cryptography;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 14 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Text;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+#line 15 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
 using System.Web;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\_Imports.razor"
+using System.Numerics;
 
 #line default
 #line hidden
@@ -126,7 +133,7 @@ using System.Web;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "C:\Users\Jake\source\repos\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
+#line 50 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountCreation.razor"
        
 
     public string idNameCustomer { get; set; }
@@ -148,16 +155,19 @@ using System.Web;
     // form input logic
     private void submitFields()
     {
-        User newUser = new User(firstName, lastName, email, phone, password, type);
-        newUser.connect = mySetting;
-        //when decrypting use Encrypt.hashString(password)
-        newUser.createAccount();
+        User person = new User(firstName, lastName, email, phone, password, type);
+        person.connect = mySetting;
+        person.createAccount();
         // make sure the person is added to the table
-        if (newUser.check == true)
+        if (person.check == true)
         {
-
-            NavigationManager.NavigateTo("/");
-
+            Usr.connect = mySetting;
+            // set the email and pass for user singleton
+            Usr.email = email;
+            Usr.password = password;
+            // get the ID associated to save state
+            Usr.grabUserID();
+            NavigationManager.NavigateTo("/Account-Preferences");
         }
     }
 
@@ -203,6 +213,7 @@ using System.Web;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private User Usr { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }

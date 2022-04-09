@@ -1,0 +1,442 @@
+﻿/* Main Layout */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+}
+
+.page {
+    background-color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.Preferences {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 170%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Navbar */
+
+.Header {
+    position: relative;
+    background: black;
+    height: 100px;
+    width: 100%;
+    z-index: 10;
+}
+
+.LogoContainer {
+    padding-top: 25px;
+    padding-left: 50px;
+}
+
+.Logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 30px;
+}
+
+.HeaderTitle {
+    position: absolute;
+    color: white;
+    top: 35px;
+    left: 400px;
+    font-weight: 200;
+}
+
+/* Preferences */
+
+.PreferencesContainer {
+    position: relative;
+    /*background-color: yellow;*/
+    width: 70%;
+    min-height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    top: 35px;
+}
+
+.InfoContainer {
+    position: absolute;
+    /*background-color: red;*/
+    width: 82%;
+    left: 115px;
+}
+
+.Section {
+    color: black;
+    top: 35px;
+    border-bottom: solid black;
+}
+
+.Section2 {
+    color: black;
+    margin-top: 35px;
+    border-bottom: solid black;
+}
+
+.Section3 {
+    color: black;
+    border-bottom: solid black;
+}
+/* Section is h2 */
+
+.PFPContainer {
+    position: relative;
+    /* background-color: purple; */
+    height: 125px;
+    width: 355px;
+    margin-top: 35px;
+}
+
+.PFPBorder {
+    width: 125px;
+    height: 125px;
+    border-radius: 100px;
+}
+
+.PFPCircle {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 125px;
+    height: 125px;
+    border-radius: 100px;
+    overflow: hidden;
+    border: solid black;
+}
+
+.PFP {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.PFPForm {
+    position: absolute;
+    /*background-color: deeppink;*/
+    width: 205px;
+    height: 100%;
+    left: 150px;
+    bottom: 0px;
+}
+
+/* User Info */
+.AccountFieldsForm {
+    position: relative;
+    /*background-color: olive;*/
+    min-height: 250px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+#inputLabel {
+    position: absolute;
+    color: black;
+    font-size: 10px;
+    padding-left: 15px;
+    margin-top: 25px;
+}
+/* First Name, Last Name, etc...*/
+
+.FirstNameContainer {
+    position: absolute;
+    width: 50%;
+}
+
+.LastNameContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.EmailPhoneContainer {
+    padding-top: 80px;
+}
+
+.EmailInput, .PhoneNumberInput {
+    width: 90%;
+    height: 45px;
+
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, .7);
+    text-indent: 12px;
+}
+/* email, phone, pass input boxes*/
+
+/* Address Info */
+
+.AddressContainer {
+    position: relative;
+    min-height: 200px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.StateZipContainer {
+    padding-top: 45px;
+}
+
+.StreetNameContainer {
+    position: absolute;
+    width: 50%;
+}
+
+.CityNameContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.StateNameContainer {
+    position: absolute;
+    width: 50%;
+    margin-top: 35px;
+}
+
+.ZipContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    margin-top: 35px;
+}
+
+/* Standard format for full length input boxes*/
+.FirstNameInput, .LastNameInput, .StreetNameInput,
+.CityNameInput, .StateNameInput, .ZipInput,
+.CardNumberInput, .FullNameInput, .DriverMakeInput,
+.DriverModelInput, .DriverYearInput, .DriverColorInput,
+.DriverLicensePlateInput, .RestTypeInput, .RestPhoneInput,
+.HoursInput {
+    width: 80%;
+    height: 45px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, .7);
+    text-indent: 12px;
+}
+
+/* Billing Info */
+
+.BillingContainer {
+    position: relative;
+    width: 50%;
+    height: 250px;
+    margin-top: 35px;
+    padding-bottom: 200px;
+}
+
+.CardNumberContainer {
+    width: 100%;
+}
+
+.ExpCVVContainer {
+    position: relative;
+    height: 68px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.MonthContainer {
+    position: absolute;
+    width: 20%;
+}
+
+.Slash {
+    position: absolute;
+    left: 127px;
+    top: 22px;
+    font-weight: 300;
+    color: rgba(0,0,0,.5);
+}
+
+.YearContainer {
+    position: absolute;
+    width: 20%;
+    left: 30%;
+}
+
+.CVVContainer {
+    position: absolute;
+    width: 20%;
+    left: 60%;
+}
+
+.MonthInput, .YearInput, .CVVInput {
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, .7);
+    text-align: center;
+}
+
+.FullNameContainer {
+    margin-top: 10px;
+}
+
+/* Driver Info */
+
+.DriverContainer {
+    position: relative;
+    min-height: 250px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.MakeModelContainer {
+    height: 45px;
+}
+
+.MakeContainer {
+    position: absolute;
+    width: 50%;
+}
+
+.ModelContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.CarYearContainer {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    margin-top: 35px;
+}
+
+.ColorContainer {
+    position: absolute;
+    width: 50%;
+    margin-top: 35px;
+}
+
+.LicensePlateContainer {
+    position: absolute;
+    width: 50%;
+    margin-top: 115px;
+}
+
+/* Restaurant Info */
+
+.RestaurantContainer {
+    position: relative;
+    min-height: 150px;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.RestaurantMainContainer {
+    width: 100%;
+}
+
+.RestNameContainer {
+    width: 100%;
+}
+
+.RestNameInput {
+    width: 90%;
+    height: 45px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, .7);
+    text-indent: 12px;
+}
+
+.RestTypeContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+}
+
+.RestPhoneContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+/* Hours Info */
+#hoursSec {
+    margin-bottom: 25px;
+}
+
+.HoursContainer {
+    position: relative;
+    min-height: 100px;
+    width: 100%;
+}
+
+.HourSetContainer {
+    width: 100%;
+}
+
+.OpenContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+}
+
+.Dash {
+    position: absolute;
+    width: 45px;
+    border-bottom: solid black;
+    top: 80px;
+    left: 43%;
+}
+
+.CloseContainer {
+    padding-top: 10px;
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
+
+.Day {
+    position: absolute;
+    height: 20px;
+    top: 35px;
+}
+
+/* Form Submit Button */
+.FormSubmitButtonContainer {
+    position: relative;
+    bottom: 0px;
+    padding-bottom: 100px;
+    right: 0;
+    width: 200px;
+    padding-top: 20px;
+}
+
+.FormSubmitButton {
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    height: 45px;
+    width: 100%;
+}
+
+.ErrorContainer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 20%;
+}

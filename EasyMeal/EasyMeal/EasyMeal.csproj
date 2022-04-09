@@ -6,27 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\Assets\NewFolder1\**" />
-    <Compile Remove="wwwroot\Assets\NewFolder2\**" />
-    <Compile Remove="wwwroot\Assets\NewFolder3\**" />
-    <Compile Remove="wwwroot\Assets\NewFolder\**" />
-    <Content Remove="wwwroot\Assets\NewFolder1\**" />
-    <Content Remove="wwwroot\Assets\NewFolder2\**" />
-    <Content Remove="wwwroot\Assets\NewFolder3\**" />
-    <Content Remove="wwwroot\Assets\NewFolder\**" />
-    <EmbeddedResource Remove="wwwroot\Assets\NewFolder1\**" />
-    <EmbeddedResource Remove="wwwroot\Assets\NewFolder2\**" />
-    <EmbeddedResource Remove="wwwroot\Assets\NewFolder3\**" />
-    <EmbeddedResource Remove="wwwroot\Assets\NewFolder\**" />
-    <None Remove="wwwroot\Assets\NewFolder1\**" />
-    <None Remove="wwwroot\Assets\NewFolder2\**" />
-    <None Remove="wwwroot\Assets\NewFolder3\**" />
-    <None Remove="wwwroot\Assets\NewFolder\**" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.15" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

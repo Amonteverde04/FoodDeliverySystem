@@ -1,6 +1,9 @@
 ﻿@page "/Account-Login"
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
 @inject IConfiguration _config
 @inject NavigationManager NavigationManager
+@inject User Usr
 
 <link href="css/AccountLogin.css" rel="stylesheet" />
 
@@ -11,13 +14,13 @@
 
     <div class="ErrorMessageContainer" id="@hidden">
         <div class="ErrorMessage">
-        <img class="ErrorIcon" src="/Assets/AccountLogin/Error.svg"/>
-        <h3 id="errorHeading">Error!</h3>
-        <p id="errorText">You did not enter the correct credentials OR there is no account associated with this email.</p> 
-        <p id="errorText"><a id="errorLink" href="/Account-Creation">Consider making an account if you didn't already!</a></p>
+            <img class="ErrorIcon" src="/Assets/AccountLogin/Error.svg" />
+            <h3 id="errorHeading">Error!</h3>
+            <p id="errorText">You did not enter the correct credentials OR there is no account associated with this email.</p>
+            <p id="errorText"><a id="errorLink" href="/Account-Creation">Consider making an account if you didn't already!</a></p>
         </div>
     </div>
-    
+
     <div class="AccountFieldsContainer">
         <h1 id="logIn">Log In</h1>
         <form class="AccountFieldsForm" @onsubmit="submitFields">
@@ -46,18 +49,16 @@
     // form input logic
     private void submitFields()
     {
-        User person = new User();
-        person.connect = mySetting;
-        person.email = email;
-        person.password = password;
-        //when decrypting use Encrypt.hashString(password)
-        person.logIn();
+        Usr.connect = mySetting;
+        Usr.email = email;
+        Usr.password = password;
+        Usr.logIn();
         // make sure the person valid
-        if (person.check == true)
+        if (Usr.check == true)
         {
-
             NavigationManager.NavigateTo("/");
-        } else
+        }
+        else
         {
             hidden = "";
         }
