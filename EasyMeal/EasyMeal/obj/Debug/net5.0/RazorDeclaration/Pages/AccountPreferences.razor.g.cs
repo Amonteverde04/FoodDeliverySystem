@@ -211,6 +211,7 @@ using System.Numerics;
         }
         else
         {
+            Console.WriteLine("Account is already made");
             return;
         }
     }

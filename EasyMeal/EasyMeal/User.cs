@@ -122,97 +122,141 @@ namespace EasyMeal
         }
 
         public int uploadCustomer(int userIdent,string street, string city, string state, string zip, string cardNumber, string fullName, string month, string year, string cVV) {
-            int requestWentThrough = 0;
-            SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TblCustomer(UserID, CustomerStreet, CustomerCity, CustomerState, CustomerZip, CustomerCardNumber, CustomerCardExpDate, CustomerCardCVV, CustomerCardName)" +
-                        $" VALUES (@UserID, @street, @city, @state, @zip, @cardNum, @expDate, @cardCVV, @cardName)", con);
-            try
+            if (alreadyExists("TblCustomer") == 0)
             {
-                con.Open();
-                cmd.Parameters.AddWithValue("@UserID", userIdent);
-                cmd.Parameters.AddWithValue("@street", street);
-                cmd.Parameters.AddWithValue("@city", city);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@zip", zip);
-                cmd.Parameters.AddWithValue("@cardNum", cardNumber);
-                cmd.Parameters.AddWithValue("@expDate", month + year);
-                cmd.Parameters.AddWithValue("@cardCVV", cVV);
-                cmd.Parameters.AddWithValue("@cardName", fullName);
-                int checker = cmd.ExecuteNonQuery();
-                if (checker != 0)
+                return 0;
+            }
+            else
+            {
+                int requestWentThrough = 0;
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO TblCustomer(UserID, CustomerStreet, CustomerCity, CustomerState, CustomerZip, CustomerCardNumber, CustomerCardExpDate, CustomerCardCVV, CustomerCardName)" +
+                            $" VALUES (@UserID, @street, @city, @state, @zip, @cardNum, @expDate, @cardCVV, @cardName)", con);
+                try
                 {
-                    Console.WriteLine("Details Added!");
-                    requestWentThrough = 1;
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@UserID", userIdent);
+                    cmd.Parameters.AddWithValue("@street", street);
+                    cmd.Parameters.AddWithValue("@city", city);
+                    cmd.Parameters.AddWithValue("@state", state);
+                    cmd.Parameters.AddWithValue("@zip", zip);
+                    cmd.Parameters.AddWithValue("@cardNum", cardNumber);
+                    cmd.Parameters.AddWithValue("@expDate", month + year);
+                    cmd.Parameters.AddWithValue("@cardCVV", cVV);
+                    cmd.Parameters.AddWithValue("@cardName", fullName);
+                    int checker = cmd.ExecuteNonQuery();
+                    if (checker != 0)
+                    {
+                        Console.WriteLine("Details Added!");
+                        requestWentThrough = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error, details not added!");
+                    }
+                    con.Dispose();
                 }
-                else
-                {
-                    Console.WriteLine("Error, details not added!");
-                }
-                con.Dispose();
-            } catch { Console.WriteLine("Error, details not added!"); }
-            return requestWentThrough;
+                catch { Console.WriteLine("Error, details not added!"); }
+                return requestWentThrough;
+            }
         }
 
         public int uploadDriver(int userIdent, string driverMake, string driverModel, string driverYear, string driverColor, string driverLicensePlate)
         {
-            int requestWentThrough = 0;
-            SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TblDriver(UserID, DriverMake, DriverModel, DriverYear, DriverColor, DriverLicensePlate)" +
-                        $" VALUES (@UserID, @driverMake, @driverModel, @driverYear, @driverColor, @driverLicensePlate)", con);
-            try
+            if (alreadyExists("TblDriver") == 0)
             {
-                con.Open();
-                cmd.Parameters.AddWithValue("@UserID", userIdent);
-                cmd.Parameters.AddWithValue("@driverMake", driverMake);
-                cmd.Parameters.AddWithValue("@driverModel", driverModel);
-                cmd.Parameters.AddWithValue("@driverYear", driverYear);
-                cmd.Parameters.AddWithValue("@driverColor", driverColor);
-                cmd.Parameters.AddWithValue("@driverLicensePlate", driverLicensePlate);
-                int checker = cmd.ExecuteNonQuery();
-                if (checker != 0)
+                return 0;
+            }
+            else
+            {
+                int requestWentThrough = 0;
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO TblDriver(UserID, DriverMake, DriverModel, DriverYear, DriverColor, DriverLicensePlate)" +
+                            $" VALUES (@UserID, @driverMake, @driverModel, @driverYear, @driverColor, @driverLicensePlate)", con);
+                try
                 {
-                    Console.WriteLine("Details Added!");
-                    requestWentThrough = 1;
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@UserID", userIdent);
+                    cmd.Parameters.AddWithValue("@driverMake", driverMake);
+                    cmd.Parameters.AddWithValue("@driverModel", driverModel);
+                    cmd.Parameters.AddWithValue("@driverYear", driverYear);
+                    cmd.Parameters.AddWithValue("@driverColor", driverColor);
+                    cmd.Parameters.AddWithValue("@driverLicensePlate", driverLicensePlate);
+                    int checker = cmd.ExecuteNonQuery();
+                    if (checker != 0)
+                    {
+                        Console.WriteLine("Details Added!");
+                        requestWentThrough = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error, details not added!");
+                    }
+                    con.Dispose();
                 }
-                else
-                {
-                    Console.WriteLine("Error, details not added!");
-                }
-                con.Dispose();
-            } catch { Console.WriteLine("Error, details not added!"); }
-            return requestWentThrough;
+                catch { Console.WriteLine("Error, details not added!"); }
+                return requestWentThrough;
+            }
         }
 
         public int uploadRestaurant(int userIdent, string street, string city, string state, string zip, string restName, string foodtype, string phoneNum)
         {
-            int requestWentThrough = 0;
-            SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TblRestaurant(UserID, RestStreet, RestCity, RestState, RestZip, RestName, RestType, RestPhoneNumber)" +
-                        $" VALUES (@UserID, @street, @city, @state, @zip, @restName, @foodType, @phoneNum)", con);
-            try
+            if(alreadyExists("TblRestaurant") == 0)
             {
+                return 0;
+            } else { 
+                int requestWentThrough = 0;
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO TblRestaurant(UserID, RestStreet, RestCity, RestState, RestZip, RestName, RestType, RestPhoneNumber)" +
+                            $" VALUES (@UserID, @street, @city, @state, @zip, @restName, @foodType, @phoneNum)", con);
+                try
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@UserID", userIdent);
+                    cmd.Parameters.AddWithValue("@street", street);
+                    cmd.Parameters.AddWithValue("@city", city);
+                    cmd.Parameters.AddWithValue("@state", state);
+                    cmd.Parameters.AddWithValue("@zip", zip);
+                    cmd.Parameters.AddWithValue("@restName", restName);
+                    cmd.Parameters.AddWithValue("@foodType", foodtype);
+                    cmd.Parameters.AddWithValue("@phoneNum", phoneNum);
+                    int checker = cmd.ExecuteNonQuery();
+                    if (checker != 0)
+                    {
+                        Console.WriteLine("Details Added!");
+                        requestWentThrough = 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error, details not added!");
+                    }
+                    con.Dispose();
+                } catch { Console.WriteLine("Error, details not added!"); }
+                return requestWentThrough;
+            }
+        }
+
+        public int alreadyExists(string tbl) {
+            int holder = 0;
+            try { 
+                // select the user id in the desired table.
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"SELECT UserID FROM ${tbl} WHERE UserID = @ID", con);
                 con.Open();
-                cmd.Parameters.AddWithValue("@UserID", userIdent);
-                cmd.Parameters.AddWithValue("@street", street);
-                cmd.Parameters.AddWithValue("@city", city);
-                cmd.Parameters.AddWithValue("@state", state);
-                cmd.Parameters.AddWithValue("@zip", zip);
-                cmd.Parameters.AddWithValue("@restName", restName);
-                cmd.Parameters.AddWithValue("@foodType", foodtype);
-                cmd.Parameters.AddWithValue("@phoneNum", phoneNum);
-                int checker = cmd.ExecuteNonQuery();
-                if (checker != 0)
-                {
-                    Console.WriteLine("Details Added!");
-                    requestWentThrough = 1;
-                }
-                else
-                {
-                    Console.WriteLine("Error, details not added!");
-                }
-                con.Dispose();
-            } catch { Console.WriteLine("Error, details not added!"); }
-            return requestWentThrough;
+                cmd.Parameters.AddWithValue("@ID", this.userID);
+                holder = (int)cmd.ExecuteScalar();
+            }
+            catch { return 0; }
+            // if the user exists in the table then return 1
+            if (holder != 0)
+            {
+                return 1;
+            }
+            // other wise return 0
+            else
+            {
+                return 0;
+            }
         }
     }
 }

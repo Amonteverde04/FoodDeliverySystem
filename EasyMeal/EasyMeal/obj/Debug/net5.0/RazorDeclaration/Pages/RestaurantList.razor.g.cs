@@ -132,7 +132,38 @@ using System.Numerics;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 45 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantList.razor"
+       
+    string restName = "";
+    string restType = "";
+    string mySetting = "";
+    private DataUploadModel theData = new DataUploadModel();
+    private List<string> restNameList = new List<string>();
+    private List<string> restTypeList = new List<string>();
+
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        theData.connect = mySetting;
+        restNameList = theData.getAllRestaurantNames();
+        restTypeList = theData.getAllRestaurantTypes();
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private User Usr { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
     }
 }
 #pragma warning restore 1591

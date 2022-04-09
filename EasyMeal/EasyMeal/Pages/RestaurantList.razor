@@ -1,11 +1,13 @@
 ﻿@page "/Restaurant-List"
-@inject User Usr 
+@inject IConfiguration _config
+@inject NavigationManager NavigationManager
+@inject User Usr
 
 <link href="css/RestaurantList.css" rel="stylesheet" />
 
 <div class="page">
-	<div class="RestuarantList">
-		<div class="Header">
+    <div class="RestuarantList">
+        <div class="Header">
             <div class="Search">
                 <form class="SearchForm" action="/">
                     <button class="Glass" type="button">
@@ -15,36 +17,52 @@
                 </form>
             </div>
             <div class="LogoContainer">
-                <a href=""><img class="logo" src="/Assets/RestaurantList/EasyMealLogo.svg" alt="EasyMeal"/></a>
+                <a href=""><img class="logo" src="/Assets/RestaurantList/EasyMealLogo.svg" alt="EasyMeal" /></a>
             </div>
-            @if(Usr.userID == 0) {
-            <div class="FlexContainer SignUpLogIn">
-                <div class="flexChild SignIn"><a id="accountSignIn" href="/Account-Login">Log In</a></div>
-                <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
-            </div>
+            @if (Usr.userID == 0)
+            {
+                <div class="FlexContainer SignUpLogIn">
+                    <div class="flexChild SignIn"><a id="accountSignIn" href="/Account-Login">Log In</a></div>
+                    <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
+                </div>
             }
         </div>
-    
+
         <div class="SectionGridContainer">
-            <div class="GridItem">
-                <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="McDonalds" /><p class="RestTXT">Mcdonalds</p></a>
-            </div>
-            <div class="GridItem">
-                <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="McDonalds" /><p class="RestTXT">Mc</p></a>
-            </div>
-            <div class="GridItem">
-                <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="McDonalds" /><p class="RestTXT">don</p></a>
-            </div>
-            <div class="GridItem">
-                <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="McDonalds" /><p class="RestTXT">Mcdds</p></a>
-            </div>
-            <div class="GridItem">
-                <a href=""><img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="McDonalds" /><p class="RestTXT">Mds</p></a>
-            </div>
+            @for (int i = 0; i < restNameList.Count(); i++)
+            {
+                <div class="GridItem">
+                    <a href="/Restaurant-Home-page">
+                        <img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="@restNameList[i]" />
+                        <p class="RestName">@restNameList[i]</p><p class="RestType">@restTypeList[i]</p>
+                    </a>
+                </div>
+            }
         </div>
-    </div>	
+    </div>
 </div>
 
 @code {
+    string restName = "";
+    string restType = "";
+    string mySetting = "";
+    private DataUploadModel theData = new DataUploadModel();
+    private List<string> restNameList = new List<string>();
+    private List<string> restTypeList = new List<string>();
 
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        theData.connect = mySetting;
+        restNameList = theData.getAllRestaurantNames();
+        restTypeList = theData.getAllRestaurantTypes();
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
 }

@@ -153,17 +153,32 @@
 
 .GridItem {
     border: solid black;
+    border-radius: 10px;
     height: 50%;
 }
 
-.RestTXT {
+.RestName {
     text-align: center;
     font-size: 30px;
     display: block;
     margin-right: auto;
     margin-left: auto;
     width: 100%;
+    color: black;
 }
 
-RestThumbNail {
+.RestType {
+    text-align: center;
+    font-size: 20px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    color: black;
+}
+
+.RestThumbNail:hover {
+    height: 100%;
+    width: 100%;
+    background-color: #FFD600;
 }
