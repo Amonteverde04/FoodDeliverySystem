@@ -152,6 +152,17 @@
 }
 
 .GridItem {
+    border: solid black;
+    height: 50%;
+}
+
+.RestTXT {
+    text-align: center;
+    font-size: 30px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
 }
 
 RestThumbNail {
