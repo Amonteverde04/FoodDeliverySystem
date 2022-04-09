@@ -1,4 +1,5 @@
 ﻿@page "/Restaurant-List"
+@inject User Usr 
 
 <link href="css/RestaurantList.css" rel="stylesheet" />
 
@@ -16,10 +17,12 @@
             <div class="LogoContainer">
                 <a href=""><img class="logo" src="/Assets/RestaurantList/RestaurantLogo.svg" alt="EasyMeal"/></a>
             </div>
+            @if(Usr.userID == 0) {
             <div class="FlexContainer SignUpLogIn">
                 <div class="flexChild SignIn"><a id="accountSignIn" href="/Account-Login">Log In</a></div>
                 <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
             </div>
+            }
         </div>
     
         <div class="SectionGridContainer">

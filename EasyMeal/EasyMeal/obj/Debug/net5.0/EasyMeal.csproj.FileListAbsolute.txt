@@ -97,3 +97,7 @@ C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\n
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\RestaurantHomePage.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\RazorDeclaration\Pages\RestaurantList.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\RestaurantHomePage.razor.g.cs
+C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\obj\Debug\net5.0\Razor\Pages\RestaurantList.razor.g.cs

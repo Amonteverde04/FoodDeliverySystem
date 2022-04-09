@@ -121,7 +121,8 @@ namespace EasyMeal
             return this._userType;
         }
 
-        public void uploadCustomer(int userIdent,string street, string city, string state, string zip, string cardNumber, string fullName, string month, string year, string cVV) {
+        public int uploadCustomer(int userIdent,string street, string city, string state, string zip, string cardNumber, string fullName, string month, string year, string cVV) {
+            int requestWentThrough = 0;
             SqlConnection con = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand($"INSERT INTO TblCustomer(UserID, CustomerStreet, CustomerCity, CustomerState, CustomerZip, CustomerCardNumber, CustomerCardExpDate, CustomerCardCVV, CustomerCardName)" +
                         $" VALUES (@UserID, @street, @city, @state, @zip, @cardNum, @expDate, @cardCVV, @cardName)", con);
@@ -141,6 +142,7 @@ namespace EasyMeal
                 if (checker != 0)
                 {
                     Console.WriteLine("Details Added!");
+                    requestWentThrough = 1;
                 }
                 else
                 {
@@ -148,10 +150,12 @@ namespace EasyMeal
                 }
                 con.Dispose();
             } catch { Console.WriteLine("Error, details not added!"); }
+            return requestWentThrough;
         }
 
-        public void uploadDriver(int userIdent, string driverMake, string driverModel, string driverYear, string driverColor, string driverLicensePlate)
+        public int uploadDriver(int userIdent, string driverMake, string driverModel, string driverYear, string driverColor, string driverLicensePlate)
         {
+            int requestWentThrough = 0;
             SqlConnection con = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand($"INSERT INTO TblDriver(UserID, DriverMake, DriverModel, DriverYear, DriverColor, DriverLicensePlate)" +
                         $" VALUES (@UserID, @driverMake, @driverModel, @driverYear, @driverColor, @driverLicensePlate)", con);
@@ -168,6 +172,7 @@ namespace EasyMeal
                 if (checker != 0)
                 {
                     Console.WriteLine("Details Added!");
+                    requestWentThrough = 1;
                 }
                 else
                 {
@@ -175,10 +180,12 @@ namespace EasyMeal
                 }
                 con.Dispose();
             } catch { Console.WriteLine("Error, details not added!"); }
+            return requestWentThrough;
         }
 
-        public void uploadRestaurant(int userIdent, string street, string city, string state, string zip, string restName, string foodtype, string phoneNum)
+        public int uploadRestaurant(int userIdent, string street, string city, string state, string zip, string restName, string foodtype, string phoneNum)
         {
+            int requestWentThrough = 0;
             SqlConnection con = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand($"INSERT INTO TblRestaurant(UserID, RestStreet, RestCity, RestState, RestZip, RestName, RestType, RestPhoneNumber)" +
                         $" VALUES (@UserID, @street, @city, @state, @zip, @restName, @foodType, @phoneNum)", con);
@@ -197,6 +204,7 @@ namespace EasyMeal
                 if (checker != 0)
                 {
                     Console.WriteLine("Details Added!");
+                    requestWentThrough = 1;
                 }
                 else
                 {
@@ -204,6 +212,7 @@ namespace EasyMeal
                 }
                 con.Dispose();
             } catch { Console.WriteLine("Error, details not added!"); }
+            return requestWentThrough;
         }
     }
 }

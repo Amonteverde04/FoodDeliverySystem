@@ -124,66 +124,15 @@ using System.Numerics;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Account-Login")]
-    public partial class AccountLogin : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Restaurant-Home-page")]
+    public partial class RestaurantHomePage : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 43 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountLogin.razor"
-       
-    private string email;
-    private string password;
-    private string mySetting = "";
-    private string hidden = "hidden";
-
-    // form input logic
-    private void submitFields()
-    {
-        Usr.connect = mySetting;
-        Usr.email = email;
-        Usr.password = password;
-        Usr.logIn();
-        // make sure the person valid
-        if (Usr.check == true)
-        {
-            NavigationManager.NavigateTo("/Restaurant-List");
-        }
-        else
-        {
-            hidden = "";
-        }
-    }
-
-    // on load -> call this func
-    private void initMethod()
-    {
-        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
-    }
-
-    // on load
-    protected override async Task OnInitializedAsync()
-    {
-        initMethod();
-    }
-
-#line default
-#line hidden
-#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private User Usr { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ProtectedSessionStorage ProtectedSessionStore { get; set; }
     }
 }
 #pragma warning restore 1591

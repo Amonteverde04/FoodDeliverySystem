@@ -170,35 +170,44 @@ using System.Numerics;
     // form input logic
     private void submitFields()
     {
+        int decider = 0;
         Usr.connect = mySetting;
 
-        if (Usr.userType == 1)
+        switch (Usr.userType)
         {
-            Usr.uploadCustomer(Usr.userID, street, city, state, zip, cardNumber, fullName, month, year, cVV);
+            case 1:
+                decider = Usr.uploadCustomer(Usr.userID, street, city, state, zip, cardNumber, fullName, month, year, cVV);
+                break;
+            case 2:
+                decider = Usr.uploadDriver(Usr.userID, driverMake, driverModel, driverYear, driverColor, driverLicensePlate);
+                break;
+            case 3:
+                // please for the love of god refactor this and everything after its functional
+                time.Add(time1);
+                time.Add(time2);
+                time.Add(time3);
+                time.Add(time4);
+                time.Add(time5);
+                time.Add(time6);
+                time.Add(time7);
+                time.Add(time8);
+                time.Add(time9);
+                time.Add(time10);
+                time.Add(time11);
+                time.Add(time12);
+                time.Add(time13);
+                time.Add(time14);
+                decider = Usr.uploadRestaurant(Usr.userID, street, city, state, zip, restName, foodType, phoneNum);
+                // upload method for hours
+                break;
+            default:
+                break;
         }
-        if (Usr.userType == 2)
+
+        if (decider == 1)
         {
-            Usr.uploadDriver(Usr.userID, driverMake, driverModel, driverYear, driverColor, driverLicensePlate);
-        }
-        if (Usr.userType == 3)
-        {
-            // please for the love of god refactor this and everything after its functional
-            time.Add(time1);
-            time.Add(time2);
-            time.Add(time3);
-            time.Add(time4);
-            time.Add(time5);
-            time.Add(time6);
-            time.Add(time7);
-            time.Add(time8);
-            time.Add(time9);
-            time.Add(time10);
-            time.Add(time11);
-            time.Add(time12);
-            time.Add(time13);
-            time.Add(time14);
-            Usr.uploadRestaurant(Usr.userID, street, city, state, zip, restName, foodType, phoneNum);
-            // upload method for hours
+            NavigationManager.NavigateTo("/Restaurant-List");
+            Console.WriteLine("Segue to rest list");
         }
         else
         {
