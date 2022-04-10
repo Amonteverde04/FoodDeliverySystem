@@ -137,8 +137,8 @@
 }
 
 .RestHeader {
-    padding-top: 15px;
-    padding-left: 800px;
+    padding-top: 30px;
+    padding-left: 848px;
     padding-bottom: 15px;
 }
 
@@ -168,4 +168,16 @@ tr:nth-child(even) {
     bottom: 40px;
     height: 30px;
     width: 30px;
+}
+
+.NumItemContainer {
+    
+    margin-left: 820px;
+    padding: 30px;
+}
+
+.MenuItems {
+    padding-top: 30px;
+    padding-left: 800px;
+    padding-bottom: 15px;
 }

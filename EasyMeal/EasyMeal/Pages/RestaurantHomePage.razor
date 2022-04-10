@@ -32,6 +32,7 @@
         </div>
 
         <h1 class="RestHeader">Restaurant</h1>
+        <h2 class="MenuItems">MenuItems</h2>
         @if (Usr.userID == 333)
         {
             <table class="Container">
@@ -64,6 +65,7 @@
         }
     <div class="OwnerView">
         <div class="NumItemContainer">
+            
             <input class="NumItem" type="number" @bind-value="numOfItems" required />
         </div>
         @for (int i = 0; i < numOfItems; i++)
