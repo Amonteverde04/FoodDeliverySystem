@@ -82,11 +82,17 @@
 }
 
 .LogoContainer {
+    position: relative;
     padding-top: 15px;
-    padding-left: 800px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    text-align: center;
 }
 
 .Logo {
+    position: relative;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -136,10 +142,20 @@
     color: black;
 }
 
+.InfoSec {
+    width: 80%;
+    display: block;
+    margin-left:auto;
+    margin-right: auto;
+}
+
 .RestHeader {
-    padding-top: 30px;
-    padding-left: 848px;
-    padding-bottom: 15px;
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    text-align: center;
 }
 
 .Container {
@@ -171,13 +187,78 @@ tr:nth-child(even) {
 }
 
 .NumItemContainer {
-    
-    margin-left: 820px;
-    padding: 30px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+    width: 30%;
+    text-align: center;
 }
 
 .MenuItems {
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    text-align: center;
+}
+
+.ItemUpdateList {
+    position: relative;
+    display: grid;
+    grid-template-columns: 290px 290px 290px 290px 290px;
+    grid-gap: 30px 30px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 30px;
-    padding-left: 800px;
-    padding-bottom: 15px;
+    padding-bottom: 60px;
+    align-items: center;
+}
+
+.ListItem {
+    width: 90%;
+    padding-left: 30px;
+}
+
+.InputContainer {
+    position: relative;
+    width: 80%;
+}
+
+.InputLabel {
+    padding-right: 15px;
+}
+
+.ItemInput {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+.ButtonContainer {
+    position: absolute;
+    width: 20%;
+    height: 45px;
+    text-align: center;
+    right: 40%;
+    top: 100px;
+}
+
+.FormSubmissionButton {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,.5);
+}
+
+.FormSubmissionButton:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
 }
