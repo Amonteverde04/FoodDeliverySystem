@@ -142,6 +142,20 @@
     color: black;
 }
 
+.SignOut {
+    width: 50%;
+    color: black;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    padding: 9px;
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    margin-left: 145px;
+}
+
 .InfoSec {
     width: 80%;
     display: block;
@@ -169,7 +183,6 @@
 
 td, th {
     border: 1px solid #dddddd;
-    text-align: left;
     padding: 8px;
 }
 
@@ -177,7 +190,27 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+.AddItemButton {
+    border: none;
+    background: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.AddItemButton:active {
+    border: none;
+    background-color: black;
+    border-radius: 10px;
+}
+
+    .AddItemButton:focus {
+        outline: none;
+    }
+
 .Plus {
+    background: none;
+    border: none;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -185,6 +218,11 @@ tr:nth-child(even) {
     height: 30px;
     width: 30px;
 }
+
+    .Plus:active {
+        border: none;
+        filter: invert(78%) sepia(38%) saturate(1503%) hue-rotate(0deg) brightness(104%) contrast(104%);
+    }
 
 .NumItemContainer {
     display: block;
@@ -206,15 +244,18 @@ tr:nth-child(even) {
 
 .ItemUpdateList {
     position: relative;
-    display: grid;
-    grid-template-columns: 290px 290px 290px 290px 290px;
-    grid-gap: 30px 30px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 30px;
     padding-bottom: 60px;
     align-items: center;
+}
+
+.ItemUpdateGrid {
+    display: grid;
+    grid-template-columns: 290px 290px 290px 290px 290px;
+    grid-gap: 30px 30px;
 }
 
 .ListItem {
@@ -239,12 +280,12 @@ tr:nth-child(even) {
 }
 
 .ButtonContainer {
-    position: absolute;
-    width: 20%;
+    position: relative;
+    width: 15%;
     height: 45px;
     text-align: center;
-    right: 40%;
-    top: 100px;
+    display: flex;
+    margin: 30px auto 0 auto;
 }
 
 .FormSubmissionButton {

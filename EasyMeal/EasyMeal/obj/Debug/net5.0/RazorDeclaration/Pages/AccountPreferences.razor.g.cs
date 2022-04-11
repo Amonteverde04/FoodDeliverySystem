@@ -133,7 +133,7 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 296 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
+#line 308 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\AccountPreferences.razor"
        
     private string firstName;
     private string lastName;
@@ -161,16 +161,19 @@ using System.Numerics;
     private string foodType;
     private string phoneNum;
 
+    private int decider = 0;
+
+
     private string time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14;
     private List<string> time = new List<string>();
     private string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
 
     private string mySetting = "";
 
     // form input logic
     private void submitFields()
     {
-        int decider = 0;
         Usr.connect = mySetting;
 
         switch (Usr.userType)
@@ -211,7 +214,8 @@ using System.Numerics;
         }
         else
         {
-            Console.WriteLine("Account is already made");
+            Console.WriteLine("Details already added!");
+            decider = 2;
             return;
         }
     }

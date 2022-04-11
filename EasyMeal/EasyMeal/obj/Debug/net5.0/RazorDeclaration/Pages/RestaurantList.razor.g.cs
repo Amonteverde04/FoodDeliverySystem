@@ -133,7 +133,7 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 45 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantList.razor"
+#line 51 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantList.razor"
        
     string restName = "";
     string restType = "";

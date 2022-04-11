@@ -133,9 +133,25 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 126 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantHomePage.razor"
+#line 125 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantHomePage.razor"
        
     private int numOfItems = 0;
+    private string mySetting = "";
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        Usr.connect = mySetting;
+        Usr.grabUserType();
+        Console.WriteLine(Usr.userType);
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
 
 #line default
 #line hidden

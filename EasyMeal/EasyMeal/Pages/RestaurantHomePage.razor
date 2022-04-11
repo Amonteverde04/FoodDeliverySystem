@@ -29,11 +29,18 @@
                     <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
                 </div>
             }
-        </div>
-        <div class="InfoSec">
-            <h1 class="RestHeader">Restaurant</h1>
-            @if (Usr.userID == 333)
+            else
             {
+                <div class="FlexContainer SignUpLogIn">
+                    <button class="SignOut" @onclick="Usr.logOut">Sign Out</button>
+                </div>
+            }
+        </div>
+        @if (Usr.userID == 0 || Usr.userType == 1 || Usr.userType == 2)
+        {
+            <div class="InfoSec">
+                <h1 class="RestHeader">Restaurant</h1>
+
                 <table class="Container">
                     <tr>
                         <th>Item</th>
@@ -45,79 +52,71 @@
                         <td>Burger</td>
                         <td>Burger with pickles</td>
                         <td>$9.89</td>
-                        <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
+                        <td class="AddItemButtonContainer"><button class="AddItemButton"><img class="Plus" src="/Assets/RestaurantHomePage/plus.svg" alt="" /></button></td>
                     </tr>
-                    <tr>
-                        <td>Grilled Cheese</td>
-                        <td>Cheese with bread</td>
-                        <td>$7.99</td>
-                        <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
-                    </tr>
-                    <tr>
-                        <td>Chicken Sandwich</td>
-                        <td>Chicken with bread</td>
-                        <td>$8.79</td>
-                        <td><button><img class="Plus" src="/Assets/RestaurantHomePage/plus.jpg" alt="" /></button></td>
-                    </tr>
-
                 </table>
-            }
-        </div>
-    <div class="OwnerView">
-        <h2 class="MenuItems">MenuItems</h2>
-        <div class="NumItemContainer">
+            </div>
+        }
+        @if (Usr.userID != 0 && Usr.userType == 3)
+        {
+            <div class="OwnerView">
+                <h2 class="MenuItems">MenuItems</h2>
+                <div class="NumItemContainer">
 
-            <input class="NumItem" type="number" @bind-value="numOfItems" required />
-        </div>
-        <form class="ItemUpdateList">
-            @for (int i = 0; i < numOfItems; i++)
-            {
-            <div class="ListItem">
-                <div class="ItemContainer">
-                    <div class="InputContainer">
-                        <label class="InputLabel">Category:</label>
-                        <input class="ItemInput" type="text" required />
-                    </div>
+                    <input class="NumItem" type="number" @bind-value="numOfItems" required />
                 </div>
-            </div>
-            <div class="ListItem">
-                <div class="ItemContainer">
-                    <div class="InputContainer">
-                        <label class="InputLabel">Item Name:</label>
-                        <input class="ItemInput" type="text" required />
+                <form class="ItemUpdateList">
+                    <div class="ItemUpdateGrid">
+                        @for (int i = 0; i < numOfItems; i++)
+                        {
+                            <div class="ListItem">
+                                <div class="ItemContainer">
+                                    <div class="InputContainer">
+                                        <label class="InputLabel">Category:</label>
+                                        <input class="ItemInput" type="text" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ListItem">
+                                <div class="ItemContainer">
+                                    <div class="InputContainer">
+                                        <label class="InputLabel">Item Name:</label>
+                                        <input class="ItemInput" type="text" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ListItem">
+                                <div class="ItemContainer">
+                                    <div class="InputContainer">
+                                        <label class="InputLabel">Item Description:</label>
+                                        <input class="ItemInput" type="text" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ListItem">
+                                <div class="ItemContainer">
+                                    <div class="InputContainer">
+                                        <label class="InputLabel">Price:</label>
+                                        <input class="ItemInput" type="text" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ListItem">
+                                <div class="ItemContainer">
+                                    <div class="InputContainer">
+                                        <label class="InputLabel">Prep-Time:</label>
+                                        <input class="ItemInput" type="text" required />
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
-                </div>
-            </div>
-            <div class="ListItem">
-                <div class="ItemContainer">
-                    <div class="InputContainer">
-                        <label class="InputLabel">Item Description:</label>
-                        <input class="ItemInput" type="text" required />
+                    <div class="ButtonContainer">
+                        <button type="submit" class="FormSubmissionButton">Update Restaurant Menu</button>
                     </div>
-                </div>
+                </form>
             </div>
-            <div class="ListItem">
-                <div class="ItemContainer">
-                    <div class="InputContainer">
-                        <label class="InputLabel">Price:</label>
-                        <input class="ItemInput" type="text" required />
-                    </div>
-                </div>
-            </div>
-            <div class="ListItem">
-                <div class="ItemContainer">
-                    <div class="InputContainer">
-                        <label class="InputLabel">Prep-Time:</label>
-                        <input class="ItemInput" type="text" required />
-                    </div>
-                </div>
-            </div>
-            }
-            <div class="ButtonContainer">
-                <button type="submit" class="FormSubmissionButton">Update Restaurant Menu</button>
-            </div>
-        </form>
-    </div>
+        }
 
 
     </div>
@@ -125,4 +124,20 @@
 
 @code {
     private int numOfItems = 0;
+    private string mySetting = "";
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        Usr.connect = mySetting;
+        Usr.grabUserType();
+        Console.WriteLine(Usr.userType);
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
 }

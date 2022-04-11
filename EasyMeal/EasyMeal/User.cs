@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EasyMeal
 {
@@ -67,17 +71,18 @@ namespace EasyMeal
 
         public void logIn ()
         {
+            int? holder = 0;
             SqlConnection con = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand($"SELECT UserID FROM TblUsers WHERE UserEmail = @email AND UserPassword = @password", con);
             con.Open();
             cmd.Parameters.AddWithValue("@email", this.email);
             cmd.Parameters.AddWithValue("@password", this.password);
-            try { userID = (int)cmd.ExecuteScalar(); }
-            catch { Console.WriteLine("Failure"); }
+            holder= (int)cmd.ExecuteScalar();
             SqlDataReader rd = cmd.ExecuteReader();
-            if (rd.Read())
+            if (rd.Read() && holder != null)
             {
                 Console.WriteLine("You are logged in!");
+                userID = (int)holder;
                 check = true;
             }
             else
@@ -88,6 +93,11 @@ namespace EasyMeal
             con.Dispose();
         }
 
+        public void logOut()
+        {
+            userID = 0;
+        }
+
         public void grabUserID()
         {
             SqlConnection con = new SqlConnection(connect);
@@ -96,19 +106,25 @@ namespace EasyMeal
             cmd.Parameters.AddWithValue("@email", this.email);
             cmd.Parameters.AddWithValue("@password", this.password);
             userID = (int)cmd.ExecuteScalar();
+            con.Dispose();
         } // sets the UserID by going to the table and grabbing it
 
         public void grabUserType()
         {
-            try { 
-            grabUserID();
+            int? holder = 0;
             SqlConnection con = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand($"SELECT UserType FROM TblUsers WHERE UserID = @ID", con);
             con.Open();
             cmd.Parameters.AddWithValue("@ID", this.userID);
-            _userType = (int)cmd.ExecuteScalar();
-            } catch { 
+            holder = (int?)cmd.ExecuteScalar();
+            if(holder == null)
+            {
+                _userType = 0;
+            } else
+            {
+                _userType = (int)holder;
             }
+            con.Dispose();
         } // sets the _userType by going to the table and grabbing it
 
         public int getUserID()
@@ -237,26 +253,23 @@ namespace EasyMeal
         }
 
         public int alreadyExists(string tbl) {
-            int holder = 0;
-            try { 
-                // select the user id in the desired table.
-                SqlConnection con = new SqlConnection(connect);
-                SqlCommand cmd = new SqlCommand($"SELECT UserID FROM ${tbl} WHERE UserID = @ID", con);
-                con.Open();
-                cmd.Parameters.AddWithValue("@ID", this.userID);
-                holder = (int)cmd.ExecuteScalar();
-            }
-            catch { return 1; }
+             int? holder = 0;
+             // select the user id in the desired table.
+             SqlConnection con = new SqlConnection(connect);
+             SqlCommand cmd = new SqlCommand($"SELECT UserID FROM {tbl} WHERE UserID = @ID", con);
+             con.Open();
+             cmd.Parameters.AddWithValue("@ID", this.userID);
+             holder = (int?)cmd.ExecuteScalar();
             // if the user exists in the table then return 1
-            if (holder != 0)
+            if (holder > 0)
             {
                 return 1;
             }
             // other wise return 0
-            else
+            if (holder == null)
             {
                 return 0;
-            }
+            } else { return 0; }
         }
     }
 }

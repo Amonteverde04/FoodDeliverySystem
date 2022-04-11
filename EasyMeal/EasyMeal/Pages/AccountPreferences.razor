@@ -18,20 +18,32 @@
         {
             <div class="PreferencesContainer">
                 <div class="InfoContainer">
-                    <h2 class="Section">Personal Information</h2>
-                    <div class="PFPContainer">
-                        <div class="PFPBorder">
-                            <div class="PFPCircle">
-                                <img class="PFP" src="/Assets/AccountPreferences/DefaultPFP.svg" alt="PFP" />
-                            </div>
+                    @if(decider == 2) { 
+                    <div class="ErrorMessageContainer">
+                        <div class="ErrorMessage">
+                            <img class="ErrorIcon" src="/Assets/AccountLogin/Error.svg" />
+                            <h3 id="errorHeading">Error!</h3>
+                            <p id="errorText">Your details were not entered. Either you did not enter valid data, or your account has already submitted this form to our server!</p>
                         </div>
-                        <form class="PFPForm">
-                            <label for="pictureUpload">Select a picture:</label>
-                            <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*" />
-                            <br /><br />
-                            <input type="submit" />
-                        </form>
                     </div>
+                    }
+                    @if (Usr.userType == 333) // show this section when logic to pull data from the user database is complete. This is where users can edit their name, email and etc.
+                    {
+                        <h2 class="Section">Personal Information</h2>
+                        <div class="PFPContainer">
+                            <div class="PFPBorder">
+                                <div class="PFPCircle">
+                                    <img class="PFP" src="/Assets/AccountPreferences/DefaultPFP.svg" alt="PFP" />
+                                </div>
+                            </div>
+                            <form class="PFPForm">
+                                <label for="pictureUpload">Select a picture:</label>
+                                <input type="file" id="pictureUpload" name="pictureUpload" accept="image/*" />
+                                <br /><br />
+                                <input type="submit" />
+                            </form>
+                        </div>
+                    }
                     <div class="UserInfoContainer">
                         <form class="AccountFieldsForm" @onsubmit="submitFields">
                             @if (Usr.userType == 333) // show this section when logic to pull data from the user database is complete. This is where users can edit their name, email and etc.
@@ -320,16 +332,19 @@
     private string foodType;
     private string phoneNum;
 
+    private int decider = 0;
+
+
     private string time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14;
     private List<string> time = new List<string>();
     private string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
 
     private string mySetting = "";
 
     // form input logic
     private void submitFields()
     {
-        int decider = 0;
         Usr.connect = mySetting;
 
         switch (Usr.userType)
@@ -370,7 +385,8 @@
         }
         else
         {
-            Console.WriteLine("Account is already made");
+            Console.WriteLine("Details already added!");
+            decider = 2;
             return;
         }
     }

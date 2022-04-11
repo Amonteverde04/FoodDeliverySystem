@@ -82,8 +82,13 @@
 }
 
 .LogoContainer {
+    position: relative;
     padding-top: 15px;
-    padding-left: 800px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    text-align: center;
 }
 
 .Logo {
@@ -128,6 +133,19 @@
     color: black;
 }
 
+.SignOut {
+    width: 50%;
+    color: black;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    padding: 9px;
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    margin-left: 145px;
+}
 
 /* Thumbnails */
 .RestThumbNail {
@@ -142,7 +160,7 @@
     position: relative;
     display: grid;
     grid-template-columns: 300px 300px 300px;
-    grid-gap: 100px 150px;
+    grid-gap: 100px 145px;
     width: 100%;
     min-height: 50%;
     justify-content: center;
