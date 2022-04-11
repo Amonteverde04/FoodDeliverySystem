@@ -77,7 +77,7 @@ namespace EasyMeal
             con.Open();
             cmd.Parameters.AddWithValue("@email", this.email);
             cmd.Parameters.AddWithValue("@password", this.password);
-            holder= (int)cmd.ExecuteScalar();
+            holder= (int?)cmd.ExecuteScalar();
             SqlDataReader rd = cmd.ExecuteReader();
             if (rd.Read() && holder != null)
             {

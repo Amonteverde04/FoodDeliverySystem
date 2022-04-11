@@ -138,13 +138,34 @@ using System.Numerics;
     private int numOfItems = 0;
     private string mySetting = "";
 
+    private string category = "";
+    private string itemName = "";
+    private string itemDesc = "";
+    private string price = "";
+    private string prepTime = "";
+
+    DataUploadModel theModel = new DataUploadModel();
+
+
+    private void sendData()
+    {
+        theModel.category = category;
+        theModel.itemName = itemName;
+        theModel.itemDesc = itemDesc;
+        theModel.price = price;
+        theModel.time = prepTime;
+        theModel.uploadItems();
+    }
+
     // on load -> call this func
     private void initMethod()
     {
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         Usr.connect = mySetting;
         Usr.grabUserType();
-        Console.WriteLine(Usr.userType);
+        theModel.connect = mySetting;
+        theModel.userID = Usr.userID;
+        theModel.grabRestID();
     }
 
     // on load

@@ -7,7 +7,14 @@ namespace EasyMeal
     public class DataUploadModel
     {
         public string connect { get; set; } // property to hold connection string
-        
+        public int userID { get; set; }
+        public int restID { get; set; }
+        public string category { get; set; }
+        public string itemName { get; set; }
+        public string itemDesc { get; set; }
+        public string price { get; set; }
+        public string time { get; set; }
+
         // constructor
         public DataUploadModel()
         {
@@ -68,8 +75,52 @@ namespace EasyMeal
             con.Dispose();
             return listOfType;
         }
-        // B) method to pull from the restaurant menu items table
 
+
+
+        // B) method to put items in the restaurant menu items table
+        public void grabRestID()
+        {
+            int? num = 0;
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT RestaurantID FROM TblRestaurant WHERE UserID = @ID", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@ID", this.userID);
+            num = (int?)cmd.ExecuteScalar();
+            if (num > 0)
+            {
+                restID = (int)num;
+            }
+            // other wise return 0
+            if (num == null)
+            {
+                restID = 0;
+            }
+            con.Dispose();
+        }
+
+        public void uploadItems()
+        {
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TblRestMenuItem(Category, ItemName, ItemDesc, Price, PrepTime, RestaurantID) VALUES (@category, @itemName, @itemDesc, @price, @time, @restID)", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@category", this.category);
+            cmd.Parameters.AddWithValue("@itemName", this.itemName);
+            cmd.Parameters.AddWithValue("@itemDesc", this.itemDesc);
+            cmd.Parameters.AddWithValue("@price", this.price);
+            cmd.Parameters.AddWithValue("@time", this.time);
+            cmd.Parameters.AddWithValue("@restID", this.restID);
+            int checker = cmd.ExecuteNonQuery();
+            if (checker != 0)
+            {
+                Console.WriteLine("Items uploaded!");
+            }
+            else
+            {
+                Console.WriteLine("Items not uploaded!");
+            }
+            con.Dispose();
+        }
         // C) method to pull from the restaurant hours table
     }
 }

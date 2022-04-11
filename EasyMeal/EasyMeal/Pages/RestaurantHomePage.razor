@@ -65,7 +65,7 @@
 
                     <input class="NumItem" type="number" @bind-value="numOfItems" required />
                 </div>
-                <form class="ItemUpdateList">
+                <form class="ItemUpdateList" @onsubmit="sendData">
                     <div class="ItemUpdateGrid">
                         @for (int i = 0; i < numOfItems; i++)
                         {
@@ -73,7 +73,7 @@
                                 <div class="ItemContainer">
                                     <div class="InputContainer">
                                         <label class="InputLabel">Category:</label>
-                                        <input class="ItemInput" type="text" required />
+                                        <input class="ItemInput" @bind-value="category" type="text" required />
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                 <div class="ItemContainer">
                                     <div class="InputContainer">
                                         <label class="InputLabel">Item Name:</label>
-                                        <input class="ItemInput" type="text" required />
+                                        <input class="ItemInput" @bind-value="itemName" type="text" required />
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 <div class="ItemContainer">
                                     <div class="InputContainer">
                                         <label class="InputLabel">Item Description:</label>
-                                        <input class="ItemInput" type="text" required />
+                                        <input class="ItemInput" @bind-value="itemDesc" type="text" required />
                                     </div>
                                 </div>
                             </div>
@@ -97,15 +97,15 @@
                                 <div class="ItemContainer">
                                     <div class="InputContainer">
                                         <label class="InputLabel">Price:</label>
-                                        <input class="ItemInput" type="text" required />
+                                        <input class="ItemInput" @bind-value="price" type="text" required />
                                     </div>
                                 </div>
                             </div>
                             <div class="ListItem">
                                 <div class="ItemContainer">
                                     <div class="InputContainer">
-                                        <label class="InputLabel">Prep-Time:</label>
-                                        <input class="ItemInput" type="text" required />
+                                        <label class="InputLabel">Prep-Time (minutes):</label>
+                                        <input class="ItemInput" @bind-value="prepTime" type="text" required />
                                     </div>
                                 </div>
                             </div>
@@ -126,13 +126,34 @@
     private int numOfItems = 0;
     private string mySetting = "";
 
+    private string category = "";
+    private string itemName = "";
+    private string itemDesc = "";
+    private string price = "";
+    private string prepTime = "";
+
+    DataUploadModel theModel = new DataUploadModel();
+
+
+    private void sendData()
+    {
+        theModel.category = category;
+        theModel.itemName = itemName;
+        theModel.itemDesc = itemDesc;
+        theModel.price = price;
+        theModel.time = prepTime;
+        theModel.uploadItems();
+    }
+
     // on load -> call this func
     private void initMethod()
     {
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         Usr.connect = mySetting;
         Usr.grabUserType();
-        Console.WriteLine(Usr.userType);
+        theModel.connect = mySetting;
+        theModel.userID = Usr.userID;
+        theModel.grabRestID();
     }
 
     // on load
