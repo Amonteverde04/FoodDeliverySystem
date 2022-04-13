@@ -18,6 +18,7 @@ namespace EasyMeal
         private readonly string _password;
         private readonly int _type;
         private int _userType;
+        public int savedRestaurant { get; set; }
 
         public int userID { get; set; }
         public int userType { get { return _userType; } set { _userType = value; } } // property to get user type

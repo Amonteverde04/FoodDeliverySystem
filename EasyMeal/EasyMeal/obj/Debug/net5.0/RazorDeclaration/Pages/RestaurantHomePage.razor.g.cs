@@ -133,10 +133,11 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 143 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantHomePage.razor"
+#line 146 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantHomePage.razor"
        
     private int numOfItems = 0;
     private string mySetting = "";
+    private int restID = 0;
 
     private string category = "";
     private string itemName = "";
@@ -151,12 +152,12 @@ using System.Numerics;
     string menuItemName = "";
     string menuItemDesc = "";
     string menuItemPrice = "";
-    string menuItemTime = "";
+    private List<string>[] listArray = new List<string>[4];
     private List<string> itemCatList = new List<string>();
     private List<string> itemNameList = new List<string>();
     private List<string> itemDescList = new List<string>();
     private List<string> itemPriceList = new List<string>();
-    private List<string> itemTimeList = new List<string>();
+    private List<decimal> itemPriceListDouble = new List<decimal>();
 
 
     private void sendData()
@@ -168,6 +169,11 @@ using System.Numerics;
         theModel.time = prepTime;
         theModel.uploadItems();
         failure = theModel.failure;
+        category = "";
+        itemName = "";
+        itemDesc = "";
+        price = "";
+        prepTime = "";
     }
 
     // on load -> call this func
@@ -176,6 +182,7 @@ using System.Numerics;
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         Usr.connect = mySetting;
         Usr.grabUserType();
+        restID = Usr.savedRestaurant;
         theModel.connect = mySetting;
         if (Usr.userType == 3)
         {
@@ -184,11 +191,16 @@ using System.Numerics;
         }
         else
         {
-            itemCatList = theModel.getAllRestaurantNames();
-            itemNameList = theModel.getAllRestaurantTypes();
-            itemDescList = theModel.getAllRestaurantTypes();
-            itemPriceList = theModel.getAllRestaurantTypes();
-            itemTimeList = theModel.getAllRestaurantTypes();
+            listArray = theModel.getAllMenuItems(restID);
+            // need to make method to get the items from their respective columns in tblMenuItems
+            itemCatList = listArray[0];
+            itemNameList = listArray[1];
+            itemDescList = listArray[2];
+            itemPriceList = listArray[3];
+            for (int i = 0; i < itemPriceList.Count; i++)
+            {
+                itemPriceListDouble.Add(Decimal.Round(Convert.ToDecimal(itemPriceList[i]),2));
+            }
         }
     }
 

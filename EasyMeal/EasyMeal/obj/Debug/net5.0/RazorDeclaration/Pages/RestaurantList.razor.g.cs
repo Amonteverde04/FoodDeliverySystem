@@ -133,7 +133,7 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 51 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantList.razor"
+#line 53 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantList.razor"
        
     string restName = "";
     string restType = "";
@@ -141,7 +141,12 @@ using System.Numerics;
     private DataUploadModel theData = new DataUploadModel();
     private List<string> restNameList = new List<string>();
     private List<string> restTypeList = new List<string>();
+    private List<int> restIDList = new List<int>();
 
+    private async void select()
+    {
+        await JS.InvokeAsync<string>("accessDOMElement");
+    }
 
     // on load -> call this func
     private void initMethod()
@@ -150,6 +155,7 @@ using System.Numerics;
         theData.connect = mySetting;
         restNameList = theData.getAllRestaurantNames();
         restTypeList = theData.getAllRestaurantTypes();
+        restIDList = theData.getAllRestaurantIDs();
     }
 
     // on load
@@ -161,6 +167,7 @@ using System.Numerics;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JS { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private User Usr { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IConfiguration _config { get; set; }

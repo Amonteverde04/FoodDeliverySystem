@@ -2,6 +2,8 @@
 @inject IConfiguration _config
 @inject NavigationManager NavigationManager
 @inject User Usr
+@inject IJSRuntime JS
+
 
 <link href="css/RestaurantList.css" rel="stylesheet" />
 
@@ -38,7 +40,7 @@
             @for (int i = 0; i < restNameList.Count(); i++)
             {
                 <div class="GridItem">
-                    <a href="/Restaurant-Home-page">
+                    <a id="hrefGuy" href="/Restaurant-Home-page" value="@restIDList[i]" onclick="select" @key="Usr.savedRestaurant = restIDList[i]">
                         <img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="@restNameList[i]" />
                         <p class="RestName">@restNameList[i]</p><p class="RestType">@restTypeList[i]</p>
                     </a>
@@ -55,7 +57,12 @@
     private DataUploadModel theData = new DataUploadModel();
     private List<string> restNameList = new List<string>();
     private List<string> restTypeList = new List<string>();
+    private List<int> restIDList = new List<int>();
 
+    private async void select()
+    {
+        await JS.InvokeAsync<string>("accessDOMElement");
+    }
 
     // on load -> call this func
     private void initMethod()
@@ -64,6 +71,7 @@
         theData.connect = mySetting;
         restNameList = theData.getAllRestaurantNames();
         restTypeList = theData.getAllRestaurantTypes();
+        restIDList = theData.getAllRestaurantIDs();
     }
 
     // on load

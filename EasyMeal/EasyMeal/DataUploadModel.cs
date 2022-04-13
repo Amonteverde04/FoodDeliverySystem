@@ -15,6 +15,7 @@ namespace EasyMeal
         public string price { get; set; }
         public string time { get; set; }
         public int failure { get; set; }
+        public int restPageID { get; set; }
 
         // constructor
         public DataUploadModel()
@@ -55,6 +56,26 @@ namespace EasyMeal
             }
             con.Dispose();
             return listOfRest;
+        }
+
+        public List<int> getAllRestaurantIDs()
+        {
+            List<int> listOfRestID = new List<int>();
+            int numOfEntries = 0;
+            numOfEntries = getNumOfEntriesInRestTable();
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT RestaurantID FROM TblRestaurant", con);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            // iterator limit needs to be changed based on how many entries we have in the restaurant table.
+            for (int i = 0; i < numOfEntries; i++)
+            {
+                reader.Read();
+                listOfRestID.Add(reader.GetFieldValue<int>(0));
+                // increments row 
+            }
+            con.Dispose();
+            return listOfRestID;
         }
 
         public List<string> getAllRestaurantTypes()
@@ -128,14 +149,17 @@ namespace EasyMeal
             con.Dispose();
         }
 
-        public int getNumOfEntriesInItemTable()
+        // C) method to pull items from the restaurant items table
+        // get number of entries in table
+        public int getNumOfEntriesInMenuItemTable(int restID)
         {
             int num = 0;
             try
             {
                 SqlConnection con = new SqlConnection(connect);
-                SqlCommand cmd = new SqlCommand($"SELECT COUNT(RestaurantID) FROM TblRestMenuItem", con);
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(RestItemID) FROM TblRestMenuItem WHERE RestaurantID = @restID", con);
                 con.Open();
+                cmd.Parameters.AddWithValue("@restID", restID);
                 num = (int)cmd.ExecuteScalar();
                 con.Dispose();
             }
@@ -143,26 +167,33 @@ namespace EasyMeal
             return num;
         }
 
-        public List<string> menuItems()
+        public List<string>[] getAllMenuItems(int restID)
         {
-            List<string> itemList = new List<string>();
-            int numOfEntries = 0;
-            numOfEntries = getNumOfEntriesInItemTable();
+            List<string>[] theListArray = new List<string>[4];
+            List<string> listOfMenuCats = new List<string>();
+            List<string> listOfMenuNames = new List<string>();
+            List<string> listOfMenuDescs = new List<string>();
+            List<string> listOfMenuPrices = new List<string>();
+            decimal holder = 0;
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"SELECT ItemName FROM TblRestMenuItem WHERE ItemName = @itemName AND RestaurantID = restID", con);
+            SqlCommand cmd = new SqlCommand($"SELECT Category, ItemName, ItemDesc, Price FROM TblRestMenuItem WHERE RestaurantID = @restID", con);
             con.Open();
-            cmd.Parameters.AddWithValue("@itemName", this.itemName);
-            cmd.Parameters.AddWithValue("@restID", this.restID);
+            cmd.Parameters.AddWithValue("@restID", restID);
             SqlDataReader reader = cmd.ExecuteReader();
-            for (int i = 0; i < numOfEntries; i++)
+            while(reader.Read())
             {
-                reader.Read();
-                itemList.Add(reader.GetFieldValue<string>(0));
-                // increments row 
+                listOfMenuCats.Add(reader.GetFieldValue<string>(0));
+                listOfMenuNames.Add(reader.GetFieldValue<string>(1));
+                listOfMenuDescs.Add(reader.GetFieldValue<string>(2));
+                holder = reader.GetFieldValue<decimal>(3);
+                listOfMenuPrices.Add(holder.ToString());
             }
             con.Dispose();
-            return itemList;
+            theListArray[0] = listOfMenuCats;
+            theListArray[1] = listOfMenuNames;
+            theListArray[2] = listOfMenuDescs;
+            theListArray[3] = listOfMenuPrices;
+            return theListArray;
         }
-        // C) method to pull from the restaurant hours table
     }
 }
