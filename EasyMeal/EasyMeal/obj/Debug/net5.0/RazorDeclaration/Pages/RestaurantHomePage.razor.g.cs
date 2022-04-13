@@ -133,7 +133,7 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 125 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantHomePage.razor"
+#line 143 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantHomePage.razor"
        
     private int numOfItems = 0;
     private string mySetting = "";
@@ -143,8 +143,20 @@ using System.Numerics;
     private string itemDesc = "";
     private string price = "";
     private string prepTime = "";
+    private int failure = 5;
 
     DataUploadModel theModel = new DataUploadModel();
+
+    string menuItemCat = "";
+    string menuItemName = "";
+    string menuItemDesc = "";
+    string menuItemPrice = "";
+    string menuItemTime = "";
+    private List<string> itemCatList = new List<string>();
+    private List<string> itemNameList = new List<string>();
+    private List<string> itemDescList = new List<string>();
+    private List<string> itemPriceList = new List<string>();
+    private List<string> itemTimeList = new List<string>();
 
 
     private void sendData()
@@ -155,6 +167,7 @@ using System.Numerics;
         theModel.price = price;
         theModel.time = prepTime;
         theModel.uploadItems();
+        failure = theModel.failure;
     }
 
     // on load -> call this func
@@ -164,8 +177,19 @@ using System.Numerics;
         Usr.connect = mySetting;
         Usr.grabUserType();
         theModel.connect = mySetting;
-        theModel.userID = Usr.userID;
-        theModel.grabRestID();
+        if (Usr.userType == 3)
+        {
+            theModel.userID = Usr.userID;
+            theModel.grabRestID();
+        }
+        else
+        {
+            itemCatList = theModel.getAllRestaurantNames();
+            itemNameList = theModel.getAllRestaurantTypes();
+            itemDescList = theModel.getAllRestaurantTypes();
+            itemPriceList = theModel.getAllRestaurantTypes();
+            itemTimeList = theModel.getAllRestaurantTypes();
+        }
     }
 
     // on load

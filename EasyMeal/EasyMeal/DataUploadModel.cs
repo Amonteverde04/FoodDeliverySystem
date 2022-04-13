@@ -14,6 +14,7 @@ namespace EasyMeal
         public string itemDesc { get; set; }
         public string price { get; set; }
         public string time { get; set; }
+        public int failure { get; set; }
 
         // constructor
         public DataUploadModel()
@@ -101,25 +102,66 @@ namespace EasyMeal
 
         public void uploadItems()
         {
-            SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TblRestMenuItem(Category, ItemName, ItemDesc, Price, PrepTime, RestaurantID) VALUES (@category, @itemName, @itemDesc, @price, @time, @restID)", con);
-            con.Open();
-            cmd.Parameters.AddWithValue("@category", this.category);
-            cmd.Parameters.AddWithValue("@itemName", this.itemName);
-            cmd.Parameters.AddWithValue("@itemDesc", this.itemDesc);
-            cmd.Parameters.AddWithValue("@price", this.price);
-            cmd.Parameters.AddWithValue("@time", this.time);
-            cmd.Parameters.AddWithValue("@restID", this.restID);
-            int checker = cmd.ExecuteNonQuery();
-            if (checker != 0)
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO TblRestMenuItem(Category, ItemName, ItemDesc, Price, PrepTime, RestaurantID) VALUES (@category, @itemName, @itemDesc, @price, @time, @restID)", con);
+                con.Open();
+            try
             {
-                Console.WriteLine("Items uploaded!");
+                cmd.Parameters.AddWithValue("@category", this.category);
+                cmd.Parameters.AddWithValue("@itemName", this.itemName);
+                cmd.Parameters.AddWithValue("@itemDesc", this.itemDesc);
+                cmd.Parameters.AddWithValue("@price", this.price);
+                cmd.Parameters.AddWithValue("@time", this.time);
+                cmd.Parameters.AddWithValue("@restID", this.restID);
+                int checker = cmd.ExecuteNonQuery();
+                if (checker != 0)
+                {
+                    Console.WriteLine("Items uploaded!");
+                    failure = 0;
+                }
+                else
+                {
+                    Console.WriteLine("Items not uploaded!");
+                    failure = 1;
+                }
+            } catch { failure = 1; }
+            con.Dispose();
+        }
+
+        public int getNumOfEntriesInItemTable()
+        {
+            int num = 0;
+            try
+            {
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(RestaurantID) FROM TblRestMenuItem", con);
+                con.Open();
+                num = (int)cmd.ExecuteScalar();
+                con.Dispose();
             }
-            else
+            catch { }
+            return num;
+        }
+
+        public List<string> menuItems()
+        {
+            List<string> itemList = new List<string>();
+            int numOfEntries = 0;
+            numOfEntries = getNumOfEntriesInItemTable();
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT ItemName FROM TblRestMenuItem WHERE ItemName = @itemName AND RestaurantID = restID", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@itemName", this.itemName);
+            cmd.Parameters.AddWithValue("@restID", this.restID);
+            SqlDataReader reader = cmd.ExecuteReader();
+            for (int i = 0; i < numOfEntries; i++)
             {
-                Console.WriteLine("Items not uploaded!");
+                reader.Read();
+                itemList.Add(reader.GetFieldValue<string>(0));
+                // increments row 
             }
             con.Dispose();
+            return itemList;
         }
         // C) method to pull from the restaurant hours table
     }

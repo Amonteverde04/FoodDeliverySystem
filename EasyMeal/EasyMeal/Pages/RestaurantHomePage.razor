@@ -9,7 +9,7 @@
     <div class="RestuarantList">
         <div class="Header">
             <div class="Search">
-                <form class="SearchForm" action="/">
+                <form class="SearchForm" action="/Restaurant-List">
                     <button class="Glass" type="button">
                         <img class="SearchGlassSvg" src="/Assets/RestaurantList/SearchGlass.svg" />
                     </button>
@@ -60,56 +60,74 @@
         @if (Usr.userID != 0 && Usr.userType == 3)
         {
             <div class="OwnerView">
-                <h2 class="MenuItems">MenuItems</h2>
-                <div class="NumItemContainer">
+                @if (failure == 1)
+                {
+                    <div class="ErrorContainer">
+                        <div class="ErrorMessageContainer">
+                            <div class="ErrorMessage">
+                                <img class="ErrorIcon" src="/Assets/AccountLogin/Error.svg" />
+                                <h3 id="errorHeading">Error!</h3>
+                                <p id="errorText">Your menu items were not entered. Either you did not enter valid data, or there was a problem reaching the server. Try again later!</p>
+                            </div>
+                        </div>
+                    </div>
+                }
 
-                    <input class="NumItem" type="number" @bind-value="numOfItems" required />
-                </div>
+                @if (failure == 0)
+                {
+                    <div class="SuccessContainer">
+                        <div class="SuccessMessageContainer">
+                            <div class="SuccessMessage">
+                                <img class="SuccessIcon" src="/Assets/RestaurantHomePage/checkMark.svg" />
+                                <h3 id="SuccessHeading">Success!</h3>
+                                <p id="SuccessText">Menu item uploaded!</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <h2 class="MenuItems">MenuItems</h2>
                 <form class="ItemUpdateList" @onsubmit="sendData">
                     <div class="ItemUpdateGrid">
-                        @for (int i = 0; i < numOfItems; i++)
-                        {
-                            <div class="ListItem">
-                                <div class="ItemContainer">
-                                    <div class="InputContainer">
-                                        <label class="InputLabel">Category:</label>
-                                        <input class="ItemInput" @bind-value="category" type="text" required />
-                                    </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Category:</label>
+                                    <input class="ItemInput" @bind-value="category" type="text" required />
                                 </div>
                             </div>
-                            <div class="ListItem">
-                                <div class="ItemContainer">
-                                    <div class="InputContainer">
-                                        <label class="InputLabel">Item Name:</label>
-                                        <input class="ItemInput" @bind-value="itemName" type="text" required />
-                                    </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Item Name:</label>
+                                    <input class="ItemInput" @bind-value="itemName" type="text" required />
                                 </div>
                             </div>
-                            <div class="ListItem">
-                                <div class="ItemContainer">
-                                    <div class="InputContainer">
-                                        <label class="InputLabel">Item Description:</label>
-                                        <input class="ItemInput" @bind-value="itemDesc" type="text" required />
-                                    </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Item Description:</label>
+                                    <input class="ItemInput" @bind-value="itemDesc" type="text" required />
                                 </div>
                             </div>
-                            <div class="ListItem">
-                                <div class="ItemContainer">
-                                    <div class="InputContainer">
-                                        <label class="InputLabel">Price:</label>
-                                        <input class="ItemInput" @bind-value="price" type="text" required />
-                                    </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Price:</label>
+                                    <input class="ItemInput" @bind-value="price" type="text" required />
                                 </div>
                             </div>
-                            <div class="ListItem">
-                                <div class="ItemContainer">
-                                    <div class="InputContainer">
-                                        <label class="InputLabel">Prep-Time (minutes):</label>
-                                        <input class="ItemInput" @bind-value="prepTime" type="text" required />
-                                    </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Prep-Time (minutes):</label>
+                                    <input class="ItemInput" @bind-value="prepTime" type="text" required />
                                 </div>
                             </div>
-                        }
+                        </div>
                     </div>
                     <div class="ButtonContainer">
                         <button type="submit" class="FormSubmissionButton">Update Restaurant Menu</button>
@@ -131,9 +149,9 @@
     private string itemDesc = "";
     private string price = "";
     private string prepTime = "";
+    private int failure = 5;
 
     DataUploadModel theModel = new DataUploadModel();
-
 
     private void sendData()
     {
@@ -143,6 +161,7 @@
         theModel.price = price;
         theModel.time = prepTime;
         theModel.uploadItems();
+        failure = theModel.failure;
     }
 
     // on load -> call this func
@@ -152,8 +171,15 @@
         Usr.connect = mySetting;
         Usr.grabUserType();
         theModel.connect = mySetting;
-        theModel.userID = Usr.userID;
-        theModel.grabRestID();
+        if (Usr.userType == 3)
+        {
+            theModel.userID = Usr.userID;
+            theModel.grabRestID();
+        }
+        else
+        {
+            // need to make method to get the items from their respective columns in tblMenuItems
+        }
     }
 
     // on load

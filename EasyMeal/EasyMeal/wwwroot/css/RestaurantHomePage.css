@@ -303,3 +303,103 @@ tr:nth-child(even) {
     color: white;
     border-color: white;
 }
+
+/* If already has details added */
+.ErrorContainer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 5%;
+}
+
+.ErrorMessageContainer {
+    position: relative;
+    background-color: rgba(255,0,0, .7);
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 5%;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 10px;
+}
+
+.ErrorIcon {
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.ErrorMessage {
+    padding: 12px;
+    color: white;
+}
+
+#errorHeading {
+    padding-left: 40px;
+}
+
+#errorText {
+    position: relative;
+    text-align: center;
+}
+
+#errorLink {
+    color: white;
+    text-decoration: underline;
+}
+
+    #errorLink:hover {
+        color: blue;
+    }
+
+/* if item uploaded */
+.SuccessContainer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 5%;
+}
+
+.SuccessMessageContainer {
+    position: relative;
+    background-color: rgba(0,128,0, .7);
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height: 5%;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 10px;
+}
+
+.SuccessIcon {
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.SuccessMessage {
+    padding: 12px;
+    color: white;
+}
+
+#SuccessHeading {
+    padding-left: 40px;
+}
+
+#SuccessText {
+    position: relative;
+    text-align: center;
+}
+
+#SuccessLink {
+    color: white;
+    text-decoration: underline;
+}
+
+    #SuccessLink:hover {
+        color: blue;
+    }
