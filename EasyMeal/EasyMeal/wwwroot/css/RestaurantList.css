@@ -162,7 +162,7 @@
     grid-template-columns: 300px 300px 300px;
     grid-gap: 100px 145px;
     width: 100%;
-    min-height: 50%;
+    height: 50%;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
@@ -170,9 +170,20 @@
 }
 
 .GridItem {
+    position: relative;
     border: solid black;
     border-radius: 10px;
+    height: 90%;
+}
+
+.hrefGuy {
+    background: none;
+    border: none;
+}
+
+.RestThumbNail {
     height: 50%;
+    width: 50%;
 }
 
 .RestName {
@@ -195,10 +206,16 @@
     color: black;
 }
 
-.RestThumbNail:hover {
-    height: 100%;
-    width: 100%;
+.GridItem:hover {
     background-color: #FFD600;
+}
+
+.GridItem:active {
+    background-color: black;
+}
+
+.GridItem:focus, .RestType:focus, .RestThumbNail:focus, .RestName:focus, .SectionGridContainer:focus, .hrefGuy:focus {
+    outline: none;
 }
 
 .hidden {

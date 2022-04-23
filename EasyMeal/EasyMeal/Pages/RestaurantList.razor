@@ -39,11 +39,12 @@
         <div class="SectionGridContainer">
             @for (int i = 0; i < restNameList.Count(); i++)
             {
+                int index = i;
                 <div class="GridItem">
-                    <a class="hrefGuy" href="/Restaurant-Home-page" @onclick="select">
+                    <button class="hrefGuy" @onclick="() => select(index)">
                         <img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="@restNameList[i]" />
                         <p class="RestName">@restNameList[i]</p><p class="RestType">@restTypeList[i]</p><p class="restID hidden">@restIDList[i]</p>
-                    </a>
+                    </button>
                 </div>
             }
         </div>
@@ -60,10 +61,14 @@
     private List<string> restTypeList = new List<string>();
     private List<int> restIDList = new List<int>();
 
-    public async Task select()
+    public async Task select(int i)
     {
-        //restID = await JS.InvokeAsync<string>("accessDOMElement");
-        //Usr.savedRestaurant = Int32.Parse(restID);
+        Console.WriteLine("I am running");
+        restID = await JS.InvokeAsync<string>("accessDOMElement",i);
+        Usr.savedRestaurant = Int32.Parse(restID);
+        Console.WriteLine(Usr.savedRestaurant);
+        Console.WriteLine("done");
+        NavigationManager.NavigateTo("/Restaurant-Home-page");
     }
 
     // on load -> call this func

@@ -188,11 +188,11 @@
     // on load -> call this func
     private void initMethod()
     {
-        Console.WriteLine(Usr.savedRestaurant);
+        //Console.WriteLine(Usr.savedRestaurant);
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         Usr.connect = mySetting;
         Usr.grabUserType();
-        restID = 11;
+        restID = Usr.savedRestaurant;
         theModel.connect = mySetting;
         if (Usr.userType == 3)
         {
