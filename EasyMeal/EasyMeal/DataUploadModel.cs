@@ -151,7 +151,7 @@ namespace EasyMeal
 
         // C) method to pull items from the restaurant items table
         // get number of entries in table
-        public int getNumOfEntriesInMenuItemTable(int restID)
+        public int getNumOfEntriesInMenuItemTable(int ID)
         {
             int num = 0;
             try
@@ -159,7 +159,7 @@ namespace EasyMeal
                 SqlConnection con = new SqlConnection(connect);
                 SqlCommand cmd = new SqlCommand($"SELECT COUNT(RestItemID) FROM TblRestMenuItem WHERE RestaurantID = @restID", con);
                 con.Open();
-                cmd.Parameters.AddWithValue("@restID", restID);
+                cmd.Parameters.AddWithValue("@restID", ID);
                 num = (int)cmd.ExecuteScalar();
                 con.Dispose();
             }
@@ -167,7 +167,7 @@ namespace EasyMeal
             return num;
         }
 
-        public List<string>[] getAllMenuItems(int restID)
+        public List<string>[] getAllMenuItems(int ID)
         {
             List<string>[] theListArray = new List<string>[4];
             List<string> listOfMenuCats = new List<string>();
@@ -178,7 +178,7 @@ namespace EasyMeal
             SqlConnection con = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand($"SELECT Category, ItemName, ItemDesc, Price FROM TblRestMenuItem WHERE RestaurantID = @restID", con);
             con.Open();
-            cmd.Parameters.AddWithValue("@restID", restID);
+            cmd.Parameters.AddWithValue("@restID", ID);
             SqlDataReader reader = cmd.ExecuteReader();
             while(reader.Read())
             {

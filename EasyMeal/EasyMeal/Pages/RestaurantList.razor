@@ -40,9 +40,9 @@
             @for (int i = 0; i < restNameList.Count(); i++)
             {
                 <div class="GridItem">
-                    <a id="hrefGuy" href="/Restaurant-Home-page" value="@restIDList[i]" onclick="select" @key="Usr.savedRestaurant = restIDList[i]">
+                    <a class="hrefGuy" href="/Restaurant-Home-page" @onclick="select">
                         <img class="RestThumbNail" src="/Assets/RestaurantList/restaurant-building.svg" alt="@restNameList[i]" />
-                        <p class="RestName">@restNameList[i]</p><p class="RestType">@restTypeList[i]</p>
+                        <p class="RestName">@restNameList[i]</p><p class="RestType">@restTypeList[i]</p><p class="restID hidden">@restIDList[i]</p>
                     </a>
                 </div>
             }
@@ -54,14 +54,16 @@
     string restName = "";
     string restType = "";
     string mySetting = "";
+    private string restID = "";
     private DataUploadModel theData = new DataUploadModel();
     private List<string> restNameList = new List<string>();
     private List<string> restTypeList = new List<string>();
     private List<int> restIDList = new List<int>();
 
-    private async void select()
+    public async Task select()
     {
-        await JS.InvokeAsync<string>("accessDOMElement");
+        //restID = await JS.InvokeAsync<string>("accessDOMElement");
+        //Usr.savedRestaurant = Int32.Parse(restID);
     }
 
     // on load -> call this func

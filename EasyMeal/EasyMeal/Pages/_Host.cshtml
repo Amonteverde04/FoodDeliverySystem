@@ -35,9 +35,11 @@
     <script src="_framework/blazor.server.js"></script>
     <script>
         function accessDOMElement() {
-            var item;
-            item = document.getElementById("hrefGuy").value;
-            return item;
+            let item;
+            // need to tell it how to know which grid item we select
+            item = document.getElementsByClassName('restID');
+            console.log(item.innerHTML);
+            return item.innerHTML;
         }
     </script>
 </body>

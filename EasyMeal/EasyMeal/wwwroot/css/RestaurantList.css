@@ -200,3 +200,7 @@
     width: 100%;
     background-color: #FFD600;
 }
+
+.hidden {
+    opacity: 0;
+}
