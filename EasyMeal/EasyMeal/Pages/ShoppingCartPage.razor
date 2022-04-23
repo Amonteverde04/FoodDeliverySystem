@@ -1,0 +1,192 @@
+﻿@page "/Shopping-cart-page"
+@inject User Usr
+@inject IConfiguration _config
+@inject NavigationManager NavigationManager
+
+<link href="css/ShoppingCartPage.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="RestuarantList">
+        <div class="Header">
+            <div class="Search">
+                <form class="SearchForm" action="/Restaurant-List">
+                    <button class="Glass" type="button">
+                        <img class="SearchGlassSvg" src="/Assets/RestaurantList/SearchGlass.svg" />
+                    </button>
+                    <input class="SearchBar" type="text" placeholder="Search" name="search">
+                </form>
+            </div>
+            <div class="LogoContainer">
+                <a href=""><img class="logo" src="/Assets/RestaurantHomePage/EasyMealLogo.svg" alt="EasyMeal" /></a>
+            </div>
+            <div class="Cart">
+                <a href="Shopping-cart-page"><img class="Cart" src="/Assets/RestaurantHomePage/cart.png" alt="Cart" /></a>
+            </div>
+            @if (Usr.userID == 0)
+            {
+                <div class="FlexContainer SignUpLogIn">
+                    <div class="flexChild SignIn"><a id="accountSignIn" href="/Account-Login">Log In</a></div>
+                    <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
+                </div>
+            }
+            else
+            {
+                <div class="FlexContainer SignUpLogIn">
+                    <button class="SignOut" @onclick="Usr.logOut">Sign Out</button>
+                </div>
+            }
+        </div>
+        @if (Usr.userID == 0 || Usr.userType == 1 || Usr.userType == 2)
+        {
+            <div class="InfoSec">
+                <h1 class="RestHeader">Shopping Cart</h1>
+
+                <table class="Container">
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr>
+                        <td>Burger</td>
+                        <td>$9.89</td>
+                    </tr>
+                </table>
+                <div class="TotalContainer">
+                    <h2>Total: @numOfItems</h2>
+                </div>
+                <div class="OrderButtonContainer">
+                    <button class="OrderButton">Place Order</button>
+                </div>
+            </div>
+        }
+        @if (Usr.userID != 0 && Usr.userType == 3)
+        {
+            <div class="OwnerView">
+                @if (failure == 1)
+                {
+                    <div class="ErrorContainer">
+                        <div class="ErrorMessageContainer">
+                            <div class="ErrorMessage">
+                                <img class="ErrorIcon" src="/Assets/AccountLogin/Error.svg" />
+                                <h3 id="errorHeading">Error!</h3>
+                                <p id="errorText">Your menu items were not entered. Either you did not enter valid data, or there was a problem reaching the server. Try again later!</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (failure == 0)
+                {
+                    <div class="SuccessContainer">
+                        <div class="SuccessMessageContainer">
+                            <div class="SuccessMessage">
+                                <img class="SuccessIcon" src="/Assets/RestaurantHomePage/checkMark.svg" />
+                                <h3 id="SuccessHeading">Success!</h3>
+                                <p id="SuccessText">Menu item uploaded!</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <h2 class="MenuItems">MenuItems</h2>
+                <form class="ItemUpdateList" @onsubmit="sendData">
+                    <div class="ItemUpdateGrid">
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Category:</label>
+                                    <input class="ItemInput" @bind-value="category" type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Item Name:</label>
+                                    <input class="ItemInput" @bind-value="itemName" type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Item Description:</label>
+                                    <input class="ItemInput" @bind-value="itemDesc" type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Price:</label>
+                                    <input class="ItemInput" @bind-value="price" type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ListItem">
+                            <div class="ItemContainer">
+                                <div class="InputContainer">
+                                    <label class="InputLabel">Prep-Time (minutes):</label>
+                                    <input class="ItemInput" @bind-value="prepTime" type="text" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ButtonContainer">
+                        <button type="submit" class="FormSubmissionButton">Update Restaurant Menu</button>
+                    </div>
+                </form>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+@code {
+    private int numOfItems = 0;
+    private string mySetting = "";
+
+    private string category = "";
+    private string itemName = "";
+    private string itemDesc = "";
+    private string price = "";
+    private string prepTime = "";
+    private int failure = 5;
+
+    DataUploadModel theModel = new DataUploadModel();
+
+    private void sendData()
+    {
+        theModel.category = category;
+        theModel.itemName = itemName;
+        theModel.itemDesc = itemDesc;
+        theModel.price = price;
+        theModel.time = prepTime;
+        theModel.uploadItems();
+        failure = theModel.failure;
+    }
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        Usr.connect = mySetting;
+        Usr.grabUserType();
+        theModel.connect = mySetting;
+        if (Usr.userType == 3)
+        {
+            theModel.userID = Usr.userID;
+            theModel.grabRestID();
+        }
+        else
+        {
+            // need to make method to get the items from their respective columns in tblMenuItems
+        }
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
+}

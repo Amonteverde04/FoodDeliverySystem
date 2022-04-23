@@ -1,0 +1,421 @@
+﻿body {
+}
+
+/* Main Layout */
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+.page {
+    background-color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.RestaurantList {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Navbar */
+
+.Header {
+    position: relative;
+    background: black;
+    height: 75px;
+}
+
+.Search {
+    position: absolute;
+    width: 20%;
+    height: 40px;
+    margin-left: 30px;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.Glass {
+    position: absolute;
+    background: none;
+    border: none;
+    height: 25px;
+    width: 30px;
+    top: 7px;
+    left: 13px;
+}
+
+.Glass:active .SearchGlassSvg {
+    filter: invert(78%) sepia(38%) saturate(1503%) hue-rotate(0deg) brightness(104%) contrast(104%);
+}
+
+.Glass:focus {
+    outline: none;
+}
+
+.SearchGlassSvg {
+    display: block;
+    height: 20px;
+    width: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.SearchForm, .SearchBar {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.LogoContainer {
+    position: relative;
+    padding-top: 15px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.Logo {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 40px;
+}
+
+.Cart {
+    position: absolute;
+    display: flex;
+    width: 15%;
+    top: 10px;
+    right: 15%;
+}
+
+.FlexContainer {
+    position: absolute;
+    display: flex;
+    width: 15%;
+    top: 20px;
+    right: 3%;
+}
+
+.flexChild {
+    flex: 1;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    padding: 9px;
+}
+
+    .flexChild:first-child {
+        margin-right: 5px;
+    }
+
+    .flexChild:last-child {
+        background-color: #FFD600;
+        border: 1px solid;
+        border-color: rgba(0,0,0,0.5);
+        border-radius: 20px;
+    }
+
+#accountSignIn {
+    color: #FFD600;
+}
+
+#accountSignUp {
+    color: black;
+}
+
+.SignOut {
+    width: 50%;
+    color: black;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    padding: 9px;
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    margin-left: 145px;
+}
+
+.InfoSec {
+    width: 80%;
+    display: block;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.RestHeader {
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    text-align: center;
+}
+
+.Container {
+    font-family: arial, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    padding-left: 100px;
+    width: 75%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.AddItemButton {
+    border: none;
+    background: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.AddItemButton:active {
+    border: none;
+    background-color: black;
+    border-radius: 10px;
+}
+
+    .AddItemButton:focus {
+        outline: none;
+    }
+
+.Plus {
+    background: none;
+    border: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 40px;
+    height: 30px;
+    width: 30px;
+}
+
+    .Plus:active {
+        border: none;
+        filter: invert(78%) sepia(38%) saturate(1503%) hue-rotate(0deg) brightness(104%) contrast(104%);
+    }
+
+.NumItemContainer {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+    width: 30%;
+    text-align: center;
+}
+
+.MenuItems {
+    display: block;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    text-align: center;
+}
+
+.ItemUpdateList {
+    position: relative;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    align-items: center;
+}
+
+.ItemUpdateGrid {
+    display: grid;
+    grid-template-columns: 290px 290px 290px 290px 290px;
+    grid-gap: 30px 30px;
+}
+
+.ListItem {
+    width: 90%;
+    padding-left: 30px;
+}
+
+.InputContainer {
+    position: relative;
+    width: 80%;
+}
+
+.InputLabel {
+    padding-right: 15px;
+}
+
+.ItemInput {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+.ButtonContainer {
+    position: relative;
+    width: 15%;
+    height: 45px;
+    text-align: center;
+    display: flex;
+    margin: 30px auto 0 auto;
+}
+
+.FormSubmissionButton {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,.5);
+}
+
+.FormSubmissionButton:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+/* If already has details added */
+.ErrorContainer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 5%;
+}
+
+.ErrorMessageContainer {
+    position: relative;
+    background-color: rgba(255,0,0, .7);
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 5%;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 10px;
+}
+
+.ErrorIcon {
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.ErrorMessage {
+    padding: 12px;
+    color: white;
+}
+
+#errorHeading {
+    padding-left: 40px;
+}
+
+#errorText {
+    position: relative;
+    text-align: center;
+}
+
+#errorLink {
+    color: white;
+    text-decoration: underline;
+}
+
+    #errorLink:hover {
+        color: blue;
+    }
+
+/* if item uploaded */
+.SuccessContainer {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 5%;
+}
+
+.SuccessMessageContainer {
+    position: relative;
+    background-color: rgba(0,128,0, .7);
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height: 5%;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 10px;
+}
+
+.SuccessIcon {
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+
+.SuccessMessage {
+    padding: 12px;
+    color: white;
+}
+
+#SuccessHeading {
+    padding-left: 40px;
+}
+
+#SuccessText {
+    position: relative;
+    text-align: center;
+}
+
+#SuccessLink {
+    color: white;
+    text-decoration: underline;
+}
+
+    #SuccessLink:hover {
+        color: blue;
+    }
+
+.OrderButton {
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+}
+
+    .OrderButton:active {
+        background-color: black;
+        color: #FFD600;
+    }
+
+    .OrderButton:focus {
+        outline: none;
+    }
