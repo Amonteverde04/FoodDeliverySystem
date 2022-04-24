@@ -98,6 +98,14 @@
     bottom: 40px;
 }
 
+.Cart {
+    position: absolute;
+    display: flex;
+    width: 15%;
+    top: 10px;
+    right: 15%;
+}
+
 .FlexContainer {
     position: absolute;
     display: flex;
