@@ -36,8 +36,6 @@
                 </div>
             }
         </div>
-        @if (Usr.userID == 0 || Usr.userType == 1 || Usr.userType == 2)
-        {
             <div class="InfoSec">
                 <h1 class="RestHeader">Shopping Cart</h1>
 
@@ -58,85 +56,7 @@
                     <button class="OrderButton">Place Order</button>
                 </div>
             </div>
-        }
-        @if (Usr.userID != 0 && Usr.userType == 3)
-        {
-            <div class="OwnerView">
-                @if (failure == 1)
-                {
-                    <div class="ErrorContainer">
-                        <div class="ErrorMessageContainer">
-                            <div class="ErrorMessage">
-                                <img class="ErrorIcon" src="/Assets/AccountLogin/Error.svg" />
-                                <h3 id="errorHeading">Error!</h3>
-                                <p id="errorText">Your menu items were not entered. Either you did not enter valid data, or there was a problem reaching the server. Try again later!</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                @if (failure == 0)
-                {
-                    <div class="SuccessContainer">
-                        <div class="SuccessMessageContainer">
-                            <div class="SuccessMessage">
-                                <img class="SuccessIcon" src="/Assets/RestaurantHomePage/checkMark.svg" />
-                                <h3 id="SuccessHeading">Success!</h3>
-                                <p id="SuccessText">Menu item uploaded!</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-                <h2 class="MenuItems">MenuItems</h2>
-                <form class="ItemUpdateList" @onsubmit="sendData">
-                    <div class="ItemUpdateGrid">
-                        <div class="ListItem">
-                            <div class="ItemContainer">
-                                <div class="InputContainer">
-                                    <label class="InputLabel">Category:</label>
-                                    <input class="ItemInput" @bind-value="category" type="text" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ListItem">
-                            <div class="ItemContainer">
-                                <div class="InputContainer">
-                                    <label class="InputLabel">Item Name:</label>
-                                    <input class="ItemInput" @bind-value="itemName" type="text" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ListItem">
-                            <div class="ItemContainer">
-                                <div class="InputContainer">
-                                    <label class="InputLabel">Item Description:</label>
-                                    <input class="ItemInput" @bind-value="itemDesc" type="text" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ListItem">
-                            <div class="ItemContainer">
-                                <div class="InputContainer">
-                                    <label class="InputLabel">Price:</label>
-                                    <input class="ItemInput" @bind-value="price" type="text" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ListItem">
-                            <div class="ItemContainer">
-                                <div class="InputContainer">
-                                    <label class="InputLabel">Prep-Time (minutes):</label>
-                                    <input class="ItemInput" @bind-value="prepTime" type="text" required />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ButtonContainer">
-                        <button type="submit" class="FormSubmissionButton">Update Restaurant Menu</button>
-                    </div>
-                </form>
-            </div>
-        }
+        
 
 
     </div>
