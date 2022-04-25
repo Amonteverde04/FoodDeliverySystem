@@ -37,8 +37,19 @@
             }
         </div>
         <div class="InfoSec">
+            @if (failure == 2)
+            {
+                <div class="SuccessContainer">
+                    <div class="SuccessMessageContainer">
+                        <div class="SuccessMessage">
+                            <img class="SuccessIcon" src="/Assets/RestaurantHomePage/checkMark.svg" />
+                            <h3 id="SuccessHeading">Success!</h3>
+                            <p id="SuccessText">Order placed!</p>
+                        </div>
+                    </div>
+                </div>
+            }
             <h1 class="RestHeader">Shopping Cart</h1>
-
             <table class="Container">
                 <tr>
                     <th>Item</th>
@@ -58,10 +69,10 @@
                 }
             </table>
             <div class="TotalContainer">
-                <h2>Total: @numOfItems</h2>
+                <h2>Total: </h2>
             </div>
             <div class="OrderButtonContainer">
-                <button class="OrderButton">Place Order</button>
+                <button class="OrderButton" @onclick="submitOrder">Place Order</button>
             </div>
         </div>
 
@@ -99,6 +110,20 @@
         Usr.cartItemsById.Remove(j);
         Usr.cartItemsByName.Remove(k);
         Usr.cartItemsByPrice.Remove(q);
+    }
+
+    private void submitOrder()
+    {
+        failure = 2;
+        int checker = 0;
+        checker = Usr.sendOrder();
+        if(checker == 1)
+        {
+            Usr.cartItemsById.Clear();
+            Usr.cartItemsByName.Clear();
+            Usr.cartItemsByPrice.Clear();
+        } else { 
+        }
     }
 
     // on load -> call this func

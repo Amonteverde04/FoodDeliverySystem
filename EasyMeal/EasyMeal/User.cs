@@ -275,5 +275,41 @@ namespace EasyMeal
                 return 0;
             } else { return 0; }
         }
+
+        public int sendOrder()
+        {
+            decimal total = 0;
+            foreach (decimal item in cartItemsByPrice)
+            {
+                total = total + item;
+            }
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TblOrders(OrderTotal, StampTime, UserID)" +
+                            $" VALUES (@total, @orderTime, @userID)", con);
+            try
+            {
+                con.Open();
+                cmd.Parameters.AddWithValue("@total", total);
+                cmd.Parameters.AddWithValue("@orderTime", DateTime.Now);
+                cmd.Parameters.AddWithValue("@userID", userID);
+                int checker = cmd.ExecuteNonQuery();
+                if (checker != 0)
+                {
+                    Console.WriteLine("Details Added!");
+                    return 1;
+                }
+                else
+                {
+                    Console.WriteLine("Error, details not added!");
+                    return 0;
+                }
+                con.Dispose();
+            }
+            catch
+            {
+                Console.WriteLine("Error");
+                return 0;
+            }
+        }
     }
 }
