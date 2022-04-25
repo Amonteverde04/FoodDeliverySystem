@@ -36,27 +36,35 @@
                 </div>
             }
         </div>
-            <div class="InfoSec">
-                <h1 class="RestHeader">Shopping Cart</h1>
+        <div class="InfoSec">
+            <h1 class="RestHeader">Shopping Cart</h1>
 
-                <table class="Container">
+            <table class="Container">
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Remove Item</th>
+                </tr>
+                @for (int i = 0; i < Usr.cartItemsByName.Count(); i++)
+                {
+                    string j = Usr.cartItemsById[i];
+                    string k = Usr.cartItemsByName[i];
+                    decimal q = Usr.cartItemsByPrice[i];
                     <tr>
-                        <th>Item</th>
-                        <th>Price</th>
+                        <td>@Usr.cartItemsByName[i]</td>
+                        <td>@Usr.cartItemsByPrice[i]</td>
+                        <td class="RemoveItemButtonContainer"><button class="RemoveItemButton" @onclick="()=>removeFromCart(j,k,q)"><img class="Minus" src="/Assets/ShoppingCartPage/minus.svg" alt="" /></button></td>
                     </tr>
-                    <tr>
-                        <td>Burger</td>
-                        <td>$9.89</td>
-                    </tr>
-                </table>
-                <div class="TotalContainer">
-                    <h2>Total: @numOfItems</h2>
-                </div>
-                <div class="OrderButtonContainer">
-                    <button class="OrderButton">Place Order</button>
-                </div>
+                }
+            </table>
+            <div class="TotalContainer">
+                <h2>Total: @numOfItems</h2>
             </div>
-        
+            <div class="OrderButtonContainer">
+                <button class="OrderButton">Place Order</button>
+            </div>
+        </div>
+
 
 
     </div>
@@ -84,6 +92,13 @@
         theModel.time = prepTime;
         theModel.uploadItems();
         failure = theModel.failure;
+    }
+
+    private void removeFromCart(string j, string k, decimal q)
+    {
+        Usr.cartItemsById.Remove(j);
+        Usr.cartItemsByName.Remove(k);
+        Usr.cartItemsByPrice.Remove(q);
     }
 
     // on load -> call this func

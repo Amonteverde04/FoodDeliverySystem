@@ -169,30 +169,35 @@ namespace EasyMeal
 
         public List<string>[] getAllMenuItems(int ID)
         {
-            List<string>[] theListArray = new List<string>[4];
+            List<string>[] theListArray = new List<string>[5];
             List<string> listOfMenuCats = new List<string>();
             List<string> listOfMenuNames = new List<string>();
             List<string> listOfMenuDescs = new List<string>();
             List<string> listOfMenuPrices = new List<string>();
+            List<string> listOfMenuIDs = new List<string>();
             decimal holder = 0;
+            int holder2 = 0;
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"SELECT Category, ItemName, ItemDesc, Price FROM TblRestMenuItem WHERE RestaurantID = @restID", con);
+            SqlCommand cmd = new SqlCommand($"SELECT RestItemID, Category, ItemName, ItemDesc, Price FROM TblRestMenuItem WHERE RestaurantID = @restID", con);
             con.Open();
             cmd.Parameters.AddWithValue("@restID", ID);
             SqlDataReader reader = cmd.ExecuteReader();
             while(reader.Read())
             {
-                listOfMenuCats.Add(reader.GetFieldValue<string>(0));
-                listOfMenuNames.Add(reader.GetFieldValue<string>(1));
-                listOfMenuDescs.Add(reader.GetFieldValue<string>(2));
-                holder = reader.GetFieldValue<decimal>(3);
+                holder2 = reader.GetFieldValue<int>(0);
+                listOfMenuIDs.Add(holder2.ToString());
+                listOfMenuCats.Add(reader.GetFieldValue<string>(1));
+                listOfMenuNames.Add(reader.GetFieldValue<string>(2));
+                listOfMenuDescs.Add(reader.GetFieldValue<string>(3));
+                holder = reader.GetFieldValue<decimal>(4);
                 listOfMenuPrices.Add(holder.ToString());
             }
             con.Dispose();
-            theListArray[0] = listOfMenuCats;
-            theListArray[1] = listOfMenuNames;
-            theListArray[2] = listOfMenuDescs;
-            theListArray[3] = listOfMenuPrices;
+            theListArray[0] = listOfMenuIDs;
+            theListArray[1] = listOfMenuCats;
+            theListArray[2] = listOfMenuNames;
+            theListArray[3] = listOfMenuDescs;
+            theListArray[4] = listOfMenuPrices;
             return theListArray;
         }
     }

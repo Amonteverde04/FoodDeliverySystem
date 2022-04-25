@@ -173,6 +173,7 @@
 }
 
 .Container {
+    margin-top: 50px;
     font-family: arial, sans-serif;
     margin-left: auto;
     margin-right: auto;
@@ -403,3 +404,10 @@ tr:nth-child(even) {
     #SuccessLink:hover {
         color: blue;
     }
+
+.myEyesOnly {
+    opacity: 0;
+    position: absolute;
+    height: 1px;
+    width: 1px;
+}

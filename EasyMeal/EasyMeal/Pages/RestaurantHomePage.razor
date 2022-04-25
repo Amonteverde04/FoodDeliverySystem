@@ -40,7 +40,18 @@
         {
             <div class="InfoSec">
                 <h1 class="RestHeader">Restaurant</h1>
-
+                @if (failure == 2)
+                {
+                    <div class="SuccessContainer">
+                        <div class="SuccessMessageContainer">
+                            <div class="SuccessMessage">
+                                <img class="SuccessIcon" src="/Assets/RestaurantHomePage/checkMark.svg" />
+                                <h3 id="SuccessHeading">Success!</h3>
+                                <p id="SuccessText">Item added to cart!</p>
+                            </div>
+                        </div>
+                    </div>
+                }
                 <table class="Container">
                     <tr>
                         <th>Item</th>
@@ -50,11 +61,14 @@
                     </tr>
                     @for (int i = 0; i < theModel.getNumOfEntriesInMenuItemTable(restID); i++)
                     {
+                        string j = itemIDList[i];
+                        string k = itemNameList[i];
+                        decimal q = itemPriceListDouble[i];
                         <tr>
                             <td>@itemNameList[i]</td>
                             <td>@itemDescList[i]</td>
                             <td>@itemPriceListDouble[i]</td>
-                            <td class="AddItemButtonContainer"><button class="AddItemButton"><img class="Plus" src="/Assets/RestaurantHomePage/plus.svg" alt="" /></button></td>
+                            <td class="AddItemButtonContainer"><button class="AddItemButton" @onclick="()=>addToCart(j, k, q)"><img class="Plus" src="/Assets/RestaurantHomePage/plus.svg" alt="" /></button></td>
                         </tr>
                     }
                 </table>
@@ -161,12 +175,15 @@
     string menuItemName = "";
     string menuItemDesc = "";
     string menuItemPrice = "";
-    private List<string>[] listArray = new List<string>[4];
+    private List<string>[] listArray = new List<string>[5];
+    private List<string> itemIDList = new List<string>();
     private List<string> itemCatList = new List<string>();
     private List<string> itemNameList = new List<string>();
     private List<string> itemDescList = new List<string>();
     private List<string> itemPriceList = new List<string>();
     private List<decimal> itemPriceListDouble = new List<decimal>();
+    private List<int> itemIDListInt = new List<int>();
+
 
 
     private void sendData()
@@ -203,15 +220,29 @@
         {
             listArray = theModel.getAllMenuItems(restID);
             // need to make method to get the items from their respective columns in tblMenuItems
-            itemCatList = listArray[0];
-            itemNameList = listArray[1];
-            itemDescList = listArray[2];
-            itemPriceList = listArray[3];
+            itemIDList = listArray[0];
+            itemCatList = listArray[1];
+            itemNameList = listArray[2];
+            itemDescList = listArray[3];
+            itemPriceList = listArray[4];
             for (int i = 0; i < itemPriceList.Count; i++)
             {
-                itemPriceListDouble.Add(Decimal.Round(Convert.ToDecimal(itemPriceList[i]),2));
+                itemIDListInt.Add(Int32.Parse(itemIDList[i]));
+                itemPriceListDouble.Add(Decimal.Round(Convert.ToDecimal(itemPriceList[i]), 2));
             }
         }
+    }
+
+    public void addToCart(string j, string k, decimal q)
+    {
+        Usr.cartItemsById.Add(j);
+        Usr.cartItemsByName.Add(k);
+        Usr.cartItemsByPrice.Add(q);
+        for (int i = 0; i < Usr.cartItemsById.Count(); i++)
+        {
+            Console.WriteLine($"I am the cart: I have ... {Usr.cartItemsByName[i]}");
+        }
+        failure = 2;
     }
 
     // on load

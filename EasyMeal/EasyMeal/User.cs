@@ -19,6 +19,9 @@ namespace EasyMeal
         private readonly int _type;
         private int _userType;
         public int savedRestaurant { get; set; }
+        public List<string> cartItemsById = new List<string>();
+        public List<string> cartItemsByName = new List<string>();
+        public List<decimal> cartItemsByPrice = new List<decimal>();
 
         public int userID { get; set; }
         public int userType { get { return _userType; } set { _userType = value; } } // property to get user type
