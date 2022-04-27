@@ -475,3 +475,29 @@ tr:nth-child(even) {
     margin-top: 5%;
 }
 
+.RemoveAllButtonContainer {
+    position: relative;
+    border: none;
+    display: block;
+    width: 12%;
+    left: 1150px;
+    margin-top: 30px;
+}
+
+.RemoveAllItemButton {
+    background-color: #FFD600;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 20px;
+    height: 45px;
+    width: 100%;
+}
+
+    .RemoveAllItemButton:active {
+        background-color: black;
+        color: #FFD600;
+    }
+
+    .RemoveAllItemButton:focus {
+        outline: none;
+    }

@@ -49,7 +49,21 @@
                     </div>
                 </div>
             }
+            else if (failure == 3)
+            {
+                <div class="ErrorContainer">
+                    <div class="ErrorMessageContainer">
+                        <div class="ErrorMessage">
+                            <img class="ErrorIcon" src="/Assets/AccountLogin/Error.svg" />
+                            <h3 id="errorHeading">Error!</h3>
+                            <p id="errorText">Either your cart may be empty, or there was an issue completing the order...</p>
+                            <p id="errorText"><a id="errorLink" href="/Account-Creation">Are you logged in?</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
             <h1 class="RestHeader">Shopping Cart</h1>
+            <div class="RemoveAllButtonContainer"><button class="RemoveAllItemButton" @onclick="()=>removeAllFromCart()">Remove all from cart</button></div>
             <table class="Container">
                 <tr>
                     <th>Item</th>
@@ -63,13 +77,13 @@
                     decimal q = Usr.cartItemsByPrice[i];
                     <tr>
                         <td>@Usr.cartItemsByName[i]</td>
-                        <td>@Usr.cartItemsByPrice[i]</td>
+                        <td>$@Usr.cartItemsByPrice[i]</td>
                         <td class="RemoveItemButtonContainer"><button class="RemoveItemButton" @onclick="()=>removeFromCart(j,k,q)"><img class="Minus" src="/Assets/ShoppingCartPage/minus.svg" alt="" /></button></td>
                     </tr>
                 }
             </table>
             <div class="TotalContainer">
-                <h2>Total: </h2>
+                <h2>Total: $@total</h2>
             </div>
             <div class="OrderButtonContainer">
                 <button class="OrderButton" @onclick="submitOrder">Place Order</button>
@@ -91,6 +105,7 @@
     private string price = "";
     private string prepTime = "";
     private int failure = 5;
+    decimal total = 0;
 
     DataUploadModel theModel = new DataUploadModel();
 
@@ -110,19 +125,38 @@
         Usr.cartItemsById.Remove(j);
         Usr.cartItemsByName.Remove(k);
         Usr.cartItemsByPrice.Remove(q);
+        total = total - q;
+    }
+
+    private void removeAllFromCart()
+    {
+        Usr.cartItemsById.Clear();
+        Usr.cartItemsByName.Clear();
+        Usr.cartItemsByPrice.Clear();
+        total = 0;
+    }
+
+    public void getTotal()
+    {
+        foreach(decimal item in Usr.cartItemsByPrice)
+        {
+            total = item + total;
+        }
     }
 
     private void submitOrder()
     {
-        failure = 2;
         int checker = 0;
         checker = Usr.sendOrder();
         if(checker == 1)
         {
+            failure = 2;
+            total = 0;
             Usr.cartItemsById.Clear();
             Usr.cartItemsByName.Clear();
             Usr.cartItemsByPrice.Clear();
-        } else { 
+        } else {
+            failure = 3;
         }
     }
 
@@ -133,15 +167,7 @@
         Usr.connect = mySetting;
         Usr.grabUserType();
         theModel.connect = mySetting;
-        if (Usr.userType == 3)
-        {
-            theModel.userID = Usr.userID;
-            theModel.grabRestID();
-        }
-        else
-        {
-            // need to make method to get the items from their respective columns in tblMenuItems
-        }
+        getTotal();
     }
 
     // on load

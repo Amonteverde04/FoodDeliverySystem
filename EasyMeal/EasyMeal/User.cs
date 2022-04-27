@@ -276,9 +276,54 @@ namespace EasyMeal
             } else { return 0; }
         }
 
+        public string getOrderID(DateTime theDate)
+        {
+            string orderID = "";
+
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT OrderID FROM TblOrders WHERE StampTime = @date", con);
+            try
+            {
+                con.Open();
+                cmd.Parameters.AddWithValue("@date", theDate);
+                orderID = Convert.ToString(cmd.ExecuteScalar());
+            } catch
+            {
+
+            }
+            // if the user exists in the table then return 1
+            return orderID;
+        }
+
+        public void addOrderLine(string item, DateTime theDate)
+        {
+            string orderID;
+            int checker2;
+            orderID = getOrderID(theDate);
+            SqlConnection con2 = new SqlConnection(connect);
+            SqlCommand cmd2 = new SqlCommand($"INSERT INTO TblOrderLine(OrderID, RestItemID)" +
+                            $" VALUES (@orderID, @restItemID)", con2);
+
+            con2.Open();
+            cmd2.Parameters.AddWithValue("@orderID", orderID);
+            cmd2.Parameters.AddWithValue("@restItemID", item);
+            checker2 = cmd2.ExecuteNonQuery();
+            if (checker2 != 0)
+            {
+                Console.WriteLine("Order Line added!");
+            }
+            else
+            {
+                Console.WriteLine("Problem in order line add");
+                return;
+            }
+            con2.Close();
+        }
+
         public int sendOrder()
         {
             decimal total = 0;
+            DateTime theDate = DateTime.Now;
             foreach (decimal item in cartItemsByPrice)
             {
                 total = total + item;
@@ -288,26 +333,37 @@ namespace EasyMeal
                             $" VALUES (@total, @orderTime, @userID)", con);
             try
             {
+                if (total == 0 || userID == 0)
+                {
+                    Console.WriteLine("Error: Cart empty or user not logged in!");
+                    return 0;
+                }
                 con.Open();
                 cmd.Parameters.AddWithValue("@total", total);
-                cmd.Parameters.AddWithValue("@orderTime", DateTime.Now);
+                cmd.Parameters.AddWithValue("@orderTime", theDate);
                 cmd.Parameters.AddWithValue("@userID", userID);
                 int checker = cmd.ExecuteNonQuery();
                 if (checker != 0)
                 {
                     Console.WriteLine("Details Added!");
-                    return 1;
+                    con.Dispose();
                 }
                 else
                 {
                     Console.WriteLine("Error, details not added!");
+                    con.Dispose();
                     return 0;
                 }
-                con.Dispose();
+                foreach(string item in cartItemsById)
+                {
+                    addOrderLine(item, theDate);
+                }
+                return 1;
             }
             catch
             {
                 Console.WriteLine("Error");
+                con.Dispose();
                 return 0;
             }
         }
