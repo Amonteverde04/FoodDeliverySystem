@@ -380,8 +380,15 @@
 
         if (decider == 1)
         {
-            NavigationManager.NavigateTo("/Restaurant-List");
-            Console.WriteLine("Segue to rest list");
+            if(Usr.userType == 1 || Usr.userType == 3) {
+                NavigationManager.NavigateTo("/Restaurant-List");
+                Console.WriteLine("Segue to rest list");
+            }
+            if (Usr.userType == 2)
+            {
+                NavigationManager.NavigateTo("/Driver-Dashboard");
+                Console.WriteLine("Segue to driver dash");
+            }
         }
         else
         {

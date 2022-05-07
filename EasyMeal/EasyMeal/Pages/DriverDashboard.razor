@@ -1,0 +1,102 @@
+﻿@page "/Driver-Dashboard"
+@inject IConfiguration _config
+@inject NavigationManager NavigationManager
+@inject User Usr
+
+<link href="css/DriverDashboard.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="DriverDashboard">
+        <div class="Header">
+            <div class="LogoContainer">
+                <a href=""><img class="logo" src="/Assets/RestaurantList/EasyMealLogo.svg" alt="EasyMeal" /></a>
+            </div>
+            @if (Usr.userID == 0)
+            {
+                <div class="FlexContainer SignUpLogIn">
+                    <div class="flexChild SignIn"><a id="accountSignIn" href="/Account-Login">Log In</a></div>
+                    <div class="flexChild SignUp"><a id="accountSignUp" href="/Account-Creation">Sign Up</a></div>
+                </div>
+            }
+            else
+            {
+                <div class="FlexContainer SignUpLogIn">
+                    <button class="SignOut" @onclick="Usr.logOut">Sign Out</button>
+                </div>
+            }
+        </div>
+        <div class="DriverInfoAndOrderQueue">
+            <div class="YourInfoContainer">
+                <h1 class="YourInfo">Your Information:</h1>
+                <h2 class="DriverName">Harold Johnson</h2>
+                <h2 class="DriverVehicle">Green 2019 Jeep Wrangler</h2>
+            </div>
+            <div class="OrderQueContainer">
+                <table class="OrderQueTable">
+                    <thead>
+                        <tr>
+                            <th>Restaurant Name</th>
+                            <th>Prep Time</th>
+                            <th>Distance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hello</td>
+                            <td>Hello</td>
+                            <td>Hello</td>
+                        </tr>
+                        <tr>
+                            <td>Hello</td>
+                            <td>Hello</td>
+                            <td>Hello</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="OrderInfo">
+            <div class="OrderInfo">
+                <h1>Order Information:</h1>
+                <h2>Restaurant Name:</h2>
+                <p>Food Place</p>
+                <h2>Restaurant Address:</h2>
+                <p>123 Food Ave</p>
+                <h2>Customer Name:</h2>
+                <p>Johnny Vins</p>
+                <h2>Customer Address:</h2>
+                <p>123 Couch Lane:</p>
+                <h2>Order Number:</h2>
+                <p>Order #: 12345</p>
+                <h2>Prep Time:</h2>
+                <p>55 minutes</p>
+            </div>
+            <div class="OrderStatusContainer">
+                <label for="status">Select a status to keep the customer informed!</label>
+                <select name="status" id="status">
+                    <option value="onWay">On the way to the restaurant!</option>
+                    <option value="pickedUp">Order has been picked up!</option>
+                    <option value="delivered">Order has been delivered, enjoy!</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string mySetting;
+    DataUploadModel theData = new DataUploadModel();
+
+    // on load -> call this func
+    private void initMethod()
+    {
+        mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
+        theData.connect = mySetting;
+    }
+
+    // on load
+    protected override async Task OnInitializedAsync()
+    {
+        initMethod();
+    }
+}

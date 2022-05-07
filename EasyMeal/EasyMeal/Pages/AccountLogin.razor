@@ -56,7 +56,17 @@
         // make sure the person valid
         if (Usr.check == true)
         {
-            NavigationManager.NavigateTo("/Restaurant-List");
+            
+            Usr.grabUserType();
+            if (Usr.userType == 1 || Usr.userType == 3)
+            {
+                NavigationManager.NavigateTo("/Restaurant-List");
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/Driver-Dashboard");
+
+            }
         }
         else
         {
