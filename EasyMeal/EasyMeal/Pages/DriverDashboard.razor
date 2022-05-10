@@ -25,39 +25,35 @@
                 </div>
             }
         </div>
-        <div class="DriverInfoAndOrderQueue">
+        <div class="DriverInfoAndOrderQueueContainer">
             <div class="YourInfoContainer">
-                <h1 class="YourInfo">Your Information:</h1>
-                <h2 class="DriverName">Harold Johnson</h2>
+                <h1 class="YourInfo">Your Information:</h1><br />
+                <h2 class="DriverName">Harold Johnson</h2><br />
                 <h2 class="DriverVehicle">Green 2019 Jeep Wrangler</h2>
             </div>
-            <div class="OrderQueContainer">
-                <table class="OrderQueTable">
-                    <thead>
-                        <tr>
-                            <th>Restaurant Name</th>
-                            <th>Prep Time</th>
-                            <th>Distance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                        </tr>
-                        <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                        </tr>
-                    </tbody>
+            <div class="OrderQueueContainer">
+                <table class="OrderQueueTable">
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <th>Prep Time</th>
+                        <th>Distance</th>
+                    </tr>
+                    <tr>
+                        <td>Hello</td>
+                        <td>Hello</td>
+                        <td>Hello</td>
+                    </tr>
+                    <tr>
+                        <td>Hello</td>
+                        <td>Hello</td>
+                        <td>Hello</td>
+                    </tr>
                 </table>
             </div>
         </div>
-        <div class="OrderInfo">
+        <div class="OrderInfoContainer">
             <div class="OrderInfo">
-                <h1>Order Information:</h1>
+                <h1>Order Information:</h1><br />
                 <h2>Restaurant Name:</h2>
                 <p>Food Place</p>
                 <h2>Restaurant Address:</h2>
@@ -72,7 +68,7 @@
                 <p>55 minutes</p>
             </div>
             <div class="OrderStatusContainer">
-                <label for="status">Select a status to keep the customer informed!</label>
+                <label class="StatusLabel" for="status">Select a status to keep the customer informed!</label><br />
                 <select name="status" id="status">
                     <option value="onWay">On the way to the restaurant!</option>
                     <option value="pickedUp">Order has been picked up!</option>

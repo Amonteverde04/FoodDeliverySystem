@@ -103,3 +103,81 @@
     border-radius: 20px;
     margin-left: 145px;
 }
+
+.DriverInfoAndOrderQueueContainer {
+    position: absolute;
+    width: 50%;
+    height: 92%;
+}
+
+.OrderInfoContainer {
+    position: absolute;
+    width: 50%;
+    height: 92%;
+    margin-left: 50%;
+}
+
+.YourInfoContainer {
+    position: relative;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.OrderQueueContainer {
+    position: relative;
+    width: 70%;
+    max-height: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    text-align: center;
+    overflow: auto;
+}
+
+.OrderQueueTable {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+    padding: 8px;
+}
+
+.OrderInfo {
+    position: relative;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.OrderStatusContainer {
+    position: relative;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.StatusLabel {
+    font-size: 30px;
+}
+
+#status {
+    border-radius: 5px;
+    width: 50%;
+    height: 35px;
+}
