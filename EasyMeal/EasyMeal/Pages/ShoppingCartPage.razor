@@ -89,7 +89,27 @@
                 <button class="OrderButton" @onclick="submitOrder">Place Order</button>
             </div>
         </div>
-
+        @if (failure == 2 || Usr.SavedOrderID.HasValue)
+        {
+            <div class="CurrentOrderContainer">
+                <div class="CurrentOrder">
+                    <p class="raceCarDots">...<img class="raceCar" src="/Assets/ShoppingCartPage/formula-1.svg" href="Formula 1 Car" /></p>
+                    <div class="OrderStats">
+                        <p id="orderStat">
+                            Order Status:
+                            @if (Usr.getOrderStatus() == 101) { }
+                            @if (Usr.getOrderStatus() == 0)
+                            {@statusArray[0]}
+                            @if (Usr.getOrderStatus() == 1)
+                            {@statusArray[1]}
+                            @if (Usr.getOrderStatus() == 2)
+                            {@statusArray[2]}
+                        </p>
+                        <p id="orderStat">Order Number: @Usr.SavedOrderID</p>
+                    </div>
+                </div>
+            </div>
+        }
 
 
     </div>
@@ -106,7 +126,7 @@
     private string prepTime = "";
     private int failure = 5;
     decimal total = 0;
-
+    private string[] statusArray = new string[3] { "Order being prepared", "Order on the way", "Order delivered" };
     DataUploadModel theModel = new DataUploadModel();
 
     private void sendData()
@@ -150,6 +170,7 @@
         checker = Usr.sendOrder();
         if(checker == 1)
         {
+            Usr.getOrderID();
             failure = 2;
             total = 0;
             Usr.cartItemsById.Clear();

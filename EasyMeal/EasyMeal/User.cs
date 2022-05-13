@@ -25,8 +25,8 @@ namespace EasyMeal
 
         public int userID { get; set; }
         public int userType { get { return _userType; } set { _userType = value; } } // property to get user type
+        public int? SavedOrderID { get; set; }
 
-        
         public string email { get; set; } // property for checking log in email
         public string password { get; set; } // property for checking log in password
         public bool check { get; set; } // property for checking log in password
@@ -366,6 +366,38 @@ namespace EasyMeal
                 con.Dispose();
                 return 0;
             }
+        }
+
+        public void getOrderID()
+        {
+            int? orderID;
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT TOP 1 OrderID FROM TblOrders ORDER BY OrderID DESC", con);
+            con.Open();
+            orderID = (int?)cmd.ExecuteScalar();
+            con.Close();
+            SavedOrderID = orderID;
+        }
+
+        public int? getOrderStatus()
+        {
+            int? status;
+            int? errorCode = 101;
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT Status FROM TblOrders WHERE OrderID = @orderID", con);
+            try
+            {
+                con.Open();
+                cmd.Parameters.AddWithValue("@orderID", SavedOrderID);
+                status = (int?)cmd.ExecuteScalar();
+            }
+            catch
+            {
+                con.Close();
+                return errorCode;
+            }
+            con.Close();
+            return status;
         }
     }
 }
