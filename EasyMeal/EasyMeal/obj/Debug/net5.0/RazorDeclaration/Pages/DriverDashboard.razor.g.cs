@@ -133,7 +133,7 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 82 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
+#line 77 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
        
     private string mySetting;
     DataUploadModel theData = new DataUploadModel();

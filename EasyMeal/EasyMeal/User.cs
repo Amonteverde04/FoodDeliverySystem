@@ -19,6 +19,7 @@ namespace EasyMeal
         private readonly int _type;
         private int _userType;
         public int savedRestaurant { get; set; }
+        public int savedRestaurantForOrder { get; set; }
         public List<string> cartItemsById = new List<string>();
         public List<string> cartItemsByName = new List<string>();
         public List<decimal> cartItemsByPrice = new List<decimal>();
@@ -329,43 +330,36 @@ namespace EasyMeal
                 total = total + item;
             }
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TblOrders(OrderTotal, StampTime, UserID)" +
-                            $" VALUES (@total, @orderTime, @userID)", con);
-            try
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TblOrders(OrderTotal, StampTime, UserID, RestID)" +
+                            $" VALUES (@total, @orderTime, @userID, @restID)", con);
+            
+            if (total == 0 || userID == 0)
             {
-                if (total == 0 || userID == 0)
-                {
-                    Console.WriteLine("Error: Cart empty or user not logged in!");
-                    return 0;
-                }
-                con.Open();
-                cmd.Parameters.AddWithValue("@total", total);
-                cmd.Parameters.AddWithValue("@orderTime", theDate);
-                cmd.Parameters.AddWithValue("@userID", userID);
-                int checker = cmd.ExecuteNonQuery();
-                if (checker != 0)
-                {
-                    Console.WriteLine("Details Added!");
-                    con.Dispose();
-                }
-                else
-                {
-                    Console.WriteLine("Error, details not added!");
-                    con.Dispose();
-                    return 0;
-                }
-                foreach(string item in cartItemsById)
-                {
-                    addOrderLine(item, theDate);
-                }
-                return 1;
+                Console.WriteLine("Error: Cart empty or user not logged in!");
+                return 0;
             }
-            catch
+            con.Open();
+            cmd.Parameters.AddWithValue("@total", total);
+            cmd.Parameters.AddWithValue("@orderTime", theDate);
+            cmd.Parameters.AddWithValue("@userID", userID);
+            cmd.Parameters.AddWithValue("@restID", savedRestaurantForOrder);
+            int checker = cmd.ExecuteNonQuery();
+            if (checker != 0)
             {
-                Console.WriteLine("Error");
+                Console.WriteLine("Details Added!");
+                con.Dispose();
+            }
+            else
+            {
+                Console.WriteLine("Error, details not added!");
                 con.Dispose();
                 return 0;
             }
+            foreach(string item in cartItemsById)
+            {
+                addOrderLine(item, theDate);
+            }
+            return 1;
         }
 
         public void getOrderID()

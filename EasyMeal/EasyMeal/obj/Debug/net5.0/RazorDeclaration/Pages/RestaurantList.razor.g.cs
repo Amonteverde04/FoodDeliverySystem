@@ -133,16 +133,25 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantList.razor"
+#line 60 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\RestaurantList.razor"
        
-    string restName = "";
-    string restType = "";
-    string mySetting = "";
+        string restName = "";
+        string restType = "";
+        string address = "";
+        string mySetting = "";
     private string restID = "";
     private DataUploadModel theData = new DataUploadModel();
     private List<string> restNameList = new List<string>();
     private List<string> restTypeList = new List<string>();
     private List<int> restIDList = new List<int>();
+
+
+    private List<string>[] restAddress = new List<string>[4];
+    private List<string> restStreet = new List<string>();
+    private List<string> restCity = new List<string>();
+    private List<string> restState = new List<string>();
+    private List<string> restZip = new List<string>();
+    private List<string> restLocation = new List<string>();
 
     public async Task select(int i)
     {
@@ -154,6 +163,17 @@ using System.Numerics;
         NavigationManager.NavigateTo("/Restaurant-Home-page");
     }
 
+    private void consolidateAddress()
+    {
+        string theString = "";
+        for(int i = 0; i < restStreet.Count; i++)
+        {
+            theString = restStreet[i] + " ";
+            theString = restStreet[i] + " " + restCity[i] + " " + restState[i] + " " + restZip[i];
+            restLocation.Add(theString);
+        }
+    }
+
     // on load -> call this func
     private void initMethod()
     {
@@ -161,6 +181,12 @@ using System.Numerics;
         theData.connect = mySetting;
         restNameList = theData.getAllRestaurantNames();
         restTypeList = theData.getAllRestaurantTypes();
+        restAddress = theData.getAllRestaurantAddress();
+        restStreet = restAddress[0];
+        restCity = restAddress[1];
+        restState = restAddress[2];
+        restZip = restAddress[3];
+        consolidateAddress();
         restIDList = theData.getAllRestaurantIDs();
     }
 

@@ -215,6 +215,7 @@ using System.Numerics;
         Usr.cartItemsById.Add(j);
         Usr.cartItemsByName.Add(k);
         Usr.cartItemsByPrice.Add(q);
+        Usr.savedRestaurantForOrder = Usr.savedRestaurant;
         for (int i = 0; i < Usr.cartItemsById.Count(); i++)
         {
             Console.WriteLine($"I am the cart: I have ... {Usr.cartItemsByName[i]}");

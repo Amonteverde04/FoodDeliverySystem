@@ -98,7 +98,36 @@ namespace EasyMeal
             return listOfType;
         }
 
-
+        public List<string>[] getAllRestaurantAddress()
+        {
+            List<string>[] listArray = new List<string>[4];
+            List<string> listOfStreet = new List<string>();
+            List<string> listOfCity = new List<string>();
+            List<string> listOfState = new List<string>();
+            List<string> listOfZip = new List<string>();
+            int numOfEntries = 0;
+            numOfEntries = getNumOfEntriesInRestTable();
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT RestStreet, RestCity, RestState, RestZip FROM TblRestaurant", con);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            // iterator limit needs to be changed based on how many entries we have in the restaurant table.
+            for (int i = 0; i < numOfEntries; i++)
+            {
+                reader.Read();
+                listOfStreet.Add(reader.GetFieldValue<string>(0));
+                listOfCity.Add(reader.GetFieldValue<string>(1));
+                listOfState.Add(reader.GetFieldValue<string>(2));
+                listOfZip.Add(reader.GetFieldValue<string>(3));
+                // increments row 
+            }
+            con.Dispose();
+            listArray[0] = listOfStreet;
+            listArray[1] = listOfCity;
+            listArray[2] = listOfState;
+            listArray[3] = listOfZip;
+            return listArray;
+        }
 
         // B) method to put items in the restaurant menu items table
         public void grabRestID()
