@@ -133,16 +133,18 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 77 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
+#line 78 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
        
     private string mySetting;
     DataUploadModel theData = new DataUploadModel();
+
 
     // on load -> call this func
     private void initMethod()
     {
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         theData.connect = mySetting;
+        theData.getOrders();
     }
 
     // on load

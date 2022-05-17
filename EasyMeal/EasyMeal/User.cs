@@ -27,6 +27,11 @@ namespace EasyMeal
         public int userID { get; set; }
         public int userType { get { return _userType; } set { _userType = value; } } // property to get user type
         public int? SavedOrderID { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public string Color { get; set; }
 
         public string email { get; set; } // property for checking log in email
         public string password { get; set; } // property for checking log in password
@@ -88,6 +93,132 @@ namespace EasyMeal
             {
                 Console.WriteLine("You are logged in!");
                 userID = (int)holder;
+                check = true;
+            }
+            else
+            {
+                Console.WriteLine("Error, account not found or wrong credentials!");
+                check = false;
+            }
+            con.Dispose();
+            setFirstName();
+            setLastName();
+            grabUserType();
+            if (_userType == 2)
+            {
+                setMake();
+                setModel();
+                setColor();
+            }
+        }
+
+        public void setFirstName()
+        {
+            string holder = "";
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT UserFirstName FROM TblUsers WHERE UserEmail = @email AND UserPassword = @password", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@email", this.email);
+            cmd.Parameters.AddWithValue("@password", this.password);
+            holder = (string)cmd.ExecuteScalar();
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read() && holder != null)
+            {
+                Console.WriteLine("You are logged in!");
+                UserFirstName = (string)holder;
+                check = true;
+            }
+            else
+            {
+                Console.WriteLine("Error, account not found or wrong credentials!");
+                check = false;
+            }
+            con.Dispose();
+        }
+
+        public void setLastName()
+        {
+            string holder = "";
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT UserLastName FROM TblUsers WHERE UserEmail = @email AND UserPassword = @password", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@email", this.email);
+            cmd.Parameters.AddWithValue("@password", this.password);
+            holder = (string)cmd.ExecuteScalar();
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read() && holder != null)
+            {
+                Console.WriteLine("You are logged in!");
+                UserLastName = (string)holder;
+                check = true;
+            }
+            else
+            {
+                Console.WriteLine("Error, account not found or wrong credentials!");
+                check = false;
+            }
+            con.Dispose();
+        }
+
+        public void setMake()
+        {
+            string holder = "";
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT DriverMake FROM TblDriver WHERE UserID = @id", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@id", userID);
+            holder = (string)cmd.ExecuteScalar();
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read() && holder != null)
+            {
+                Console.WriteLine("You are logged in!");
+                Make = (string)holder;
+                check = true;
+            }
+            else
+            {
+                Console.WriteLine("Error, account not found or wrong credentials!");
+                check = false;
+            }
+            con.Dispose();
+        }
+
+        public void setModel()
+        {
+            string holder = "";
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT DriverModel FROM TblDriver WHERE UserID = @id", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@id", userID);
+            holder = (string)cmd.ExecuteScalar();
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read() && holder != null)
+            {
+                Console.WriteLine("You are logged in!");
+                Model = (string)holder;
+                check = true;
+            }
+            else
+            {
+                Console.WriteLine("Error, account not found or wrong credentials!");
+                check = false;
+            }
+            con.Dispose();
+        }
+
+        public void setColor()
+        {
+            string holder = "";
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT DriverColor FROM TblDriver WHERE UserID = @id", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@id", userID);
+            holder = (string)cmd.ExecuteScalar();
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read() && holder != null)
+            {
+                Console.WriteLine("You are logged in!");
+                Color = (string)holder;
                 check = true;
             }
             else

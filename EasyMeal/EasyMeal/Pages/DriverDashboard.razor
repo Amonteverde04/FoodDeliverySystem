@@ -28,21 +28,22 @@
         <div class="DriverInfoAndOrderQueueContainer">
             <div class="YourInfoContainer">
                 <h1 class="YourInfo">Your Information:</h1><br />
-                <h2 class="DriverName">Harold Johnson</h2><br />
-                <h2 class="DriverVehicle">Green 2019 Jeep Wrangler</h2>
+                <h2 class="DriverName">@Usr.UserFirstName @Usr.UserLastName</h2><br />
+                <h2 class="DriverVehicle">@Usr.Color @Usr.Make @Usr.Model</h2>
             </div>
             <div class="OrderQueueContainer">
                 <table class="OrderQueueTable">
                     <tr>
                         <th>Restaurant Name</th>
                         <th>Prep Time</th>
-                        <th>Distance</th>
                     </tr>
-                    <tr>
-                        <td>Hello</td>
-                        <td>Hello</td>
-                        <td>Hello</td>
-                    </tr>
+                    @for (int i = 0; i < theData.listOfIDs.Count; i++)
+                    {
+                        <tr>
+                            <td>@theData.listOfRestNames[i]</td>
+                            <td>@theData.listOfStatus[i]</td>
+                        </tr>
+                    }
                 </table>
             </div>
         </div>
@@ -78,11 +79,13 @@
     private string mySetting;
     DataUploadModel theData = new DataUploadModel();
 
+
     // on load -> call this func
     private void initMethod()
     {
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         theData.connect = mySetting;
+        theData.getOrders();
     }
 
     // on load

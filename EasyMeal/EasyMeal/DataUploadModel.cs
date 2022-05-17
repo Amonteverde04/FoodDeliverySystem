@@ -16,6 +16,11 @@ namespace EasyMeal
         public string time { get; set; }
         public int failure { get; set; }
         public int restPageID { get; set; }
+        public List<int> listOfIDs = new List<int>();
+        public List<string> listOfRestNames = new List<string>();
+        public List<int> listOfStatus = new List<int>();
+
+        public List<string> listOfPrepTime = new List<string>();
 
         // constructor
         public DataUploadModel()
@@ -34,6 +39,36 @@ namespace EasyMeal
                 num = (int)cmd.ExecuteScalar();
                 con.Dispose();
             } catch { }
+            return num;
+        }
+
+        public int getNumOfEntriesInOrderTable()
+        {
+            int num = 0;
+            try
+            {
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(OrderID) FROM TblOrders", con);
+                con.Open();
+                num = (int)cmd.ExecuteScalar();
+                con.Dispose();
+            }
+            catch { }
+            return num;
+        }
+
+        public int getNumOfEntriesInOrderLine()
+        {
+            int num = 0;
+            try
+            {
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(OrderLineID) FROM TblOrderLine", con);
+                con.Open();
+                num = (int)cmd.ExecuteScalar();
+                con.Dispose();
+            }
+            catch { }
             return num;
         }
 
@@ -228,6 +263,49 @@ namespace EasyMeal
             theListArray[3] = listOfMenuDescs;
             theListArray[4] = listOfMenuPrices;
             return theListArray;
+        }
+
+        public void getOrders()
+        {
+            
+            int numOfEntries = 0;
+            numOfEntries = getNumOfEntriesInOrderTable();
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT TblOrders.OrderID, TblOrders.Status, TblRestaurant.RestName" +
+                $"                            FROM TblOrders" +
+                $"                            LEFT JOIN TblRestaurant" +
+                $"                            ON TblOrders.RestID = TblRestaurant.RestaurantID" +
+                $"                                              ", con);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            // iterator limit needs to be changed based on how many entries we have in the restaurant table.
+            for (int i = 0; i < numOfEntries; i++)
+            {
+                reader.Read();
+                listOfIDs.Add(reader.GetFieldValue<int>(0));
+                listOfStatus.Add(reader.GetFieldValue<int>(1));
+                listOfRestNames.Add(reader.GetFieldValue<string>(2));
+            }
+            con.Dispose();
+        }
+
+        public void orderPrepTime()
+        {
+            int num = getNumOfEntriesInOrderLine();
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"SELECT TblOrderLine.OrderID, TblOrders.OrderID, TblRestMenuItem.PrepTime" +
+                $"                            FROM TblOrderLine" +
+                $"                            LEFT JOIN TblOrders" +
+                $"                            ON TblOrderLine.OrderID = TblOrders.OrderID" +
+                $"                            LEFT JOIN TblRestMenuItem" +
+                $"                            ON TblOrderLine.RestItemID = TblRestMenuItem.RestItemID" +
+                $"                                              ", con);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            for (int i = 0; i < num; i++)
+            {
+
+            }
         }
     }
 }
