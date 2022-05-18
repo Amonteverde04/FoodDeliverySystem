@@ -22,6 +22,12 @@ namespace EasyMeal
 
         public List<string> listOfPrepTime = new List<string>();
 
+
+        public List<string> listOfRestNameForOrder = new List<string>();
+        public List<string> listOfRestAddy = new List<string>();
+        public List<string> listOfCustName = new List<string>();
+        public List<string> listOfCustAddy = new List<string>();
+
         // constructor
         public DataUploadModel()
         {
@@ -289,23 +295,51 @@ namespace EasyMeal
             con.Dispose();
         }
 
-        public void orderPrepTime()
+        // 
+        public int? orderPrepTime(int ID)
         {
-            int num = getNumOfEntriesInOrderLine();
+            int? num;
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand($"SELECT TblOrderLine.OrderID, TblOrders.OrderID, TblRestMenuItem.PrepTime" +
+            SqlCommand cmd = new SqlCommand($"SELECT MAX(TblRestMenuItem.PrepTime)" +
                 $"                            FROM TblOrderLine" +
                 $"                            LEFT JOIN TblOrders" +
                 $"                            ON TblOrderLine.OrderID = TblOrders.OrderID" +
                 $"                            LEFT JOIN TblRestMenuItem" +
                 $"                            ON TblOrderLine.RestItemID = TblRestMenuItem.RestItemID" +
+                $"                            WHERE TblOrderLine.OrderID = @orderID" +
                 $"                                              ", con);
             con.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            for (int i = 0; i < num; i++)
-            {
+            cmd.Parameters.AddWithValue("@orderID", ID);
+            num = (int?)cmd.ExecuteScalar();
+            return num;
+        }
 
+        public void getOrderInfo()
+        {
+
+            int numOfEntries = 0;
+            numOfEntries = getNumOfEntriesInOrderTable();
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand("SELECT TblRestaurant.RestName, CONCAT(TblRestaurant.RestStreet , ' ',TblRestaurant.RestCity, ' ', TblRestaurant.RestState, ' ', TblRestaurant.RestZip) AS RestAddy, CONCAT(TblUsers.UserFirstName, ' ', TblUsers.UserLastName) AS CustName, CONCAT(TblCustomer.CustomerStreet,  ' ', TblCustomer.CustomerCity, ' ',TblCustomer.CustomerState, ' ', TblCustomer.CustomerZip) AS CustAddy" +
+                                            $" FROM TblOrders" + 
+                                            $" LEFT JOIN TblRestaurant" +
+                                            $" ON TblOrders.RestID = TblRestaurant.RestaurantID" +
+                                            $" LEFT JOIN TblCustomer" +
+                                            $" ON TblOrders.UserID = TblCustomer.UserID" +
+                                            $" LEFT JOIN TblUsers" +
+                                            $" ON TblCustomer.UserID = TblUsers.UserID", con);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            // iterator limit needs to be changed based on how many entries we have in the restaurant table.
+            for (int i = 0; i < numOfEntries; i++)
+            {
+                reader.Read();
+                listOfRestNameForOrder.Add(reader.GetFieldValue<string>(0));
+                listOfRestAddy.Add(reader.GetFieldValue<string>(1));
+                listOfCustName.Add(reader.GetFieldValue<string>(2));
+                listOfCustAddy.Add(reader.GetFieldValue<string>(3));
             }
+            con.Dispose();
         }
     }
 }

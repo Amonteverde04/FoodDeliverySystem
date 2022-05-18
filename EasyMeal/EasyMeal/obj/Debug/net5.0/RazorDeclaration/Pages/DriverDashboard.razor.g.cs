@@ -133,11 +133,16 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 78 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
+#line 81 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
        
     private string mySetting;
     DataUploadModel theData = new DataUploadModel();
-
+    private string RestName;
+    private string RestAddy;
+    private string CustName;
+    private string CustAddy;
+    private int? PrepTime;
+    private int orderNum;
 
     // on load -> call this func
     private void initMethod()
@@ -145,6 +150,17 @@ using System.Numerics;
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         theData.connect = mySetting;
         theData.getOrders();
+        theData.getOrderInfo();
+    }
+
+    private void buttonClicked(int? x, int i)
+    {
+        RestName = theData.listOfRestNames[i];
+        RestAddy = theData.listOfRestAddy[i];
+        CustName = theData.listOfCustName[i];
+        CustAddy = theData.listOfCustAddy[i];
+        PrepTime = x;
+        orderNum = theData.listOfIDs[i];
     }
 
     // on load

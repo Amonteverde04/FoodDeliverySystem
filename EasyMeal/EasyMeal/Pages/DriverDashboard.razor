@@ -39,9 +39,12 @@
                     </tr>
                     @for (int i = 0; i < theData.listOfIDs.Count; i++)
                     {
+                        int? x = theData.orderPrepTime(theData.listOfIDs[i]);
+                        int q = i;
                         <tr>
                             <td>@theData.listOfRestNames[i]</td>
-                            <td>@theData.listOfStatus[i]</td>
+                            <td>@theData.orderPrepTime(theData.listOfIDs[i])</td>
+                            <td><button class="AcceptButton" @onclick="()=>buttonClicked(x,q)">Accept Order</button></td>
                         </tr>
                     }
                 </table>
@@ -51,17 +54,17 @@
             <div class="OrderInfo">
                 <h1>Order Information:</h1><br />
                 <h2>Restaurant Name:</h2>
-                <p>Food Place</p>
+                <p>@RestName</p>
                 <h2>Restaurant Address:</h2>
-                <p>123 Food Ave</p>
+                <p>@RestAddy</p>
                 <h2>Customer Name:</h2>
-                <p>Johnny Vins</p>
+                <p>@CustName</p>
                 <h2>Customer Address:</h2>
-                <p>123 Couch Lane:</p>
+                <p>@CustAddy</p>
                 <h2>Order Number:</h2>
-                <p>Order #: 12345</p>
+                <p>@orderNum</p>
                 <h2>Prep Time:</h2>
-                <p>55 minutes</p>
+                <p>@PrepTime</p>
             </div>
             <div class="OrderStatusContainer">
                 <label class="StatusLabel" for="status">Select a status to keep the customer informed!</label><br />
@@ -78,7 +81,12 @@
 @code {
     private string mySetting;
     DataUploadModel theData = new DataUploadModel();
-
+    private string RestName;
+    private string RestAddy;
+    private string CustName;
+    private string CustAddy;
+    private int? PrepTime;
+    private int orderNum;
 
     // on load -> call this func
     private void initMethod()
@@ -86,6 +94,17 @@
         mySetting = _config.GetValue<string>("MySetting"); //on load get hidden connection string from appsettings.json
         theData.connect = mySetting;
         theData.getOrders();
+        theData.getOrderInfo();
+    }
+
+    private void buttonClicked(int? x, int i)
+    {
+        RestName = theData.listOfRestNames[i];
+        RestAddy = theData.listOfRestAddy[i];
+        CustName = theData.listOfCustName[i];
+        CustAddy = theData.listOfCustAddy[i];
+        PrepTime = x;
+        orderNum = theData.listOfIDs[i];
     }
 
     // on load

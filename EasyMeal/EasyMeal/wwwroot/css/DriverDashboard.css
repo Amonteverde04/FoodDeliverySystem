@@ -181,3 +181,20 @@ tr:nth-child(even) {
     width: 50%;
     height: 35px;
 }
+
+.AcceptButton {
+    border-radius: 50px;
+    border: solid black;
+}
+
+    .AcceptButton:hover {
+        border-radius: 50px;
+        background-color: #FFD600;
+        border: solid black;
+    }
+
+    .AcceptButton:active {
+        border-radius: 50px;
+        background-color: black;
+        color: white;
+    }
