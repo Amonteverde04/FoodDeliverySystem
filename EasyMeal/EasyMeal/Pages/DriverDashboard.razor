@@ -31,24 +31,27 @@
                 <h2 class="DriverName">@Usr.UserFirstName @Usr.UserLastName</h2><br />
                 <h2 class="DriverVehicle">@Usr.Color @Usr.Make @Usr.Model</h2>
             </div>
-            <div class="OrderQueueContainer">
-                <table class="OrderQueueTable">
-                    <tr>
-                        <th>Restaurant Name</th>
-                        <th>Prep Time</th>
-                    </tr>
-                    @for (int i = 0; i < theData.listOfIDs.Count; i++)
-                    {
-                        int? x = theData.orderPrepTime(theData.listOfIDs[i]);
-                        int q = i;
+            @if(PrepTime != 0) { 
+                <div class="OrderQueueContainer">
+                    <table class="OrderQueueTable">
                         <tr>
-                            <td>@theData.listOfRestNames[i]</td>
-                            <td>@theData.orderPrepTime(theData.listOfIDs[i])</td>
-                            <td><button class="AcceptButton" @onclick="()=>buttonClicked(x,q)">Accept Order</button></td>
+                            <th>Restaurant Name</th>
+                            <th>Prep Time</th>
                         </tr>
-                    }
-                </table>
-            </div>
+                        @for (int i = 0; i < theData.listOfIDs.Count; i++)
+                        {
+                            int? x = theData.orderPrepTime(theData.listOfIDs[i]);
+                            int theID = theData.listOfIDs[i];
+                            int q = i;
+                            <tr>
+                                <td>@theData.listOfRestNames[i]</td>
+                                <td>@theData.orderPrepTime(theData.listOfIDs[i])</td>
+                                <td><button class="AcceptButton" @onclick="()=>buttonClicked(x,q,theID)">Accept Order</button></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
         </div>
         <div class="OrderInfoContainer">
             <div class="OrderInfo">
@@ -67,12 +70,7 @@
                 <p>@PrepTime</p>
             </div>
             <div class="OrderStatusContainer">
-                <label class="StatusLabel" for="status">Select a status to keep the customer informed!</label><br />
-                <select name="status" id="status">
-                    <option value="onWay">On the way to the restaurant!</option>
-                    <option value="pickedUp">Order has been picked up!</option>
-                    <option value="delivered">Order has been delivered, enjoy!</option>
-                </select>
+                <button class="done AcceptButton" @onclick="orderDone">Order Complete</button>
             </div>
         </div>
     </div>
@@ -87,6 +85,8 @@
     private string CustAddy;
     private int? PrepTime;
     private int orderNum;
+    private int orderID;
+    int status = 0;
 
     // on load -> call this func
     private void initMethod()
@@ -97,14 +97,22 @@
         theData.getOrderInfo();
     }
 
-    private void buttonClicked(int? x, int i)
+    private void buttonClicked(int? x, int q, int theID)
     {
-        RestName = theData.listOfRestNames[i];
-        RestAddy = theData.listOfRestAddy[i];
-        CustName = theData.listOfCustName[i];
-        CustAddy = theData.listOfCustAddy[i];
+        orderID = theID;
+        RestName = theData.listOfRestNames[q];
+        RestAddy = theData.listOfRestAddy[q];
+        CustName = theData.listOfCustName[q];
+        CustAddy = theData.listOfCustAddy[q];
         PrepTime = x;
-        orderNum = theData.listOfIDs[i];
+        orderNum = theData.listOfIDs[q];
+    }
+
+    private void orderDone() {
+        status = 1;
+        Console.WriteLine(status);
+        theData.orderDone(status, orderNum);
+        NavigationManager.NavigateTo("/Driver-Dashboard", true);
     }
 
     // on load

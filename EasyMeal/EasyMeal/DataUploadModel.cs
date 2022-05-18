@@ -63,6 +63,21 @@ namespace EasyMeal
             return num;
         }
 
+        public int getNumOfEntriesInOrderTableZero()
+        {
+            int num = 0;
+            try
+            {
+                SqlConnection con = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(OrderID) FROM TblOrders WHERE Status = 0", con);
+                con.Open();
+                num = (int)cmd.ExecuteScalar();
+                con.Dispose();
+            }
+            catch { }
+            return num;
+        }
+
         public int getNumOfEntriesInOrderLine()
         {
             int num = 0;
@@ -273,15 +288,16 @@ namespace EasyMeal
 
         public void getOrders()
         {
-            
+            int holder = 0;
             int numOfEntries = 0;
-            numOfEntries = getNumOfEntriesInOrderTable();
+            numOfEntries = getNumOfEntriesInOrderTableZero();
             SqlConnection con = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand($"SELECT TblOrders.OrderID, TblOrders.Status, TblRestaurant.RestName" +
                 $"                            FROM TblOrders" +
                 $"                            LEFT JOIN TblRestaurant" +
                 $"                            ON TblOrders.RestID = TblRestaurant.RestaurantID" +
-                $"                                              ", con);
+                $"                            WHERE TblOrders.Status = 0" +
+                $"                                          ", con);
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             // iterator limit needs to be changed based on how many entries we have in the restaurant table.
@@ -320,7 +336,7 @@ namespace EasyMeal
             int numOfEntries = 0;
             numOfEntries = getNumOfEntriesInOrderTable();
             SqlConnection con = new SqlConnection(connect);
-            SqlCommand cmd = new SqlCommand("SELECT TblRestaurant.RestName, CONCAT(TblRestaurant.RestStreet , ' ',TblRestaurant.RestCity, ' ', TblRestaurant.RestState, ' ', TblRestaurant.RestZip) AS RestAddy, CONCAT(TblUsers.UserFirstName, ' ', TblUsers.UserLastName) AS CustName, CONCAT(TblCustomer.CustomerStreet,  ' ', TblCustomer.CustomerCity, ' ',TblCustomer.CustomerState, ' ', TblCustomer.CustomerZip) AS CustAddy" +
+            SqlCommand cmd = new SqlCommand("SELECT CONCAT(TblRestaurant.RestStreet , ' ',TblRestaurant.RestCity, ' ', TblRestaurant.RestState, ' ', TblRestaurant.RestZip) AS RestAddy, CONCAT(TblUsers.UserFirstName, ' ', TblUsers.UserLastName) AS CustName, CONCAT(TblCustomer.CustomerStreet,  ' ', TblCustomer.CustomerCity, ' ',TblCustomer.CustomerState, ' ', TblCustomer.CustomerZip) AS CustAddy" +
                                             $" FROM TblOrders" + 
                                             $" LEFT JOIN TblRestaurant" +
                                             $" ON TblOrders.RestID = TblRestaurant.RestaurantID" +
@@ -334,11 +350,35 @@ namespace EasyMeal
             for (int i = 0; i < numOfEntries; i++)
             {
                 reader.Read();
-                listOfRestNameForOrder.Add(reader.GetFieldValue<string>(0));
-                listOfRestAddy.Add(reader.GetFieldValue<string>(1));
-                listOfCustName.Add(reader.GetFieldValue<string>(2));
-                listOfCustAddy.Add(reader.GetFieldValue<string>(3));
+                listOfRestAddy.Add(reader.GetFieldValue<string>(0));
+                listOfCustName.Add(reader.GetFieldValue<string>(1));
+                listOfCustAddy.Add(reader.GetFieldValue<string>(2));
             }
+            con.Dispose();
+        }
+
+        public void orderDone(int status, int? orderID)
+        {
+            SqlConnection con = new SqlConnection(connect);
+            SqlCommand cmd = new SqlCommand($"UPDATE TblOrders SET Status = @status WHERE OrderID = @id", con);
+            con.Open();
+            try
+            {
+                cmd.Parameters.AddWithValue("@status", status);
+                cmd.Parameters.AddWithValue("@id", orderID);
+                int checker = cmd.ExecuteNonQuery();
+                if (checker != 0)
+                {
+                    Console.WriteLine("order updated!");
+                    failure = 0;
+                }
+                else
+                {
+                    Console.WriteLine("order not updated!");
+                    failure = 1;
+                }
+            }
+            catch { failure = 1; }
             con.Dispose();
         }
     }

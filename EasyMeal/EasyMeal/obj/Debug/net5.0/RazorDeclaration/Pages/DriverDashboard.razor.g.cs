@@ -133,7 +133,7 @@ using System.Numerics;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
+#line 79 "C:\Users\awsom\Documents\GitHub\FoodDeliverySystem\EasyMeal\EasyMeal\Pages\DriverDashboard.razor"
        
     private string mySetting;
     DataUploadModel theData = new DataUploadModel();
@@ -143,6 +143,8 @@ using System.Numerics;
     private string CustAddy;
     private int? PrepTime;
     private int orderNum;
+    private int orderID;
+    int status = 0;
 
     // on load -> call this func
     private void initMethod()
@@ -153,14 +155,22 @@ using System.Numerics;
         theData.getOrderInfo();
     }
 
-    private void buttonClicked(int? x, int i)
+    private void buttonClicked(int? x, int q, int theID)
     {
-        RestName = theData.listOfRestNames[i];
-        RestAddy = theData.listOfRestAddy[i];
-        CustName = theData.listOfCustName[i];
-        CustAddy = theData.listOfCustAddy[i];
+        orderID = theID;
+        RestName = theData.listOfRestNames[q];
+        RestAddy = theData.listOfRestAddy[q];
+        CustName = theData.listOfCustName[q];
+        CustAddy = theData.listOfCustAddy[q];
         PrepTime = x;
-        orderNum = theData.listOfIDs[i];
+        orderNum = theData.listOfIDs[q];
+    }
+
+    private void orderDone() {
+        status = 1;
+        Console.WriteLine(status);
+        theData.orderDone(status, orderNum);
+        NavigationManager.NavigateTo("/Driver-Dashboard", true);
     }
 
     // on load
